@@ -49,6 +49,11 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+  uint psignals;               // Pending signals
+  uint sigmask;                // Signal mask
+  void* sig_handlers[32];      // Signal handlers
+  struct trapframe* trapframe; // Pointer to a trapframe struct
+  int frozen;                  // If val==1 then stopped by SigStop
 };
 
 // Process memory is laid out contiguously, low addresses first:

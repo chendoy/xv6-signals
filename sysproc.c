@@ -7,6 +7,7 @@
 #include "mmu.h"
 #include "proc.h"
 
+
 int
 sys_fork(void)
 {
@@ -30,10 +31,13 @@ int
 sys_kill(void)
 {
   int pid;
+  int signum;
 
   if(argint(0, &pid) < 0)
     return -1;
-  return kill(pid);
+  if(argint(1, &signum) < 0)
+    return -1;
+  return kill(pid, signum);
 }
 
 int
@@ -88,4 +92,35 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+// assignment 2
+uint
+sys_sigprocmask(void)
+{
+  uint new_mask;
+  if (argint(0, (int*)&new_mask) < 0)
+    return -1;
+  return sigprocmask(new_mask);
+}
+
+
+int
+sys_sigaction(void)
+{
+  int signum;
+  struct sigaction *act;
+  struct sigaction *oldact;
+
+  if(argint(0, &signum) < 0)
+    return -1;
+
+  if(argptr(1, (char**)&act, sizeof(struct sigaction)) < 0)
+    return -1;
+
+  if(argptr(2, (char**)&oldact, sizeof(struct sigaction)) < 0)
+    return -1;
+
+  return sigaction(signum, act, oldact);
+
 }

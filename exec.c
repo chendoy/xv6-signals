@@ -7,6 +7,8 @@
 #include "x86.h"
 #include "elf.h"
 
+void default_sighandlers (struct proc* currproc);
+
 int
 exec(char *path, char **argv)
 {
@@ -99,6 +101,10 @@ exec(char *path, char **argv)
   curproc->sz = sz;
   curproc->tf->eip = elf.entry;  // main
   curproc->tf->esp = sp;
+
+  //assignment 2
+  default_sighandlers(curproc);
+
   switchuvm(curproc);
   freevm(oldpgdir);
   return 0;
@@ -111,4 +117,15 @@ exec(char *path, char **argv)
     end_op();
   }
   return -1;
+}
+
+
+void
+default_sighandlers (struct proc* currproc) {
+  int i;
+  void** sig_handlers = (void**) &currproc->sig_handlers;
+  for (i = 2; i < SIG_HANDLERS_NUM; i++)
+  {
+    sig_handlers[i] = null;
+  }
 }

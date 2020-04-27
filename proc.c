@@ -7,6 +7,8 @@
 #include "proc.h"
 #include "spinlock.h"
 
+void copySigHandlers(void** new_sighandlers, void** old_sighandlers);
+
 struct {
   struct spinlock lock;
   struct proc proc[NPROC];
@@ -131,6 +133,7 @@ found:
 
 
 
+
 //PAGEBREAK: 32
 // Set up first user process.
 void
@@ -190,6 +193,7 @@ growproc(int n)
   return 0;
 }
 
+
 // Create a new process copying p as the parent.
 // Sets up stack to return as if from system call.
 // Caller must set state of returned proc to RUNNABLE.
@@ -215,6 +219,11 @@ fork(void)
   np->sz = curproc->sz;
   np->parent = curproc;
   *np->tf = *curproc->tf;
+
+  // assignment 2
+  np->sigmask = curproc->sigmask;
+  copySigHandlers((void**)&np->sig_handlers, (void**)&curproc->sig_handlers);
+  np->psignals = 0;
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
@@ -392,6 +401,8 @@ sched(void)
     panic("sched running");
   if(readeflags()&FL_IF)
     panic("sched interruptible");
+  if(p->frozen & !(p->psignals | 1 << SIGCONT))
+    yield();
   intena = mycpu()->intena;
   swtch(&p->context, mycpu()->scheduler);
   mycpu()->intena = intena;
@@ -489,21 +500,21 @@ wakeup(void *chan)
   release(&ptable.lock);
 }
 
+
+
 // Kill the process with the given pid.
 // Process won't exit until it returns
 // to user space (see trap in trap.c).
+// assignment 2 - modified
 int
-kill(int pid)
+kill(int pid, int signum)
 {
+  if(signum < SIG_MIN || signum > SIG_MAX)
+    return -1;
   struct proc *p;
-
-  acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
-      p->killed = 1;
-      // Wake process from sleep if necessary.
-      if(p->state == SLEEPING)
-        p->state = RUNNABLE;
+      p->psignals |= 1 << signum;
       release(&ptable.lock);
       return 0;
     }
@@ -511,6 +522,24 @@ kill(int pid)
   release(&ptable.lock);
   return -1;
 }
+
+// updating the process signal mask ass2
+uint
+sigprocmask(uint mask)
+{
+  struct proc *curproc = myproc();
+  uint old = curproc -> sigmask;
+  curproc->sigmask = mask;
+  return old;
+}
+
+
+//restorting the process to its original workflow, ass2
+// uint sigret(void)
+// {
+
+// }
+
 
 //PAGEBREAK: 36
 // Print a process listing to console.  For debugging.
@@ -547,4 +576,59 @@ procdump(void)
     }
     cprintf("\n");
   }
+}
+
+// implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
+int
+SigKill(){
+  return kill(myproc() -> pid, SIGKILL);
+}
+
+int 
+SigStop(){
+  struct proc *p = myproc();
+  if(p-> state == SLEEPING)
+    return 1;
+  p->frozen = 1;
+  yield();
+  return 0;
+}
+
+int
+SigCont(){
+  struct proc *p = myproc();
+  p-> frozen = 0;
+  return 0;
+}
+
+void 
+copySigHandlers(void** new_sighandlers, void** old_sighandlers) {
+  int i;
+  for(i = 0; i < SIG_HANDLERS_NUM; i++) {
+    new_sighandlers[i] = old_sighandlers[i];
+  }
+}
+
+int 
+sigaction(int signum, const struct sigaction *act, struct sigaction *oldact) 
+{
+  struct proc* curproc = myproc();
+
+  if(signum == SIGSTOP || signum == SIGKILL) // they cannot be modified, blocked or ignored
+    return 1;
+
+  if(oldact != null) {
+    oldact->sa_handler = curproc->sig_handlers[signum]; // old handler
+    oldact->sigmask = curproc->sigmask; // old sigmask
+  }
+
+  curproc->sig_handlers[signum] = act->sa_handler;
+
+  if(act->sigmask <= 0) // sigmask must be positive
+    return 1;
+
+  curproc->sigmask = act->sigmask;
+
+  return 0;
+
 }
