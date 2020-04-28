@@ -124,8 +124,9 @@ void
 default_sighandlers (struct proc* currproc) {
   int i;
   void** sig_handlers = (void**) &currproc->sig_handlers;
-  for (i = 2; i < SIG_HANDLERS_NUM; i++)
+  for (i = 0; i < SIG_HANDLERS_NUM; i++)
   {
-    sig_handlers[i] = null;
+    if(sig_handlers[i] != SIG_DFL && sig_handlers[i] != SIG_IGN)
+      sig_handlers[i] = SIG_DFL;
   }
 }

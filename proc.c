@@ -8,6 +8,7 @@
 #include "spinlock.h"
 
 void copySigHandlers(void** new_sighandlers, void** old_sighandlers);
+void setDefaultHandlers();
 
 struct {
   struct spinlock lock;
@@ -127,10 +128,21 @@ found:
   memset(p->context, 0, sizeof *p->context);
   p->context->eip = (uint)forkret;
 
+  p->psignals = 0;
+  p->sigmask = 0;
+
+  //setDefaultHandlers(); 2.1.2?
+  
   return p;
 }
 
-
+void
+setDefaultHandlers() {
+  int i;
+  struct proc *currproc = myproc();
+  for (i = SIG_MIN; i <= SIG_MAX; i++)
+    currproc->sig_handlers[i] = SIG_DFL;
+}
 
 
 
@@ -139,6 +151,7 @@ found:
 void
 userinit(void)
 {
+
   struct proc *p;
   extern char _binary_initcode_start[], _binary_initcode_size[];
 
@@ -223,7 +236,6 @@ fork(void)
   // assignment 2
   np->sigmask = curproc->sigmask;
   copySigHandlers((void**)&np->sig_handlers, (void**)&curproc->sig_handlers);
-  np->psignals = 0;
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
@@ -401,7 +413,7 @@ sched(void)
     panic("sched running");
   if(readeflags()&FL_IF)
     panic("sched interruptible");
-  if(p->frozen & !(p->psignals | 1 << SIGCONT))
+  if(p->frozen && !(p->psignals | 1 << SIGCONT))
     yield();
   intena = mycpu()->intena;
   swtch(&p->context, mycpu()->scheduler);
@@ -580,12 +592,17 @@ procdump(void)
 
 // implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
 int
-SigKill(){
-  return kill(myproc() -> pid, SIGKILL);
+sigkill_handler(){
+  struct proc *p = myproc();
+  p->killed = 1;
+  // Wake process from sleep if necessary.
+  if(p->state == SLEEPING)
+    p->state = RUNNABLE;
+  return 0;
 }
 
 int 
-SigStop(){
+sigstop_handler(){
   struct proc *p = myproc();
   if(p-> state == SLEEPING)
     return 1;
@@ -595,7 +612,7 @@ SigStop(){
 }
 
 int
-SigCont(){
+sigcont_handler(){
   struct proc *p = myproc();
   p-> frozen = 0;
   return 0;
@@ -631,4 +648,57 @@ sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
 
   return 0;
 
+}
+
+void
+handleSignal (int sig) {
+  struct proc *p = myproc();
+  if(p->sig_handlers[sig] == SIG_IGN)
+  {
+    // do nothing
+  }
+
+  if(p->sig_handlers[sig] == SIG_DFL)
+  {
+    switch (sig) 
+    {
+      case SIGCONT:
+        sigcont_handler();
+        break;
+      case SIGSTOP:
+        sigstop_handler();
+        break;
+      case SIGKILL:
+        sigkill_handler();
+        break;
+      default: {
+      if(sig != SIGKILL && sig != SIGSTOP && sig != SIGCONT) {
+        sigkill_handler();
+        break;
+      }
+    }
+    }
+  }
+
+  return;
+
+}
+
+void
+handle_signals (){
+  struct proc *p = myproc();
+  
+  if(p == 0)
+    return;
+
+  uint sig;
+  for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
+
+  //signal sig is pending and is not blocked
+  if((p->psignals & sig) > 0 && (p->sigmask & sig) == 0) {
+    handleSignal(sig);                         // handle it
+    p->psignals ^= sig;   // turn off this bit
+    }
+  }
+  return;
 }

@@ -53,7 +53,7 @@ struct proc {
   uint sigmask;                // Signal mask
   void* sig_handlers[32];      // Signal handlers
   struct trapframe* trapframe; // Pointer to a trapframe struct
-  int frozen;                  // If val==1 then stopped by SigStop
+  int frozen;                  // If non-zero, have been frozen
 };
 
 // Process memory is laid out contiguously, low addresses first:
