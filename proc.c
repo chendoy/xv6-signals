@@ -131,19 +131,11 @@ found:
   p->psignals = 0;
   p->sigmask = 0;
 
-  //setDefaultHandlers(); 2.1.2?
+  for (int i = SIG_MIN; i <= SIG_MAX; i++) // setting all sig handlers to default
+    p->sig_handlers[i] = SIG_DFL;
   
   return p;
 }
-
-void
-setDefaultHandlers() {
-  int i;
-  struct proc *currproc = myproc();
-  for (i = SIG_MIN; i <= SIG_MAX; i++)
-    currproc->sig_handlers[i] = SIG_DFL;
-}
-
 
 
 //PAGEBREAK: 32
@@ -524,6 +516,7 @@ kill(int pid, int signum)
   if(signum < SIG_MIN || signum > SIG_MAX)
     return -1;
   struct proc *p;
+  acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
       p->psignals |= 1 << signum;
@@ -535,7 +528,7 @@ kill(int pid, int signum)
   return -1;
 }
 
-// updating the process signal mask ass2
+// system call: updating the process signal mask ass2
 uint
 sigprocmask(uint mask)
 {
@@ -601,7 +594,7 @@ sigkill_handler(){
   return 0;
 }
 
-int 
+int
 sigstop_handler(){
   struct proc *p = myproc();
   if(p-> state == SLEEPING)
@@ -658,7 +651,7 @@ handleSignal (int sig) {
     // do nothing
   }
 
-  if(p->sig_handlers[sig] == SIG_DFL)
+  else if(p->sig_handlers[sig] == SIG_DFL)
   {
     switch (sig) 
     {
@@ -680,6 +673,18 @@ handleSignal (int sig) {
     }
   }
 
+  else { // user space handler
+    memmove(p->tf_backup, p->tf, sizeof(struct trapframe)); // trapframe backup
+    p->tf->eip = &p->sig_handlers[sig];
+    p->tf->esp = sig;
+    (&p->tf->esp)[4] = p->tf->ebp;
+    (&p->tf->esp)[8] = &sigret;
+    p->tf->esp;
+
+    p->sig_handlers[sig]; // jump
+
+  }
+
   return;
 
 }
@@ -687,7 +692,6 @@ handleSignal (int sig) {
 void
 handle_signals (){
   struct proc *p = myproc();
-  
   if(p == 0)
     return;
 
@@ -695,10 +699,17 @@ handle_signals (){
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
 
   //signal sig is pending and is not blocked
-  if((p->psignals & sig) > 0 && (p->sigmask & sig) == 0) {
-    handleSignal(sig);                         // handle it
-    p->psignals ^= sig;   // turn off this bit
+  if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
+    handleSignal(sig);           // handle it
+    p->psignals ^= (1 << sig);   // turn off this bit
     }
   }
+  return;
+}
+
+void
+sigret(void) {
+  struct proc* p = myproc();
+  memmove(p->tf, p->tf_backup, sizeof(struct trapframe)); // trapframe restore
   return;
 }

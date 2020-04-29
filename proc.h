@@ -52,7 +52,7 @@ struct proc {
   uint psignals;               // Pending signals
   uint sigmask;                // Signal mask
   void* sig_handlers[32];      // Signal handlers
-  struct trapframe* trapframe; // Pointer to a trapframe struct
+  struct trapframe* tf_backup; // Pointer to a trapframe backup
   int frozen;                  // If non-zero, have been frozen
 };
 

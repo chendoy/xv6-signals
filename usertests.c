@@ -1768,7 +1768,6 @@ main(int argc, char *argv[])
   bigargtest();
   bsstest();
   sbrktest();
-  printf(1,"sbrk okkkkkkk\n");
   validatetest();
 
   opentest();
