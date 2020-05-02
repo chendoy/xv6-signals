@@ -405,8 +405,8 @@ sched(void)
     panic("sched running");
   if(readeflags()&FL_IF)
     panic("sched interruptible");
-  if(p->frozen && !(p->psignals | 1 << SIGCONT))
-    yield();
+  // if(p->frozen && !(p->psignals | 1 << SIGCONT))
+  //   yield();
   intena = mycpu()->intena;
   swtch(&p->context, mycpu()->scheduler);
   mycpu()->intena = intena;
@@ -599,15 +599,26 @@ sigstop_handler(){
   struct proc *p = myproc();
   if(p-> state == SLEEPING)
     return 1;
-  p->frozen = 1;
+
+yield:
   yield();
-  return 0;
+
+  if(p->psignals  & (1 << SIGCONT)) // received cont
+  {
+    p->psignals ^= (1 << SIGSTOP);
+    p->psignals ^= (1 << SIGCONT);
+    return 0;
+  }
+  goto yield;
+  
 }
 
 int
 sigcont_handler(){
-  struct proc *p = myproc();
-  p-> frozen = 0;
+  struct proc* p = myproc();
+  if(!(p->psignals  & (1 << SIGSTOP)))
+    p->psignals ^= (1 << SIGCONT);
+  
   return 0;
 }
 
@@ -673,17 +684,17 @@ handleSignal (int sig) {
     }
   }
 
-  else { // user space handler
-    memmove(p->tf_backup, p->tf, sizeof(struct trapframe)); // trapframe backup
-    p->tf->eip = &p->sig_handlers[sig];
-    p->tf->esp = sig;
-    (&p->tf->esp)[4] = p->tf->ebp;
-    (&p->tf->esp)[8] = &sigret;
-    p->tf->esp;
+  // else { // user space handler
+  //   memmove(p->tf_backup, p->tf, sizeof(struct trapframe)); // trapframe backup
+  //   p->tf->eip = &p->sig_handlers[sig];
+  //   p->tf->esp = sig;
+  //   (&p->tf->esp)[4] = p->tf->ebp;
+  //   (&p->tf->esp)[8] = &sigret;
+  //   p->tf->esp;
 
-    p->sig_handlers[sig]; // jump
+  //   p->sig_handlers[sig]; // jump
 
-  }
+  // }
 
   return;
 
@@ -701,7 +712,7 @@ handle_signals (){
   //signal sig is pending and is not blocked
   if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
     handleSignal(sig);           // handle it
-    p->psignals ^= (1 << sig);   // turn off this bit
+    //p->psignals ^= (1 << sig);   // turn off this bit
     }
   }
   return;
