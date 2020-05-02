@@ -31,7 +31,7 @@ void
 pinit(void)
 {
   initlock(&ptable.lock, "ptable");
-  initlock(&psig.lock, "psig");
+  //initlock(&psig.lock, "psig");
 }
 
 // Must be called with interrupts disabled
@@ -523,9 +523,9 @@ kill(int pid, int signum)
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
-      acquire(&psig.lock);
+      //acquire(&psig.lock);
       p->psignals |= (1 << signum);
-      release(&psig.lock);
+      //release(&psig.lock);
       release(&ptable.lock);
       return 0;
     }
@@ -607,23 +607,21 @@ sigstop_handler(){
   if(p-> state == SLEEPING)
     return;
 
-check_cont:
+  p->stopped = 1;
 
-  if((p->psignals  & (1 << SIGCONT))) // cont received
+yield:
+
+  release(&ptable.lock);
+  yield();
+  acquire(&ptable.lock);
+  
+  if(p->psignals & (1 << SIGCONT)) 
   {
-    cprintf("psignals is: %d, should be 655360\n", p->psignals);
-    //if(p->psignals & (1 << SIGSTOP) != 0)
-      p->psignals ^= (1 << SIGSTOP);
-
-    //if(p->psignals & (1 << SIGCONT) != 0)
-      p->psignals ^= (1 << SIGCONT);
-    cprintf("psignals is: %d, should be 0\n", p->psignals);
+    p->stopped = 0;
     return;
   }
 
-  yield();
-  
-  goto check_cont;
+  goto yield;
 
 }
 
@@ -632,6 +630,7 @@ sigcont_handler(){
   struct proc* p = myproc();
   if(!(p->psignals  & (1 << SIGSTOP)))
     p->psignals ^= (1 << SIGCONT);
+  p->stopped = 0;
 
   return;
 }
@@ -709,16 +708,16 @@ handle_signals (){
     return;
 
   uint sig;
+
+  acquire(&ptable.lock);
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
-
   //signal sig is pending and is not blocked
-
   if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
     handleSignal(sig);           // handle it
+    p->psignals ^= (1 << sig);   // turn off this bit
     }
- 
   }
-
+  release(&ptable.lock);
   return;
 }
 

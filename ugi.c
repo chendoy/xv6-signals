@@ -38,6 +38,7 @@ test_23()
             printf(1, "hi");
             sleep(10);
         }
+        
     }
     else
     {  
@@ -86,6 +87,7 @@ else
 {
     //sleep(100);
     kill(pid, SIGSTOP);
+    sleep(10);
     kill(pid, SIGCONT);
     //sleep(30);
     // kill(pid, SIGSTOP);
