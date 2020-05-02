@@ -15,6 +15,10 @@ struct {
   struct proc proc[NPROC];
 } ptable;
 
+struct{
+  struct spinlock lock;
+}psig;
+
 static struct proc *initproc;
 
 int nextpid = 1;
@@ -27,6 +31,7 @@ void
 pinit(void)
 {
   initlock(&ptable.lock, "ptable");
+  initlock(&psig.lock, "psig");
 }
 
 // Must be called with interrupts disabled
@@ -405,8 +410,7 @@ sched(void)
     panic("sched running");
   if(readeflags()&FL_IF)
     panic("sched interruptible");
-  // if(p->frozen && !(p->psignals | 1 << SIGCONT))
-  //   yield();
+
   intena = mycpu()->intena;
   swtch(&p->context, mycpu()->scheduler);
   mycpu()->intena = intena;
@@ -519,7 +523,9 @@ kill(int pid, int signum)
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
-      p->psignals |= 1 << signum;
+      acquire(&psig.lock);
+      p->psignals |= (1 << signum);
+      release(&psig.lock);
       release(&ptable.lock);
       return 0;
     }
@@ -584,42 +590,50 @@ procdump(void)
 }
 
 // implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
-int
+void
 sigkill_handler(){
   struct proc *p = myproc();
   p->killed = 1;
   // Wake process from sleep if necessary.
   if(p->state == SLEEPING)
     p->state = RUNNABLE;
-  return 0;
+  p->psignals ^= (1 << SIGKILL); // turn off signal bit
+  return;
 }
 
-int
+void
 sigstop_handler(){
   struct proc *p = myproc();
   if(p-> state == SLEEPING)
-    return 1;
+    return;
 
-yield:
-  yield();
+check_cont:
 
-  if(p->psignals  & (1 << SIGCONT)) // received cont
+  if((p->psignals  & (1 << SIGCONT))) // cont received
   {
-    p->psignals ^= (1 << SIGSTOP);
-    p->psignals ^= (1 << SIGCONT);
-    return 0;
+    cprintf("psignals is: %d, should be 655360\n", p->psignals);
+    //if(p->psignals & (1 << SIGSTOP) != 0)
+      p->psignals ^= (1 << SIGSTOP);
+
+    //if(p->psignals & (1 << SIGCONT) != 0)
+      p->psignals ^= (1 << SIGCONT);
+    cprintf("psignals is: %d, should be 0\n", p->psignals);
+    return;
   }
-  goto yield;
+
+  yield();
   
+  goto check_cont;
+
 }
 
-int
+void
 sigcont_handler(){
   struct proc* p = myproc();
   if(!(p->psignals  & (1 << SIGSTOP)))
     p->psignals ^= (1 << SIGCONT);
-  
-  return 0;
+
+  return;
 }
 
 void 
@@ -657,9 +671,10 @@ sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
 void
 handleSignal (int sig) {
   struct proc *p = myproc();
+  
   if(p->sig_handlers[sig] == SIG_IGN)
   {
-    // do nothing
+    return; // do nothing
   }
 
   else if(p->sig_handlers[sig] == SIG_DFL)
@@ -667,35 +682,22 @@ handleSignal (int sig) {
     switch (sig) 
     {
       case SIGCONT:
-        sigcont_handler();
+        return sigcont_handler();
         break;
       case SIGSTOP:
-        sigstop_handler();
+        return sigstop_handler();
         break;
       case SIGKILL:
-        sigkill_handler();
+        return sigkill_handler();
         break;
       default: {
       if(sig != SIGKILL && sig != SIGSTOP && sig != SIGCONT) {
-        sigkill_handler();
+        return sigkill_handler();
         break;
+        }
       }
     }
-    }
   }
-
-  // else { // user space handler
-  //   memmove(p->tf_backup, p->tf, sizeof(struct trapframe)); // trapframe backup
-  //   p->tf->eip = &p->sig_handlers[sig];
-  //   p->tf->esp = sig;
-  //   (&p->tf->esp)[4] = p->tf->ebp;
-  //   (&p->tf->esp)[8] = &sigret;
-  //   p->tf->esp;
-
-  //   p->sig_handlers[sig]; // jump
-
-  // }
-
   return;
 
 }
@@ -710,11 +712,13 @@ handle_signals (){
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
 
   //signal sig is pending and is not blocked
+
   if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
     handleSignal(sig);           // handle it
-    //p->psignals ^= (1 << sig);   // turn off this bit
     }
+ 
   }
+
   return;
 }
 

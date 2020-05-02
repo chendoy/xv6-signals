@@ -38,7 +38,7 @@ test_23()
             printf(1, "hi");
             sleep(10);
         }
-    } 
+    }
     else
     {  
         // sleep(100);
@@ -70,12 +70,37 @@ test_23()
         kill(pid, SIGKILL);
         wait();
     }
-    
-
-    
-    
 
 }
+
+void
+test_24() {
+
+int pid;
+if((pid = fork()) == 0) {
+    while (1) {
+        printf(1, "i'm child\n");
+    }
+}
+else
+{
+    //sleep(100);
+    kill(pid, SIGSTOP);
+    kill(pid, SIGCONT);
+    //sleep(30);
+    // kill(pid, SIGSTOP);
+    // sleep(30);
+    // kill(pid, SIGCONT);
+    // sleep(30);
+    // kill(pid, SIGSTOP);
+    // sleep(30);
+    // kill(pid, SIGCONT);
+    // sleep(30);
+    kill(pid, SIGKILL);
+    wait();
+}
+}
+    
 
 int main(int argc, char const *argv[])
 {
