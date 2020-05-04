@@ -42,16 +42,7 @@ test_23()
     }
     else
     {  
-        // sleep(100);
-        // printf(1, "\nSTOP!!!\n");
-        // kill(pid, SIGSTOP);
-        // sleep(100);
-        // printf(1, "\nCONT!!!\n");
-        // kill(pid, SIGCONT);
-        // sleep(100);
-        // printf(1, "\nKILL!!!\n");
-        // kill(pid, SIGKILL);
-        // wait();
+
         for (int i = 0; i < 20; i++)
         {
             if (i % 2)
@@ -85,21 +76,16 @@ if((pid = fork()) == 0) {
 }
 else
 {
-    //sleep(100);
-    kill(pid, SIGSTOP);
-    sleep(10);
-    kill(pid, SIGCONT);
-    //sleep(30);
-    // kill(pid, SIGSTOP);
-    // sleep(30);
-    // kill(pid, SIGCONT);
-    // sleep(30);
-    // kill(pid, SIGSTOP);
-    // sleep(30);
-    // kill(pid, SIGCONT);
-    // sleep(30);
-    kill(pid, SIGKILL);
-    wait();
+        sleep(100);
+        printf(1, "\nSTOP!!!\n");
+        kill(pid, SIGSTOP);
+        sleep(100);
+        printf(1, "\nCONT!!!\n");
+        kill(pid, SIGCONT);
+        sleep(100);
+        printf(1, "\nKILL!!!\n");
+        kill(pid, SIGKILL);
+        wait();
 }
 }
     
