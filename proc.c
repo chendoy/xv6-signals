@@ -136,8 +136,10 @@ found:
   p->psignals = 0;
   p->sigmask = 0;
 
+  acquire(&ptable.lock);
   for (int i = SIG_MIN; i <= SIG_MAX; i++) // setting all sig handlers to default
     p->sig_handlers[i] = SIG_DFL;
+  release(&ptable.lock);
   
   return p;
 }
@@ -523,9 +525,7 @@ kill(int pid, int signum)
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
-      //acquire(&psig.lock);
-      p->psignals |= (1 << signum);
-      //release(&psig.lock);
+      p->psignals |= 1 << signum;
       release(&ptable.lock);
       return 0;
     }
@@ -590,50 +590,46 @@ procdump(void)
 }
 
 // implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
-void
-sigkill_handler(){
-  struct proc *p = myproc();
-  p->killed = 1;
-  // Wake process from sleep if necessary.
-  if(p->state == SLEEPING)
-    p->state = RUNNABLE;
-  p->psignals ^= (1 << SIGKILL); // turn off signal bit
-  return;
-}
+// void
+// sigkill_handler(){
+//   struct proc *p = myproc();
+//   p->killed = 1;
+//   // Wake process from sleep if necessary.
+//   if(p->state == SLEEPING)
+//     p->state = RUNNABLE;
+//   return;
+// }
 
-void
-sigstop_handler(){
-  struct proc *p = myproc();
-  if(p-> state == SLEEPING)
-    return;
+// void
+// sigstop_handler(){
+//   struct proc *p = myproc();
+//   if(p-> state == SLEEPING)
+//     return;
 
-  p->stopped = 1;
+//   p->stopped = 1;
 
-yield:
+// yield:
 
-  release(&ptable.lock);
-  yield();
-  acquire(&ptable.lock);
+//   if(p->stopped) 
+//   {
+//   release(&ptable.lock);
+//   yield();
+//   acquire(&ptable.lock);
+//   }
+
+//   handle_signals();
   
-  if(p->psignals & (1 << SIGCONT)) 
-  {
-    p->stopped = 0;
-    return;
-  }
+//   goto yield;
 
-  goto yield;
+// }
 
-}
-
-void
-sigcont_handler(){
-  struct proc* p = myproc();
-  if(!(p->psignals  & (1 << SIGSTOP)))
-    p->psignals ^= (1 << SIGCONT);
-  p->stopped = 0;
-
-  return;
-}
+// void
+// sigcont_handler(){
+//   struct proc* p = myproc();
+//   p->stopped = 0;
+//   p->psignals ^= 1 << SIGCONT;
+//   return;
+// }
 
 void 
 copySigHandlers(void** new_sighandlers, void** old_sighandlers) {
@@ -670,36 +666,77 @@ sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
 void
 handleSignal (int sig) {
   struct proc *p = myproc();
+  cprintf("\npid %d is handling signal %d\n",p->pid,sig);
   
-  if(p->sig_handlers[sig] == SIG_IGN)
-  {
+  if(p->sig_handlers[sig] == SIG_IGN) {
+    cprintf("IGNORE!!!!!\n");
     return; // do nothing
   }
+  
 
   else if(p->sig_handlers[sig] == SIG_DFL)
   {
-    switch (sig) 
+    if(sig == SIGCONT) 
     {
-      case SIGCONT:
-        return sigcont_handler();
-        break;
-      case SIGSTOP:
-        return sigstop_handler();
-        break;
-      case SIGKILL:
-        return sigkill_handler();
-        break;
-      default: {
-      if(sig != SIGKILL && sig != SIGSTOP && sig != SIGCONT) {
-        return sigkill_handler();
-        break;
-        }
-      }
-    }
-  }
-  return;
 
-}
+sig_cont:
+        cprintf("cont started\n");
+        p->stopped = 0;
+        p->psignals ^= 1 << SIGCONT;
+        cprintf("psignals is: %d\n", p->psignals);
+        return;
+    }
+
+    if(sig == SIGSTOP) {
+        if(p-> state == SLEEPING) {
+          cprintf("SLEEPING???\n");
+          return;
+        }
+          
+
+        p->stopped = 1;
+
+      yield:
+
+        if(p->stopped)
+        {
+          release(&ptable.lock);
+          yield();
+          cprintf("after yield");
+          acquire(&ptable.lock);
+        
+
+            if(p->psignals & (1 << SIGCONT))
+            {
+              cprintf("cont after stop, %d\n",p->psignals);
+              p->psignals ^= 1 << SIGSTOP;
+              cprintf("after turning SIGSTOP off, %d\n",p->psignals);
+              goto sig_cont;
+            }
+
+        }
+
+        goto yield;
+    }
+
+      if(sig == SIGKILL) {
+        p->killed = 1;
+        // Wake process from sleep if necessary.
+        if(p->state == SLEEPING)
+          p->state = RUNNABLE;
+        p->psignals ^= 1 << SIGKILL;
+      }
+
+
+      // else {
+      //   p->killed = 1;
+      //   if(p->state == SLEEPING)
+      //     p->state = RUNNABLE;
+      //   p->psignals ^= 1 << sig;
+      // }
+    }
+    return;
+  }
 
 void
 handle_signals (){
@@ -714,7 +751,8 @@ handle_signals (){
   //signal sig is pending and is not blocked
   if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
     handleSignal(sig);           // handle it
-    p->psignals ^= (1 << sig);   // turn off this bit
+    cprintf("handled %d\n", sig);
+    //p->psignals ^= (1 << sig);   // turn off this bit
     }
   }
   release(&ptable.lock);

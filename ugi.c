@@ -36,12 +36,12 @@ test_23()
     if((pid = fork()) == 0) {
         while (1) {
             printf(1, "hi");
-            sleep(10);
+            sleep(5);
         }
         
     }
     else
-    {  
+    {
 
         for (int i = 0; i < 20; i++)
         {
@@ -71,7 +71,7 @@ test_24() {
 int pid;
 if((pid = fork()) == 0) {
     while (1) {
-        printf(1, "i'm child\n");
+        //printf(1, "i'm child\n");
     }
 }
 else
@@ -81,8 +81,9 @@ else
         kill(pid, SIGSTOP);
         sleep(100);
         printf(1, "\nCONT!!!\n");
+        sleep(20);
         kill(pid, SIGCONT);
-        sleep(100);
+        sleep(200);
         printf(1, "\nKILL!!!\n");
         kill(pid, SIGKILL);
         wait();
