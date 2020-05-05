@@ -14,7 +14,7 @@ typedef uint pde_t;
 #define SIGSTOP 17
 #define SIGCONT 19
 
-// some constants
+// some useful constants
 
 #define null 0
 #define SIG_HANDLERS_NUM 32

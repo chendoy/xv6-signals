@@ -22,9 +22,7 @@ test_22()
     sigaction(12, &newact, &oldact);
     printf(1, "Need to be 0,0 = %d,%d\n", (uint)oldact.sa_handler, oldact.sigmask);
     sigaction(12, &oldact, &newact);
-
     printf(1, "Need to be 1,12 = %d,%d\n", (uint)newact.sa_handler, newact.sigmask);
-
 }
 
 void
@@ -47,16 +45,6 @@ test_23()
     } 
     else
     {  
-        // sleep(100);
-        // printf(1, "\nSTOP!!!\n");
-        // kill(pid, SIGSTOP);
-        // sleep(100);
-        // printf(1, "\nCONT!!!\n");
-        // kill(pid, SIGCONT);
-        // sleep(100);
-        // printf(1, "\nKILL!!!\n");
-        // kill(pid, SIGKILL);
-        // wait();
         for (int i = 0; i < 20; i++)
         {
             if (i % 2)
@@ -80,7 +68,7 @@ test_23()
 
 int main(int argc, char const *argv[])
 {
-    test_22();
+    test_23();
     exit();
 }
 

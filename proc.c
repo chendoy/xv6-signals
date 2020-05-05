@@ -368,14 +368,13 @@ scheduler(void)
 
       if(p->frozen) 
       {
-        //cprintf("pid %d is frozen!\n", p->pid);
         if(p->psignals & (1 << SIGCONT)) // received cont
         {
           p->frozen = 0;
           p->psignals ^= 1 << SIGCONT;
         }
         else 
-          continue; 
+          continue;
       }
 
       // Switch to chosen process.  It is the process's job
@@ -640,16 +639,15 @@ sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
     return 1;
 
   if(oldact != null) {
-    oldact->sa_handler = curproc->sig_handlers[signum]; // old handler
-    oldact->sigmask = curproc->sigmask; // old sigmask
+    oldact->sa_handler = ((struct sigaction*)&curproc->sig_handlers[signum])->sa_handler;              // old handler
+    oldact->sigmask = ((struct sigaction*)&curproc->sig_handlers[signum])->sigmask;                    // old sigmask
   }
 
-  curproc->sig_handlers[signum] = act->sa_handler;
+  ((struct sigaction*)&curproc->sig_handlers[signum])->sa_handler = act->sa_handler;
+  ((struct sigaction*)&curproc->sig_handlers[signum])->sigmask = act->sigmask;
 
   if(act->sigmask <= 0) // sigmask must be positive
     return 1;
-
-  curproc->sigmask = act->sigmask;
 
   return 0;
 
@@ -684,19 +682,6 @@ handleSignal (int sig) {
     }
     }
   }
-
-  // else { // user space handler
-  //   memmove(p->tf_backup, p->tf, sizeof(struct trapframe)); // trapframe backup
-  //   p->tf->eip = &p->sig_handlers[sig];
-  //   p->tf->esp = sig;
-  //   (&p->tf->esp)[4] = p->tf->ebp;
-  //   (&p->tf->esp)[8] = &sigret;
-  //   p->tf->esp;
-
-  //   p->sig_handlers[sig]; // jump
-
-  // }
-
   return;
 
 }
@@ -709,7 +694,6 @@ handle_signals (){
 
   uint sig;
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
-
   //signal sig is pending and is not blocked
   if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
     handleSignal(sig);           // handle it
