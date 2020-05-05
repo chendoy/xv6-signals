@@ -35,65 +35,52 @@ test_23()
 
     if((pid = fork()) == 0) {
         while (1) {
-            printf(1, "hi");
-            sleep(5);
-        }
-        
-    }
-    else
-    {
+            sleep(5);printf(1, "a");sleep(5);printf(1, "b");sleep(5);printf(1, "c");sleep(5);printf(1, "d");
+            sleep(5);printf(1, "e");sleep(5);printf(1, "f");sleep(5);printf(1, "g");sleep(5);printf(1, "h");
+            sleep(5);printf(1, "i");sleep(5);printf(1, "j");sleep(5);printf(1, "k");sleep(5);printf(1, "l");
+            sleep(5);printf(1, "m");sleep(5);printf(1, "n");sleep(5);printf(1, "o");sleep(5);printf(1, "p");
+            sleep(5);printf(1, "q");sleep(5);printf(1, "r");sleep(5);printf(1, "s");sleep(5);printf(1, "t");
+            sleep(5);printf(1, "u");sleep(5);printf(1, "v");sleep(5);printf(1, "w");sleep(5);printf(1, "x");
+            sleep(5);printf(1, "y");sleep(5);printf(1, "z");
 
+        }
+    } 
+    else
+    {  
+        // sleep(100);
+        // printf(1, "\nSTOP!!!\n");
+        // kill(pid, SIGSTOP);
+        // sleep(100);
+        // printf(1, "\nCONT!!!\n");
+        // kill(pid, SIGCONT);
+        // sleep(100);
+        // printf(1, "\nKILL!!!\n");
+        // kill(pid, SIGKILL);
+        // wait();
         for (int i = 0; i < 20; i++)
         {
             if (i % 2)
             {
-                printf(1, "\n%d: CONT!!!\n", i);
+                printf(2, "\n%d: CONT!!!\n", i);
             } 
             else
             {
-                printf(1, "\n%d: STOP!!!\n", i);    
+                printf(2, "\n%d: STOP!!!\n", i);    
             }
             
             kill(pid, sigs[i%2]);
-            sleep(30);
+            sleep(150);
         }
 
         printf(1, "\nKILL!!!\n");
         kill(pid, SIGKILL);
         wait();
     }
-
 }
-
-void
-test_24() {
-
-int pid;
-if((pid = fork()) == 0) {
-    while (1) {
-        //printf(1, "i'm child\n");
-    }
-}
-else
-{
-        sleep(100);
-        printf(1, "\nSTOP!!!\n");
-        kill(pid, SIGSTOP);
-        sleep(100);
-        printf(1, "\nCONT!!!\n");
-        sleep(20);
-        kill(pid, SIGCONT);
-        sleep(200);
-        printf(1, "\nKILL!!!\n");
-        kill(pid, SIGKILL);
-        wait();
-}
-}
-    
 
 int main(int argc, char const *argv[])
 {
-    test_23();
+    test_22();
     exit();
 }
 
