@@ -2,9 +2,9 @@
 #include "stat.h"
 #include "user.h"
 
-
+// sigprocmask, sigaction
 void
-test_22()
+test_1()
 {
     uint i;
     uint mask, omask;
@@ -25,8 +25,9 @@ test_22()
     printf(1, "Need to be 1,12 = %d,%d\n", (uint)newact.sa_handler, newact.sigmask);
 }
 
+// kernel space handlers (stop, cont, kill)
 void
-test_23()
+test_2()
 {
     int pid;
     int sigs[] = {SIGSTOP, SIGCONT};
@@ -66,9 +67,48 @@ test_23()
     }
 }
 
-int main(int argc, char const *argv[])
+void
+custom_handler(int signum)
 {
-    test_23();
+    printf(1, "child: CUSTOM HANDLER WAS FIRED!!\n");
+    return;
+}
+
+// user space handlers
+void
+test_3()
+{
+    struct sigaction act;
+    uint mask = 0;
+    uint pid;
+
+    act.sa_handler = &custom_handler;
+    act.sigmask = mask;
+
+    if((pid = fork()) == 0) 
+    {
+        sigaction(SIGTEST, &act, null); // register custom handler
+
+        while(1)
+        {
+            printf(1, "child: waiting...\n");
+            sleep(30);
+        }
+    }
+
+    else
+    {
+        sleep(300); // let child print some lines
+        printf(1, "parent: kill(child, SIGTEST)\n");
+        sleep(5);
+        kill(pid, SIGTEST);
+        wait();
+    }
+}
+
+int main()
+{
+    test_3();
     exit();
 }
 

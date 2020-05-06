@@ -32,3 +32,10 @@ trapret:
   popl %ds
   addl $0x8, %esp  # trapno and errcode
   iret
+
+
+.globl sigret_caller_start
+.globl sigret_caller_end
+sigret_caller_start:
+  jmp sys_sigret
+sigret_caller_end:

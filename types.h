@@ -13,6 +13,7 @@ typedef uint pde_t;
 #define SIGKILL 9
 #define SIGSTOP 17
 #define SIGCONT 19
+#define SIGTEST 20
 
 // some useful constants
 
@@ -20,6 +21,7 @@ typedef uint pde_t;
 #define SIG_HANDLERS_NUM 32
 #define SIG_MAX 31
 #define SIG_MIN 0
+#define UINT_SIZE 4
 
 struct sigaction {
     void (*sa_handler) (int);

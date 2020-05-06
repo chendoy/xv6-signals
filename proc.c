@@ -7,6 +7,8 @@
 #include "proc.h"
 #include "spinlock.h"
 
+extern void sigret_caller_end(void);
+extern void sigret_caller_start(void);
 void copySigHandlers(void** new_sighandlers, void** old_sighandlers);
 void setDefaultHandlers();
 int sigcont_handler();
@@ -650,7 +652,39 @@ sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
     return 1;
 
   return 0;
+}
 
+void
+user_handler(struct proc* p, uint sig)
+{
+
+    char *sigret_caller_addr;
+    uint sigret_size;
+
+    // back-up trap frame
+    memmove(p->kstack, p->tf, sizeof(*p->tf));
+    p->tf_backup = (struct trapframe*)p->kstack;
+
+    // get a pointer to the user stack
+
+    // changing the user space stack
+    sigret_size = sigret_caller_end - sigret_caller_start;
+    p->tf->esp = p->tf->esp - sigret_size; // make room for sigret code
+
+    sigret_caller_addr = (char*)p->tf->esp;
+
+    memmove((char*)p->tf->esp, sigret_caller_start, sigret_size);
+
+    // pushing signum
+    p->tf->esp = p->tf->esp-UINT_SIZE;
+    *((uint*)(p->tf->esp)) = sig;
+
+    // pushing sigret caller
+    p->tf->esp = p->tf->esp-UINT_SIZE;
+    *((uint*)(p->tf->esp-8)) = (uint)sigret_caller_addr;
+
+    // updating user eip to user handler's address
+    p->tf->eip = (uint)&((struct sigaction*)p->sig_handlers[sig])->sa_handler;
 }
 
 void
@@ -682,8 +716,11 @@ handleSignal (int sig) {
     }
     }
   }
-  return;
 
+  else 
+  {
+    user_handler(p, sig);
+  }
 }
 
 void
