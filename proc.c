@@ -78,9 +78,12 @@ int
 allocpid(void) 
 {
   int pid;
-  acquire(&ptable.lock);
-  pid = nextpid++;
-  release(&ptable.lock);
+  // acquire(&ptable.lock);
+  // pid = nextpid++;
+  // release(&ptable.lock);
+  do{
+    pid = nextpid;
+  }while(!cas(&nextpid, pid, pid + 1));
   return pid;
 }
 
@@ -95,18 +98,26 @@ allocproc(void)
   struct proc *p;
   char *sp;
 
-  acquire(&ptable.lock);
+  // acquire(&ptable.lock);
 
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-    if(p->state == UNUSED)
-      goto found;
+  pushcli();
+  do {
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+      if(p->state == UNUSED)
+        break;
+    if (p == &ptable.proc[NPROC]) {
+      popcli();
+      return 0; // ptable is full
+    }
+  } while (!cas((int*)&p->state, UNUSED, EMBRYO));
+  popcli();
 
-  release(&ptable.lock);
-  return 0;
+  // release(&ptable.lock);
+  
 
-found:
-  p->state = EMBRYO;
-  release(&ptable.lock);
+// found:
+  // p->state = EMBRYO;
+  // release(&ptable.lock);
 
   p->pid = allocpid();
 
@@ -173,11 +184,15 @@ userinit(void)
   // run this process. the acquire forces the above
   // writes to be visible, and the lock is also needed
   // because the assignment might not be atomic.
-  acquire(&ptable.lock);
+  
+  // acquire(&ptable.lock);
+  pushcli();
+  if(!cas((int*)&p->state, EMBRYO, RUNNABLE)) // TODO: THIS CAUSE SOME PROBLEMS~! (pushcli, popcli reduant?)
+    panic("cas failed in userinit");
+  popcli();
 
-  p->state = RUNNABLE;
 
-  release(&ptable.lock);
+  // release(&ptable.lock);
 }
 
 // Grow current process's memory by n bytes.
@@ -244,11 +259,12 @@ fork(void)
 
   pid = np->pid;
 
-  acquire(&ptable.lock);
-
-  np->state = RUNNABLE;
-
-  release(&ptable.lock);
+  // acquire(&ptable.lock);
+  pushcli();
+   if(!cas((int*)&np->state, EMBRYO, RUNNABLE)) // TODO: THIS CAUSE SOME PROBLEMS~! (pushcli, popcli reduant?)
+    panic("cas failed in userinit");
+  popcli();
+  // release(&ptable.lock);
 
   return pid;
 }
@@ -316,7 +332,7 @@ wait(void)
       if(p->parent != curproc)
         continue;
       havekids = 1;
-      if(p->state == ZOMBIE){
+      if(p->state == ZOMBIE){ //transion to cas with unused make test 2 not finish -_-
         // Found one.
         pid = p->pid;
         kfree(p->kstack);
@@ -529,15 +545,15 @@ kill(int pid, int signum)
   if(signum < SIG_MIN || signum > SIG_MAX)
     return -1;
   struct proc *p;
-  acquire(&ptable.lock);
+  // acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
       p->psignals |= 1 << signum;
-      release(&ptable.lock);
+      // release(&ptable.lock);
       return 0;
     }
   }
-  release(&ptable.lock);
+  // release(&ptable.lock);
   return -1;
 }
 
@@ -680,10 +696,11 @@ user_handler(struct proc* p, uint sig)
 
     // pushing sigret caller
     p->tf->esp = p->tf->esp-UINT_SIZE;
-    *((uint*)(p->tf->esp-8)) = (uint)sigret_caller_addr;
+    *((uint*)(p->tf->esp)) = (uint)sigret_caller_addr;
 
     // updating user eip to user handler's address
     p->tf->eip = (uint)&((struct sigaction*)p->sig_handlers[sig])->sa_handler;
+    return;
 }
 
 void
@@ -728,7 +745,7 @@ handle_signals (){
   if(p == 0)
     return;
 
-  acquire(&ptable.lock);
+  // acquire(&ptable.lock);
   
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
   //signal sig is pending and is not blocked
@@ -737,13 +754,13 @@ handle_signals (){
     p->psignals ^= 1 << sig;     // turn off this bit
     }
   }
-  release(&ptable.lock);
+  // release(&ptable.lock);
   return;
 }
 
-void
+int
 sigret(void) {
   struct proc* p = myproc();
   memmove(p->tf, p->tf_backup, sizeof(struct trapframe)); // trapframe restore
-  return;
+  return 0;
 }
