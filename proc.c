@@ -95,6 +95,18 @@ allocproc(void)
   struct proc *p;
   char *sp;
 
+
+// pushcli();
+//   do {
+//     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+//       if(p->state == UNUSED)
+//         break;
+//     if (p == &ptable.proc[NPROC]) {
+//       popcli();
+//       return 0; // ptable is full
+//     }
+//   } while (!cas((int*)p->state, UNUSED, EMBRYO));
+// popcli();
   acquire(&ptable.lock);
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)

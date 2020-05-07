@@ -112,6 +112,7 @@ test_3()
 
 int main()
 {
-    test_2();
+    test_3();
+    exit();
 }
 

@@ -181,3 +181,15 @@ struct trapframe {
   ushort ss;
   ushort padding6;
 };
+
+static inline int cas(volatile int * addr, int expected, int newval) {
+  int ret_val = 1;
+  asm volatile("lock; cmpxchgl %3, (%2)\n\t"
+                "jz pass%=\n\t"
+                "movl $0, %0\n\t"
+                "pass%=:\n\t"
+                : "=m"(ret_val)
+                : "a"(expected), "b"(addr), "r"(newval)
+                : "memory");
+  return ret_val;
+}
