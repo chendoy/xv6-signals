@@ -102,13 +102,16 @@ test_3()
         printf(1, "parent: kill(child, SIGTEST)\n");
         sleep(5);
         kill(pid, SIGTEST);
+        sleep(50);
+        //printf(1, "parent: kill(child, SIGKILL)\n");
+        //kill(pid, SIGKILL);
         wait();
+        exit();
     }
 }
 
 int main()
 {
     test_3();
-    exit();
 }
 

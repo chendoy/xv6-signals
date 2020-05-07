@@ -599,6 +599,7 @@ procdump(void)
 // implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
 int
 sigkill_handler(){
+  //cprintf("sigkill handler was fired\n");
   struct proc *p = myproc();
   p->killed = 1;
   // Wake process from sleep if necessary.
@@ -665,8 +666,6 @@ user_handler(struct proc* p, uint sig)
     memmove(p->kstack, p->tf, sizeof(*p->tf));
     p->tf_backup = (struct trapframe*)p->kstack;
 
-    // get a pointer to the user stack
-
     // changing the user space stack
     sigret_size = sigret_caller_end - sigret_caller_start;
     p->tf->esp = p->tf->esp - sigret_size; // make room for sigret code
@@ -708,35 +707,37 @@ handleSignal (int sig) {
       case SIGKILL:
         sigkill_handler();
         break;
-      default: {
-      if(sig != SIGKILL && sig != SIGSTOP && sig != SIGCONT) {
-        sigkill_handler();
+      default:
+        if(sig != SIGKILL && sig != SIGSTOP && sig != SIGCONT) {
+          sigkill_handler();
+        }
         break;
-      }
-    }
+      
     }
   }
 
-  else 
-  {
+  else
     user_handler(p, sig);
-  }
 }
 
 void
 handle_signals (){
   struct proc *p = myproc();
+  uint sig;
+
   if(p == 0)
     return;
 
-  uint sig;
+  acquire(&ptable.lock);
+  
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
   //signal sig is pending and is not blocked
   if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
     handleSignal(sig);           // handle it
-    p->psignals ^= (1 << sig);   // turn off this bit
+    p->psignals ^= 1 << sig;     // turn off this bit
     }
   }
+  release(&ptable.lock);
   return;
 }
 
