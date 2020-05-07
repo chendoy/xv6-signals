@@ -103,8 +103,8 @@ test_3()
         sleep(5);
         kill(pid, SIGTEST);
         sleep(50);
-        //printf(1, "parent: kill(child, SIGKILL)\n");
-        //kill(pid, SIGKILL);
+        printf(1, "parent: kill(child, SIGKILL)\n");
+        kill(pid, SIGKILL);
         wait();
         exit();
     }
@@ -112,6 +112,6 @@ test_3()
 
 int main()
 {
-    test_3();
+    test_2();
 }
 

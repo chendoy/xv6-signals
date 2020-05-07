@@ -680,10 +680,11 @@ user_handler(struct proc* p, uint sig)
 
     // pushing sigret caller
     p->tf->esp = p->tf->esp-UINT_SIZE;
-    *((uint*)(p->tf->esp-8)) = (uint)sigret_caller_addr;
+    *((uint*)(p->tf->esp)) = (uint)sigret_caller_addr;
 
     // updating user eip to user handler's address
     p->tf->eip = (uint)&((struct sigaction*)p->sig_handlers[sig])->sa_handler;
+    return;
 }
 
 void
@@ -741,9 +742,9 @@ handle_signals (){
   return;
 }
 
-void
+int
 sigret(void) {
   struct proc* p = myproc();
   memmove(p->tf, p->tf_backup, sizeof(struct trapframe)); // trapframe restore
-  return;
+  return 0;
 }

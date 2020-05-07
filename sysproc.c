@@ -125,7 +125,7 @@ sys_sigaction(void)
 
 }
 
-void
+int
 sys_sigret(void) 
 {
   return sigret();
