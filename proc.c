@@ -186,11 +186,16 @@ userinit(void)
   // because the assignment might not be atomic.
   
   // acquire(&ptable.lock);
+  // pushcli();
+  // if(!cas((int*)&(p->state), EMBRYO, RUNNABLE)) // TODO: THIS CAUSE SOME PROBLEMS~! (pushcli, popcli reduant?)
+  //   panic("cas failed in userinit");
+  // popcli();
   pushcli();
-  if(!cas((int*)&p->state, EMBRYO, RUNNABLE)) // TODO: THIS CAUSE SOME PROBLEMS~! (pushcli, popcli reduant?)
-    panic("cas failed in userinit");
+  if(!cas((int*)&(p->state), EMBRYO, RUNNABLE)){
+     panic("err in userinit: np state not embryo");
+  }
+  cprintf("should br runnable %d", p->state);
   popcli();
-
 
   // release(&ptable.lock);
 }
@@ -260,12 +265,19 @@ fork(void)
   pid = np->pid;
 
   // acquire(&ptable.lock);
+  // pushcli();
+  //  if(!cas((int*)&(np->state), EMBRYO, RUNNABLE)) // TODO: THIS CAUSE SOME PROBLEMS~! (pushcli, popcli reduant?)
+  //   panic("cas failed in userinit");
+  // popcli();
   pushcli();
-   if(!cas((int*)&np->state, EMBRYO, RUNNABLE)) // TODO: THIS CAUSE SOME PROBLEMS~! (pushcli, popcli reduant?)
-    panic("cas failed in userinit");
-  popcli();
+  if(!cas((int*)(&np->state), EMBRYO, RUNNABLE))
+  {
+    panic("err in fork: np state npt embryo");
+  }
+   
   // release(&ptable.lock);
-
+  popcli();
+  // cprintf("should be runnable %d", np->state);
   return pid;
 }
 
@@ -332,8 +344,9 @@ wait(void)
       if(p->parent != curproc)
         continue;
       havekids = 1;
-      if(p->state == ZOMBIE){ //transion to cas with unused make test 2 not finish -_-
+      if(cas((int*)&(p->state), ZOMBIE, UNUSED)){
         // Found one.
+        cprintf("found zombie!");
         pid = p->pid;
         kfree(p->kstack);
         p->kstack = 0;
@@ -342,7 +355,7 @@ wait(void)
         p->parent = 0;
         p->name[0] = 0;
         p->killed = 0;
-        p->state = UNUSED;
+        // p->state = UNUSED;
         release(&ptable.lock);
         return pid;
       }

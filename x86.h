@@ -188,7 +188,7 @@ static inline int cas(volatile int * addr, int expected, int newval) {
                 "jz pass%=\n\t"
                 "movl $0, %0\n\t"
                 "pass%=:\n\t"
-                : "=m"(ret_val)
+                : "+m"(ret_val)
                 : "a"(expected), "b"(addr), "r"(newval)
                 : "memory");
   return ret_val;
