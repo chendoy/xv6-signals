@@ -61,7 +61,7 @@ test_2()
             sleep(30);
         }
 
-        printf(1, "\nKILL!!!\n");
+        printf(1, "\nKILL pid : %d!!!\n", pid);
         kill(pid, SIGKILL);
         wait();
         exit();
