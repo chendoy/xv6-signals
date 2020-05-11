@@ -362,7 +362,7 @@ wait(void)
       havekids = 1;
       if(cas((int*)(&p->state), ZOMBIE, UNUSED)){
         // Found one.
-        // cprintf("found zombie!");
+        cprintf("found zombie!");
         pid = p->pid;
         kfree(p->kstack);
         p->kstack = 0;
@@ -459,6 +459,7 @@ scheduler(void)
           // we delayed the waking up of the parent from exit function to this point when process actually become zombie!
           // because parent can waken up and see that non of his child in zombie state (they may be in minus_zombie!)
           // we want the parent be aware that his child in zombie state!
+
           wakeup1(p->parent);
       }
 
