@@ -361,8 +361,6 @@ wait(void)
         p->name[0] = 0;
         p->killed = 0;
         // p->state = UNUSED;
-        // cas((int*)(&curproc->state), MINUS_SLEEPING, RUNNING); // process not going to sleep, so it's back to running state!
-        // popcli();
         release(&ptable.lock);
         return pid;
       }
