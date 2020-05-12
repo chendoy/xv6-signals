@@ -182,7 +182,31 @@ struct trapframe {
   ushort padding6;
 };
 
-static inline int cas(volatile int * addr, int expected, int newval) {
+
+
+  static inline int
+cas(volatile void *addr, int expected, int newval)
+{
+  // int output;
+  
+  // asm volatile(
+  //   "movl %2, %%eax;" // move expected to eax
+  //   "lock; cmpxchg %3, %1;" // compare eax to *addr. if equal, move newval to *addr
+  //   "pushfl;" // check zero flag...
+  //   "popl %%eax;"
+  //   "shrl $6, %%eax;"
+  //   "andl $1, %%eax;" // eax = zero flag
+  //   "movl %%eax, %0;" // move eax to output
+    
+  //   // "+": readwrite
+  //   // "=": write online
+  //   : "=r"(output), "+m"((int)addr), "+a"(expected) // output
+  //   : "r"(newval) // input
+  //   : "memory"); // clobbered list
+  
+  // return output;
+
+
   int ret_val = 1;
   asm volatile("lock; cmpxchgl %3, (%2)\n\t"
                 "jz pass%=\n\t"
@@ -192,4 +216,16 @@ static inline int cas(volatile int * addr, int expected, int newval) {
                 : "a"(expected), "b"(addr), "r"(newval)
                 : "memory");
   return ret_val;
+
+
+  // int ret_val = 1;
+  // asm volatile("lock; cmpxchgl %3, (%2)\n\t"
+  //               "jz pass%=\n\t"
+  //               "movl $0, %0\n\t"
+  //               "pass%=:\n\t"
+  //               : "=m"(ret_val)
+  //               : "a"(expected), "b"(addr), "r"(newval)
+  //               : "memory");
+  // return ret_val;
+ 
 }

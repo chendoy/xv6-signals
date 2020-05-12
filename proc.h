@@ -54,6 +54,7 @@ struct proc {
   void* sig_handlers[32];      // Signal handlers
   struct trapframe* tf_backup; // Pointer to a trapframe backup
   int frozen;                  // If non-zero, have been frozen
+  int cont;                    // If non-zero, got cont signal
 };
 
 // Process memory is laid out contiguously, low addresses first:
