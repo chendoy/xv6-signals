@@ -730,7 +730,7 @@ handle_signals (){
   if(p == 0)
     return;
 
-  acquire(&ptable.lock);
+  // acquire(&ptable.lock);
   
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
   //signal sig is pending and is not blocked
@@ -739,7 +739,7 @@ handle_signals (){
     p->psignals ^= 1 << sig;     // turn off this bit
     }
   }
-  release(&ptable.lock);
+  // release(&ptable.lock);
   return;
 }
 
