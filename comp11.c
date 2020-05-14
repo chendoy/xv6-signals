@@ -92,7 +92,7 @@ allocpid(void)
   // release(&ptable.lock);
 
 
-  return pid +1;
+  return pid;
 }
 
 //PAGEBREAK: 32
@@ -202,15 +202,12 @@ userinit(void)
 
 
   // acquire(&ptable.lock);
-  // pushcli();
-  // if(!cas((int*)(&p->state), EMBRYO, RUNNABLE)){
-  //    panic("err in userinit: np state not embryo");
-  // }
   pushcli();
-  p->state = RUNNABLE;
-  popcli();
+  if(!cas((int*)(&p->state), EMBRYO, RUNNABLE)){
+     panic("err in userinit: np state not embryo");
+  }
   // cprintf("should br runnable %d", p->state);
-  // popcli();
+  popcli();
   // release(&ptable.lock);
 }
 
@@ -286,16 +283,13 @@ fork(void)
   // popcli();
 
   // acquire(&ptable.lock);
-  // pushcli();
-  // if(!cas((int*)(&np->state), EMBRYO, RUNNABLE))
-  // {
-  //   panic("err in fork: np state npt embryo");
-  // }
   pushcli();
-  np->state = RUNNABLE;
-  popcli();
+  if(!cas((int*)(&np->state), EMBRYO, RUNNABLE))
+  {
+    panic("err in fork: np state npt embryo");
+  }
   // release(&ptable.lock);
-  // popcli();
+  popcli();
   // cprintf("should be runnable %d", np->state);
   return pid;
 }
@@ -329,7 +323,6 @@ exit(void)
   curproc->cwd = 0;
 
   // acquire(&ptable.lock); lock_c
-  pushcli();
  
    // Parent might be sleeping in wait().
   // wakeup1(curproc->parent); //we will wake up parent only in shceduler, when process become zombie! u_check
@@ -343,6 +336,7 @@ exit(void)
     }
   }
 
+  pushcli();
   if(!cas((int*)(&curproc->state), RUNNING, MINUS_ZOMBIE))
     {
       panic("process should be at running state!");
@@ -370,7 +364,7 @@ wait(void)
     if (!cas((int*)(&curproc->state), RUNNING, MINUS_SLEEPING)) {
       panic("wait: failed  process should be running!");
       } // we going simulate the sleeping function here! doing steps as in sleep
-    curproc->chan = curproc; // setting the proc chan
+      curproc->chan = curproc; // setting the proc chan
 
 
 //     // Scan through table looking for exited children.
@@ -440,30 +434,32 @@ scheduler(void)
 
       // Loop over process table looking for process to run.
       // acquire(&ptable.lock);
-    pushcli();
-    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-
-      if(!cas((int*)(&p->state), RUNNABLE, RUNNING)) // this line elminate from 2 cpu's run the same process!
-      {
-        continue;
-      }
-
-
-      if(p->frozen) 
-      {
-        if(p->psignals & (1 << SIGCONT)) // received cont
+      pushcli();
+      for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+        if(cas((int*)(&p->frozen),1,0)) 
         {
-          p->frozen = 0;
-          int expected = p->psignals | (1 << SIGCONT);
-          cas((int*)(&p->psignals), expected, expected ^ (1 << SIGCONT));
+          int cont_expected = p->psignals | (1 << SIGCONT);
+          if(cas((int*)(&p->psignals), cont_expected, p->psignals ^ (1 << SIGCONT))) //recived cont
+          {
+            if(cas((int*)(&p->state), RUNNABLE, RUNNING)){
+              goto process_running;
+            }else{
+              p->psignals ^= (1 << SIGCONT);
+              p->frozen = 1;
+              continue;
+            }
+          }else{
+            p->frozen=1;
+            continue;
+          }     
         }
-        else 
-        {
-          p->state = RUNNABLE;
+      
+        if(!cas((int*)(&p->state), RUNNABLE, RUNNING)){
           continue;
         }
-         
-      }
+
+        process_running:
+
         // if(p->state != RUNNABLE)   // u_check
         // {
         //     continue;
@@ -486,10 +482,10 @@ scheduler(void)
         switchkvm();
 
         if (cas((int*)(&p->state), MINUS_SLEEPING, SLEEPING)) {
-          // if (cas((int*)(&p->killed), 1, 0))
-          // {
-          //   p->state = RUNNABLE;
-          // }
+          if (cas((int*)(&p->killed), 1, 0))
+          {
+            p->state = RUNNABLE;
+          }
           
         } //c_check
   
@@ -596,15 +592,6 @@ sleep(void *chan, struct spinlock *lk)
 
   pushcli();
 
-  //moving the cas befoe release lock solved problems as explained in meeting hours
-    // Go to sleep.
-  p->chan = chan;
-  // p->state = SLEEPING; // u_check
-  if(!cas((int*)(&p->state), RUNNING, MINUS_SLEEPING)) // c_check
-  {
-    panic("cas failed at sleeping, should be running state!");
-  }
-
   // Must acquire ptable.lock in order to
   // change p->state and then call sched.
   // Once we hold ptable.lock, we can be
@@ -615,7 +602,13 @@ sleep(void *chan, struct spinlock *lk)
     // acquire(&ptable.lock);  //DOC: sleeplock1
     release(lk);
   }
-
+  // Go to sleep.
+  p->chan = chan;
+  // p->state = SLEEPING; // u_check
+  if(!cas((int*)(&p->state), RUNNING, MINUS_SLEEPING)) // c_check
+  {
+    panic("cas failed at sleeping, should be running state!");
+  }
 
   sched();
 

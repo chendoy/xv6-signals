@@ -19,9 +19,8 @@ int main()
    d:	51                   	push   %ecx
    e:	83 ec 04             	sub    $0x4,%esp
         // test_1();
-        // test_2(); 
-        test_3();
-  11:	e8 1a 04 00 00       	call   430 <test_3>
+        test_2(); 
+  11:	e8 ba 00 00 00       	call   d0 <test_2>
   16:	66 90                	xchg   %ax,%ax
   18:	66 90                	xchg   %ax,%ax
   1a:	66 90                	xchg   %ax,%ax
