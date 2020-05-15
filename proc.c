@@ -1,3 +1,4 @@
+
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -11,7 +12,7 @@ extern void sigret_caller_end(void);
 extern void sigret_caller_start(void);
 void copySigHandlers(void** new_sighandlers, void** old_sighandlers);
 void setDefaultHandlers();
-int sigcont_handler();
+void sigcont_handler();
 
 struct {
   struct spinlock lock;
@@ -418,6 +419,28 @@ wait(void)
   }
 }
 
+int
+canRunEvenIfFrozen(struct proc* p)
+{
+
+  uint sig;
+  void* handler;
+
+  for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
+    if(p->psignals & (1 << sig)) {
+      handler = ((struct sigaction*)&p->sig_handlers[sig])->sa_handler;
+
+      if(handler == SIG_DFL && (sig == SIGCONT || sig == SIGKILL))
+        return 1;
+      
+      if(handler == (void (*)())SIGCONT || handler == (void (*)())SIGKILL)
+        return 1;
+    }
+  }
+  return 0;
+}
+
+
 // //PAGEBREAK: 42
 // // Per-CPU process scheduler.
 // // Each CPU calls scheduler() after setting itself up.
@@ -447,21 +470,18 @@ scheduler(void)
         continue;
       }
 
-
-      if(p->frozen) 
+      if(p->frozen)
       {
-        if(p->psignals & (1 << SIGCONT)) // received cont
+        if(canRunEvenIfFrozen(p))
         {
-          p->frozen = 0;
-          int expected = p->psignals | (1 << SIGCONT);
-          cas((int*)(&p->psignals), expected, expected ^ (1 << SIGCONT));
+          //let p run
         }
-        else 
+        else
         {
-          p->state = RUNNABLE;
+          cas((int*)(&p->state), RUNNING, RUNNABLE);
           continue;
         }
-         
+
       }
         // if(p->state != RUNNABLE)   // u_check
         // {
@@ -690,26 +710,27 @@ kill(int pid, int signum)
   if(signum < SIG_MIN || signum > SIG_MAX)
     return -1;
   struct proc *p;
-  // pushcli();
-  acquire(&ptable.lock);
+  pushcli();
+  // acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
     if(p->pid == pid)
     {
-      if(!cas((int*)(&p->psignals), p->psignals | (1 << signum), p->psignals))
+      int expected_on = p->psignals | (1 << signum);
+      if(!cas((int*)(&p->psignals), expected_on, expected_on))
       {
         if(signum != 1)
         {
           p->psignals |= (1 << signum);
         }
-        // popcli();
-        release(&ptable.lock);
+        popcli();
+        // release(&ptable.lock);
         return 0;
       }
     }
   }
-  release(&ptable.lock);
-  // popcli();
+  // release(&ptable.lock);
+  popcli();
   return -1;
 }
 
@@ -792,9 +813,9 @@ sigstop_handler(){
   if(p-> state == SLEEPING)
     return;
 
-  release(&ptable.lock);
+  // release(&ptable.lock);
   yield();
-  acquire(&ptable.lock);
+  // acquire(&ptable.lock);
 }
 
 void
@@ -908,16 +929,26 @@ handle_signals (){
   if(p == 0)
     return;
 
-  acquire(&ptable.lock);
-  
+  // acquire(&ptable.lock);
+  // pushcli();
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
   //signal sig is pending and is not blocked
-  if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
-    handleSignal(sig);           // handle it
-    p->psignals ^= 1 << sig;     // turn off this bit
-    }
+  if(p->sigmask & (1 << sig))
+  {
+    continue;
   }
-  release(&ptable.lock);
+  int expected = p->psignals | (1 << sig) ;
+  if(cas((int*)(&p->psignals), expected, expected ^ (1 << sig)))
+  {
+    handleSignal(sig);           // handle it
+  }
+  // if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
+  //   handleSignal(sig);           // handle it
+  //   p->psignals ^= 1 << sig;     // turn off this bit
+  //   }
+  }
+  // popcli();
+  // release(&ptable.lock);
   return;
 }
 

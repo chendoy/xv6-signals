@@ -111,10 +111,61 @@ test_3()
     }
 }
 
+// SIG_IGN test
+void
+test_4()
+{
+    struct sigaction act;
+    uint mask = 0;
+    uint pid;
+
+    act.sa_handler = SIG_IGN;
+    act.sigmask = mask;
+
+    if((pid = fork()) == 0) 
+    {
+        sigaction(SIGTEST, &act, null); // register custom handler
+
+        while(1)
+        {
+            printf(1, "child: waiting...\n");
+            sleep(30);
+        }
+    }
+
+    else
+    {
+        sleep(300); // let child print some lines
+        printf(1, "parent: kill(child, SIGTEST)\n");
+        sleep(5);
+        kill(pid, SIGTEST);
+        sleep(50);
+        printf(1, "parent: kill(child, SIGKILL)\n");
+        kill(pid, SIGKILL);
+        wait();
+        exit();
+    }
+}
+
+// sigmask test
+void
+test_5()
+{
+
+}
+
+// multiple user handlers test
+void
+test_6()
+{
+
+}
+
+
 int main()
 {
         // test_1();
         test_2(); 
         test_3();
+        // test_4();
 }
-

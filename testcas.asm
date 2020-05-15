@@ -30,11 +30,11 @@ main(int argc, char *argv[])
   1f:	68 cc 08 00 00       	push   $0x8cc
   24:	6a 01                	push   $0x1
   26:	e8 e7 05 00 00       	call   612 <printf>
-  //   : "r"(newval) // input
-  //   : "memory"); // clobbered list
-  
-  // return output;
 
+  static inline int
+cas(volatile void *addr, int expected, int newval)
+{
+  
   int ret_val = 1;
   2b:	c7 45 f0 01 00 00 00 	movl   $0x1,-0x10(%ebp)
   asm volatile("lock; cmpxchgl %3, (%2)\n\t"
