@@ -54,7 +54,7 @@ struct proc {
   void* sig_handlers[32];      // Signal handlers
   struct trapframe* tf_backup; // Pointer to a trapframe backup
   int frozen;                  // If non-zero, have been frozen
-  int handle_signals;        // If non-zero, in the middle of handling signal!
+  int handling_signals;        // If non-zero, in the middle of handling signal!
 
 };
 

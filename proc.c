@@ -44,7 +44,6 @@ struct cpu*
 mycpu(void)
 {
   int apicid, i;
-  
   if(readeflags()&FL_IF)
     panic("mycpu called with interrupts enabled\n");
   
@@ -385,13 +384,13 @@ wait(void)
         // Found one.
         // cprintf("found zombie!");
         pid = p->pid;
-        kfree(p->kstack);
-        p->kstack = 0;
-        freevm(p->pgdir);
+        // kfree(p->kstack);
+        // p->kstack = 0;
+        // freevm(p->pgdir);
         p->pid = 0;
         p->parent = 0;
         p->name[0] = 0;
-        p->killed = 0;
+        // p->killed = 0; TODO: why comment?!?
         curproc->chan = 0; //reseting cur proc chan because wern't going to sleep!
         curproc->state = RUNNING; //reseting cur proc chan because wern't going to sleep!
         p->state = UNUSED; //u_check
@@ -486,24 +485,30 @@ scheduler(void)
         switchkvm();
 
         if (cas((int*)(&p->state), MINUS_SLEEPING, SLEEPING)) {
-          // if (cas((int*)(&p->killed), 1, 0))
-          // {
-          //   p->state = RUNNABLE;
-          // }
+          if (cas((int*)(&p->killed), 1, 0))
+          {
+            p->state = RUNNABLE;
+          }
           
         } //c_check
   
         cas((int*)(&p->state), MINUS_RUNNABLE, RUNNABLE); //c_check
 
-        if (cas((int*)(&p->state), MINUS_ZOMBIE, ZOMBIE)) //c_check
-        {
+        if(p->state == MINUS_ZOMBIE){
+          kfree(p->kstack);
+          p->kstack = 0;
+          freevm(p->pgdir);
+          p->killed = 0;
+          p->chan = 0; // all this transition is instead of the transion in wait from zombie to unused!
 
-            // we delayed the waking up of the parent from exit function to this point when process actually become zombie!
-            // because parent can waken up and see that non of his child in zombie state (they may be in minus_zombie!)
-            // we want the parent be aware that his child in zombie state!
+          if (cas((int*)(&p->state), MINUS_ZOMBIE, ZOMBIE)) //c_check
+          {
+            wakeup1(p->parent); // DELAYED WAKEUP UNTIL process is actually zombie!
+          }
 
-            wakeup1(p->parent);
         }
+        
+      
 
         // Process is done running for now.
         // It should have changed its p->state before coming back.
@@ -685,32 +690,29 @@ kill(int pid, int signum)
   if(signum < SIG_MIN || signum > SIG_MAX)
     return -1;
   struct proc *p;
-  // acquire(&ptable.lock);
-
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-
+  // pushcli();
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
     if(p->pid == pid)
     {
-      int signal_on = p->psignals | (1 << signum) ; //signal already on!
-      pushcli();
-      if(cas((int*)(&p->psignals), signal_on, signal_on))  //checking if signal already on with cas, because we dont want to interfare with handle signals job!
+      if(!cas((int*)(&p->psignals), p->psignals | (1 << signum), p->psignals))
       {
-
-      }
-      else
-      { //signal is off
-        if( signum != 1) //cahnge signal only if its not IGN (1) sig!
+        if(signum != 1)
         {
-            p->psignals |= 1 << signum; //TODO: handle default signal
-        }  
+          p->psignals |= (1 << signum);
+        }
+        // popcli();
+        release(&ptable.lock);
+        return 0;
       }
-      popcli();
-      return 0;
     }
   }
-  // release(&ptable.lock);
+  release(&ptable.lock);
+  // popcli();
   return -1;
 }
+
 
 // system call: updating the process signal mask ass2
 uint
@@ -771,37 +773,38 @@ static char *states[] = {
   }
 }
 
-// // implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
-int
+// implmntation of SIGKILL, will cause the process to be killed (similar to orig xv6 kill) ass2
+void
 sigkill_handler(){
   //cprintf("sigkill handler was fired\n");
   struct proc *p = myproc();
   p->killed = 1;
   // Wake process from sleep if necessary.
-  // cas((int*)(&p->state), SLEEPING, RUNNABLE);
   if(p->state == SLEEPING)
     p->state = RUNNABLE;
-  return 0;
+  return;
 }
 
-int
+void
 sigstop_handler(){
   struct proc *p = myproc();
-  if(p-> state == SLEEPING)
-    return 1;
-
   p->frozen = 1;
-  return 0;
+  if(p-> state == SLEEPING)
+    return;
+
+  release(&ptable.lock);
+  yield();
+  acquire(&ptable.lock);
 }
 
-int
+void
 sigcont_handler(){
   struct proc* p = myproc();
   p->frozen = 0;
-  return 0;
+  return;
 }
 
-void 
+void
 copySigHandlers(void** new_sighandlers, void** old_sighandlers) {
   int i;
   for(i = 0; i < SIG_HANDLERS_NUM; i++) {
@@ -866,12 +869,12 @@ user_handler(struct proc* p, uint sig)
 void
 handleSignal (int sig) {
   struct proc *p = myproc();
-  // if(p->sig_handlers[sig] == SIG_IGN)
-  // {
-  //   // do nothing
-  // }
+  if(p->sig_handlers[sig] == SIG_IGN)
+  {
+    // do nothing
+  }
 
-  if(p->sig_handlers[sig] == SIG_DFL)
+  else if(p->sig_handlers[sig] == SIG_DFL)
   {
     switch (sig) 
     {
@@ -905,7 +908,7 @@ handle_signals (){
   if(p == 0)
     return;
 
-  // acquire(&ptable.lock);
+  acquire(&ptable.lock);
   
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
   //signal sig is pending and is not blocked
@@ -914,7 +917,7 @@ handle_signals (){
     p->psignals ^= 1 << sig;     // turn off this bit
     }
   }
-  // release(&ptable.lock);
+  release(&ptable.lock);
   return;
 }
 

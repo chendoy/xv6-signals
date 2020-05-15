@@ -708,3 +708,60 @@ void checkSignals(struct trapframe *tf){
   proc->tf->eip = (uint)proc->sighandler; // trapret will resume into signal handler
   poppedCstack->used = 0; // free the cstackframe
 }
+
+
+
+
+
+
+int
+kill(int pid, int signum)
+{
+  if(signum < SIG_MIN || signum > SIG_MAX)
+    return -1;
+  struct proc *p;
+  pushcli();
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
+    if(p->pid == pid)
+    {
+      if(!cas((int*)(&p->psignals), p->psignals | (1 << signum), p->psignals))
+      {
+        p->psignals |= (1 << signum);
+        popcli();
+        return 0;
+      }
+    }
+  }
+  popcli();
+  return -1;
+}
+
+
+
+
+void
+handle_signals (){
+  struct proc *p = myproc();
+  uint sig;
+
+  if(p == 0)
+    return;
+
+  // acquire(&ptable.lock);
+  
+  pushcli();
+  for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
+  //signal sig is pending and is not blocked
+    if(cas((int*)(p->psignals), p->psignals | (1 << sig), p->psignals ^ (1 << sig)))
+    {
+      if (!(p->sigmask & (1 << sig)))
+      {
+        handleSignal(sig);
+      }
+    }
+    
+  }
+  popcli();
+    return;
+}
