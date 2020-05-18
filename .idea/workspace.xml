@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a3fcb5e9-36cc-4241-9297-ff5157b1a749" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/os_ass2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootblockother.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comp8.c" beforeDir="false" afterPath="$PROJECT_DIR$/comp8.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entryother" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entryother.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entryother.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entryother.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fs.img" beforeDir="false" afterPath="$PROJECT_DIR$/fs.img" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initcode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/initcode.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/initcode.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/initcode.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/initcode.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel.sym" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proc.c" beforeDir="false" afterPath="$PROJECT_DIR$/proc.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proc.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proc.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sleeplock.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sleeplock.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spinlock.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spinlock.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/string.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/string.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swtch.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/syscall.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/syscall.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysfile.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysfile.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysproc.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysproc.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trap.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trap.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trapasm.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uart.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uart.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vectors.S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vectors.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vm.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vm.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xv6.img" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1buUmUhmjfPiPytZQxQp4Gc34YA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a3fcb5e9-36cc-4241-9297-ff5157b1a749" name="Default Changelist" comment="" />
+      <created>1589481631962</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589481631962</updated>
+      <workItem from="1589481644345" duration="196000" />
+      <workItem from="1589481893514" duration="212000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="743" y="347" width="426" height="484" key="FileChooserDialogImpl" timestamp="1589481814461">
+      <screen x="0" y="0" width="1920" height="1176" />
+    </state>
+    <state x="743" y="347" width="426" height="484" key="FileChooserDialogImpl/0.0.1920.1176@0.0.1920.1176" timestamp="1589481814461" />
+    <state x="449" y="224" key="SettingsEditor" timestamp="1589481969222">
+      <screen x="0" y="0" width="1920" height="1176" />
+    </state>
+    <state x="449" y="224" key="SettingsEditor/0.0.1920.1176@0.0.1920.1176" timestamp="1589481969222" />
+    <state width="498" height="398" key="SwitcherDM" timestamp="1589482016259">
+      <screen x="0" y="0" width="1920" height="1176" />
+    </state>
+    <state width="498" height="398" key="SwitcherDM/0.0.1920.1176@0.0.1920.1176" timestamp="1589482016259" />
+  </component>
+</project>
