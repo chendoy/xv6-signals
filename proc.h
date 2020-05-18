@@ -51,6 +51,7 @@ struct proc {
   char name[16];               // Process name (debugging)
   uint psignals;               // Pending signals
   uint sigmask;                // Signal mask
+  uint sigmask_backup;         // Signal mask backup
   void* sig_handlers[32];      // Signal handlers
   struct trapframe* tf_backup; // Pointer to a trapframe backup
   int frozen;                  // If non-zero, have been frozen

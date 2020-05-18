@@ -621,8 +621,6 @@ sleep(void *chan, struct spinlock *lk)
   if(lk == 0)
     panic("sleep without lk");
 
-  
-
   pushcli();
 
   //moving the cas befoe release lock solved problems as explained in meeting hours
@@ -653,7 +651,7 @@ sleep(void *chan, struct spinlock *lk)
   //              otherwise he his state can be set to 'runnable' and he can be executed before his chan set to 0!
 
   // Reacquire original lock.
-  if(lk != &ptable.lock){  //DOC: sleeplock2
+  if(lk != 0){  //DOC: sleeplock2
     // release(&ptable.lock);
     acquire(lk);
   }
@@ -752,6 +750,7 @@ kill(int pid, int signum)
         popcli();
         return 0;
       }
+      popcli();
     }
   }
   // release(&ptable.lock);
@@ -870,6 +869,9 @@ sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
   if(signum == SIGSTOP || signum == SIGKILL) // they cannot be modified, blocked or ignored
     return 1;
 
+  if(signum > SIG_MAX || signum < SIG_MIN) // trying to change wierd signal number
+    return 1;
+
   if(oldact != null) {
     oldact->sa_handler = ((struct sigaction*)&curproc->sig_handlers[signum])->sa_handler;              // old handler
     oldact->sigmask = ((struct sigaction*)&curproc->sig_handlers[signum])->sigmask;                    // old sigmask
@@ -894,6 +896,7 @@ user_handler(struct proc* p, uint sig)
     // back-up trap frame
     memmove(p->kstack, p->tf, sizeof(*p->tf));
     p->tf_backup = (struct trapframe*)p->kstack;
+    p->sigmask_backup = sigprocmask(((struct sigaction*)p->sig_handlers[sig])->sigmask);
 
     // changing the user space stack
     sigret_size = sigret_caller_end - sigret_caller_start;
@@ -965,16 +968,17 @@ handle_signals (struct trapframe *tf){
   // acquire(&ptable.lock);
   // pushcli();
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
+    int expected = p->psignals | (1 << sig) ;
   //signal sig is pending and is not blocked
-  if(p->sigmask & (1 << sig))
-  {
-    continue;
-  }
-  int expected = p->psignals | (1 << sig) ;
-  if(cas((int*)(&p->psignals), expected, expected ^ (1 << sig)))
-  {
-    handleSignal(sig);           // handle it
-  }
+    if(p->sigmask & (1 << sig) && sig != SIGSTOP && sig != SIGKILL) { // signal is blocked by mask and is not SIGSTOP or SIGKILL because they
+      if(cas((int*)(&p->psignals), expected, expected ^ (1 << sig)))  // cannot be blocked
+        continue;
+    }
+    
+    
+    if(cas((int*)(&p->psignals), expected, expected ^ (1 << sig)))
+      handleSignal(sig);           
+      
   // if((p->psignals & (1 << sig))  && !(p->sigmask & (1 << sig))) {
   //   handleSignal(sig);           // handle it
   //   p->psignals ^= 1 << sig;     // turn off this bit
@@ -989,6 +993,7 @@ int
 sigret(void) {
   struct proc* p = myproc();
   memmove(p->tf, p->tf_backup, sizeof(struct trapframe)); // trapframe restore
+  p->sigmask = p->sigmask_backup;
   handle_signals(p->tf);
   return 0;
 }
