@@ -458,26 +458,26 @@ void sleepTest() {
         {
             if((child_pid[2]=fork()) == 0)
             {
-                sleep(250);
+                sleep(25);
                 printf(0,"Run SigSTOP Second Child\n");
                 //kill_other(child_pid[1],SIGSTOP);
                 printf(0, "@@@@@1\n");
-                sleep(200);
+                sleep(20);
                 printf(0, "@@@@@2\n");
                 printf(0,"Send SIGCONT child two\n");
                 //kill_other(child_pid[1],SIGCONT);
-                sleep(200);
+                sleep(20);
                 printf(0,"Send SIGSTOP child2 AGAIN\n");
                 //kill_other(child_pid[1],SIGSTOP);
                 printf(0, "@@@@@1\n");
-                sleep(200);
+                sleep(20);
                 printf(0, "@@@@@2\n");
                 printf(0,"Send SIGKILL to child2\n");
                 //kill_other(child_pid[1],SIGKILL);
-                sleep(400);
+                sleep(40);
                 printf(0,"Send SIGCONT to child2\n");
                 //kill_other(child_pid[1],SIGCONT);
-                sleep(450);
+                sleep(45);
                 exit();
             }
             else
@@ -522,6 +522,7 @@ int main()
     printf(0,"---------  SIGNAL TESTS 3 --------- \n");
     SignalTests3();
     printf(0,"\n");
+
     printf(0,"Done TESTS\n");
     exit();
 }

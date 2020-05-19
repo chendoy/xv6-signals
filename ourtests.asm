@@ -102,6 +102,7 @@ int main()
       ce:	68 6c 1e 00 00       	push   $0x1e6c
       d3:	6a 00                	push   $0x0
       d5:	e8 d6 12 00 00       	call   13b0 <printf>
+
     printf(0,"Done TESTS\n");
       da:	59                   	pop    %ecx
       db:	58                   	pop    %eax
@@ -1479,7 +1480,7 @@ void sleepTest() {
                 if((child_pid[3]=fork()) == 0)
      ef7:	e8 4e 03 00 00       	call   124a <fork>
      efc:	85 c0                	test   %eax,%eax
-     efe:	0f 84 f6 00 00 00    	je     ffa <sleepTest+0x1ea>
+     efe:	0f 84 f3 00 00 00    	je     ff7 <sleepTest+0x1e7>
     wait();
      f04:	e8 51 03 00 00       	call   125a <wait>
     wait();
@@ -1500,84 +1501,85 @@ void sleepTest() {
      f29:	8b 5d fc             	mov    -0x4(%ebp),%ebx
      f2c:	c9                   	leave  
      f2d:	c3                   	ret    
-                sleep(250);
+                sleep(25);
      f2e:	83 ec 0c             	sub    $0xc,%esp
-     f31:	68 fa 00 00 00       	push   $0xfa
-     f36:	e8 a7 03 00 00       	call   12e2 <sleep>
+     f31:	6a 19                	push   $0x19
+     f33:	e8 aa 03 00 00       	call   12e2 <sleep>
                 printf(0,"Run SigSTOP Second Child\n");
-     f3b:	5a                   	pop    %edx
-     f3c:	59                   	pop    %ecx
-     f3d:	68 96 1f 00 00       	push   $0x1f96
-     f42:	6a 00                	push   $0x0
-     f44:	e8 67 04 00 00       	call   13b0 <printf>
+     f38:	5a                   	pop    %edx
+     f39:	59                   	pop    %ecx
+     f3a:	68 96 1f 00 00       	push   $0x1f96
+     f3f:	6a 00                	push   $0x0
+     f41:	e8 6a 04 00 00       	call   13b0 <printf>
                 printf(0, "@@@@@1\n");
-     f49:	5b                   	pop    %ebx
-     f4a:	58                   	pop    %eax
-     f4b:	68 b0 1f 00 00       	push   $0x1fb0
-     f50:	6a 00                	push   $0x0
-     f52:	e8 59 04 00 00       	call   13b0 <printf>
-                sleep(200);
-     f57:	c7 04 24 c8 00 00 00 	movl   $0xc8,(%esp)
-     f5e:	e8 7f 03 00 00       	call   12e2 <sleep>
+     f46:	5b                   	pop    %ebx
+     f47:	58                   	pop    %eax
+     f48:	68 b0 1f 00 00       	push   $0x1fb0
+     f4d:	6a 00                	push   $0x0
+     f4f:	e8 5c 04 00 00       	call   13b0 <printf>
+                sleep(20);
+     f54:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     f5b:	e8 82 03 00 00       	call   12e2 <sleep>
                 printf(0, "@@@@@2\n");
-     f63:	58                   	pop    %eax
-     f64:	5a                   	pop    %edx
-     f65:	68 b8 1f 00 00       	push   $0x1fb8
-     f6a:	6a 00                	push   $0x0
-     f6c:	e8 3f 04 00 00       	call   13b0 <printf>
+     f60:	58                   	pop    %eax
+     f61:	5a                   	pop    %edx
+     f62:	68 b8 1f 00 00       	push   $0x1fb8
+     f67:	6a 00                	push   $0x0
+     f69:	e8 42 04 00 00       	call   13b0 <printf>
                 printf(0,"Send SIGCONT child two\n");
-     f71:	59                   	pop    %ecx
-     f72:	5b                   	pop    %ebx
-     f73:	68 c0 1f 00 00       	push   $0x1fc0
-     f78:	6a 00                	push   $0x0
-     f7a:	e8 31 04 00 00       	call   13b0 <printf>
-                sleep(200);
-     f7f:	c7 04 24 c8 00 00 00 	movl   $0xc8,(%esp)
-     f86:	e8 57 03 00 00       	call   12e2 <sleep>
+     f6e:	59                   	pop    %ecx
+     f6f:	5b                   	pop    %ebx
+     f70:	68 c0 1f 00 00       	push   $0x1fc0
+     f75:	6a 00                	push   $0x0
+     f77:	e8 34 04 00 00       	call   13b0 <printf>
+                sleep(20);
+     f7c:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     f83:	e8 5a 03 00 00       	call   12e2 <sleep>
                 printf(0,"Send SIGSTOP child2 AGAIN\n");
-     f8b:	58                   	pop    %eax
-     f8c:	5a                   	pop    %edx
-     f8d:	68 d8 1f 00 00       	push   $0x1fd8
-     f92:	6a 00                	push   $0x0
-     f94:	e8 17 04 00 00       	call   13b0 <printf>
+     f88:	58                   	pop    %eax
+     f89:	5a                   	pop    %edx
+     f8a:	68 d8 1f 00 00       	push   $0x1fd8
+     f8f:	6a 00                	push   $0x0
+     f91:	e8 1a 04 00 00       	call   13b0 <printf>
                 printf(0, "@@@@@1\n");
-     f99:	59                   	pop    %ecx
-     f9a:	5b                   	pop    %ebx
-     f9b:	68 b0 1f 00 00       	push   $0x1fb0
-     fa0:	6a 00                	push   $0x0
-     fa2:	e8 09 04 00 00       	call   13b0 <printf>
-                sleep(200);
-     fa7:	c7 04 24 c8 00 00 00 	movl   $0xc8,(%esp)
-     fae:	e8 2f 03 00 00       	call   12e2 <sleep>
+     f96:	59                   	pop    %ecx
+     f97:	5b                   	pop    %ebx
+     f98:	68 b0 1f 00 00       	push   $0x1fb0
+     f9d:	6a 00                	push   $0x0
+     f9f:	e8 0c 04 00 00       	call   13b0 <printf>
+                sleep(20);
+     fa4:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     fab:	e8 32 03 00 00       	call   12e2 <sleep>
                 printf(0, "@@@@@2\n");
-     fb3:	58                   	pop    %eax
-     fb4:	5a                   	pop    %edx
-     fb5:	68 b8 1f 00 00       	push   $0x1fb8
-     fba:	6a 00                	push   $0x0
-     fbc:	e8 ef 03 00 00       	call   13b0 <printf>
+     fb0:	58                   	pop    %eax
+     fb1:	5a                   	pop    %edx
+     fb2:	68 b8 1f 00 00       	push   $0x1fb8
+     fb7:	6a 00                	push   $0x0
+     fb9:	e8 f2 03 00 00       	call   13b0 <printf>
                 printf(0,"Send SIGKILL to child2\n");
-     fc1:	59                   	pop    %ecx
-     fc2:	5b                   	pop    %ebx
-     fc3:	68 f3 1f 00 00       	push   $0x1ff3
-     fc8:	6a 00                	push   $0x0
-     fca:	e8 e1 03 00 00       	call   13b0 <printf>
-                sleep(400);
-     fcf:	c7 04 24 90 01 00 00 	movl   $0x190,(%esp)
-     fd6:	e8 07 03 00 00       	call   12e2 <sleep>
+     fbe:	59                   	pop    %ecx
+     fbf:	5b                   	pop    %ebx
+     fc0:	68 f3 1f 00 00       	push   $0x1ff3
+     fc5:	6a 00                	push   $0x0
+     fc7:	e8 e4 03 00 00       	call   13b0 <printf>
+                sleep(40);
+     fcc:	c7 04 24 28 00 00 00 	movl   $0x28,(%esp)
+     fd3:	e8 0a 03 00 00       	call   12e2 <sleep>
                 printf(0,"Send SIGCONT to child2\n");
-     fdb:	58                   	pop    %eax
-     fdc:	5a                   	pop    %edx
-     fdd:	68 0b 20 00 00       	push   $0x200b
-     fe2:	6a 00                	push   $0x0
-     fe4:	e8 c7 03 00 00       	call   13b0 <printf>
-                sleep(450);
-     fe9:	c7 04 24 c2 01 00 00 	movl   $0x1c2,(%esp)
-     ff0:	e8 ed 02 00 00       	call   12e2 <sleep>
+     fd8:	58                   	pop    %eax
+     fd9:	5a                   	pop    %edx
+     fda:	68 0b 20 00 00       	push   $0x200b
+     fdf:	6a 00                	push   $0x0
+     fe1:	e8 ca 03 00 00       	call   13b0 <printf>
+                sleep(45);
+     fe6:	c7 04 24 2d 00 00 00 	movl   $0x2d,(%esp)
+     fed:	e8 f0 02 00 00       	call   12e2 <sleep>
                 exit();
-     ff5:	e8 58 02 00 00       	call   1252 <exit>
+     ff2:	e8 5b 02 00 00       	call   1252 <exit>
                     exit();
-     ffa:	e8 53 02 00 00       	call   1252 <exit>
-     fff:	90                   	nop
+     ff7:	e8 56 02 00 00       	call   1252 <exit>
+     ffc:	66 90                	xchg   %ax,%ax
+     ffe:	66 90                	xchg   %ax,%ax
 
 00001000 <strcpy>:
 #include "user.h"
