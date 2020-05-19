@@ -83,11 +83,11 @@ allocpid(void)
   // pushcli();
 
   // acquire(&ptable.lock);
-  // pushcli();
+  pushcli();
   do{
     pid = nextpid;
   }while(!cas((int*)(&nextpid), pid, pid + 1));
-  // popcli();
+  popcli();
   // release(&ptable.lock);
 
 
@@ -331,8 +331,8 @@ exit(void)
   pushcli();
  
    // Parent might be sleeping in wait().
-  // wakeup1(curproc->parent); //we will wake up parent only in shceduler, when process become zombie! u_check
-
+  // wakeup1(curproc->parent); //we will wake up parent only in shceduler, when this process becomes actually zombie!
+  //otherwise, we could wakeup parent and parent can miss we are at zombie state!
 
   if(!cas((int*)(&curproc->state), RUNNING, MINUS_ZOMBIE))
     {
@@ -381,7 +381,7 @@ wait(void)
         continue;
       havekids = 1;
       
-      if(cas((int*)(&p->state), ZOMBIE, MINUS_UNUSED)){//c_check -> TODO: problem with this transition at usertests!
+      if(cas((int*)(&p->state), ZOMBIE, MINUS_UNUSED)){
         // if((p->state == ZOMBIE)){  // u_check
         // Found one.
         // cprintf("found zombie!");
@@ -394,10 +394,9 @@ wait(void)
         p->name[0] = 0;
         p->killed = 0; 
         curproc->chan = 0; //reseting cur proc chan because wern't going to sleep!
-        cas((int*)(&curproc->state), MINUS_SLEEPING, RUNNING);
-        cas((int*)(&p->state), MINUS_UNUSED, UNUSED);
-        // curproc->state = RUNNING; //reseting cur proc chan because wern't going to sleep!
-        // p->state = UNUSED; //u_check
+        cas((int*)(&curproc->state), MINUS_SLEEPING, RUNNING); //curproc will not go to sleep, thus the transition back to running
+        cas((int*)(&p->state), MINUS_UNUSED, UNUSED); //p->state become unused now! we delayed it to this point,
+        //if woldn't delay it could be becoming unused while not fully reset all process required fileds!
         // release(&ptable.lock);
         popcli();
         return pid;
@@ -407,9 +406,9 @@ wait(void)
     // No point waiting if we don't have any children.
     if(!havekids || curproc->killed){
 
-      // cas((int*)(&curproc->state), MINUS_SLEEPING, RUNNING); // process not going to sleep so it should stay running!
+      
       curproc->chan = 0; //reseting cur proc chan because wern't going to sleep!
-      if(!cas((int*)(&curproc->state), MINUS_SLEEPING, RUNNING))
+      if(!cas((int*)(&curproc->state), MINUS_SLEEPING, RUNNING)) // process becoming running becuase we dont go to sleep
       {
         panic("should be minus sleeping!");
       }
@@ -422,7 +421,7 @@ wait(void)
     // Wait for children to exit.  (See wakeup1 call in proc_exit.)
     // popcli();
     // sleep(curproc, &ptable.lock);  // we just need call sched now!
-    sched();
+    sched(); //we will sched() now instead of sleep! because we handled all the sleeping process for this situation here!
   }
 }
 
@@ -485,7 +484,7 @@ scheduler(void)
         }
         else
         {
-          cas((int*)(&p->state), RUNNING, RUNNABLE);
+          cas((int*)(&p->state), RUNNING, RUNNABLE); //p not gonna run, it's state should be runnable!
           continue;
         }
 
@@ -513,20 +512,19 @@ scheduler(void)
         c->proc = 0;
 
 
-        if (cas((int*)(&p->state), MINUS_SLEEPING, SLEEPING)) {
-          if (p->killed == 1)
+        if (cas((int*)(&p->state), MINUS_SLEEPING, SLEEPING)) { 
+          if (p->killed == 1) // if we were killed while minus sleeping, we wont sleep; but will be runnable again! 
           {
              cas((int*)(&p->state), SLEEPING, RUNNABLE);
           }
           
-        } //c_check
-  
-        cas((int*)(&p->state), MINUS_RUNNABLE, RUNNABLE); //c_check
+        } 
+        cas((int*)(&p->state), MINUS_RUNNABLE, RUNNABLE); 
 
         if(p->state == MINUS_ZOMBIE){
-          p->chan = 0; // all this transition is instead of the transion in wait from zombie to unused!
+          p->chan = 0; // were here from the exit situation, we delayed the channel change to this exact moment
 
-          if (cas((int*)(&p->state), MINUS_ZOMBIE, ZOMBIE)) //c_check
+          if (cas((int*)(&p->state), MINUS_ZOMBIE, ZOMBIE)) 
           {
             wakeup1(p->parent); // DELAYED WAKEUP UNTIL process is actually zombie!
           }
@@ -627,7 +625,7 @@ sleep(void *chan, struct spinlock *lk)
     // Go to sleep.
   p->chan = chan;
   // p->state = SLEEPING; // u_check
-  if(!cas((int*)(&p->state), RUNNING, MINUS_SLEEPING)) // c_check
+  if(!cas((int*)(&p->state), RUNNING, MINUS_SLEEPING)) 
   {
     panic("cas failed at sleeping, should be running state!");
   }
@@ -670,29 +668,21 @@ wakeup1(void *chan)
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
     if((p->state == SLEEPING || p->state == MINUS_SLEEPING) && p->chan == chan)
-    {
-        // while(p->state == MINUS_SLEEPING){
-        //   //wating until process will become sleeping and then we will put it as runnable!
-        // }
-
-        // if(cas((int*)(&p->state), SLEEPING, MINUS_RUNNABLE)){
-        //   p->chan = 0; //reseting process's chan now to prevent it from running the process with not 0 chanel!
-        //   if(!cas((int*)(&p->state), MINUS_RUNNABLE, RUNNABLE)){
-        //     panic("error at wakeup1, process should be minus_runnable!");
-        //   }
-        // }
-        
+    {   
       while(!cas(&p->state,SLEEPING,MINUS_RUNNABLE))
-      {
+      { //busy waiting on minus sleeping situation (waiting until we will be at sleeping state)
 
         if (p->state == RUNNING)
         {
+          //other cpu might change process state from minus sleeping to running 
+          // (i.e in the wait situation where the process turning from minus sleeping to running again!)
+          // thus, withput this if, the process will be stuck at busywaiting!
           break;
         }    
       }
 
       if (p->state !=RUNNING)
-      {
+      { // if were here because of the transition from sleeping to minus runnable, change your state to runnable!
         cas(&p->state,MINUS_RUNNABLE,RUNNABLE);
       }
       
@@ -733,7 +723,7 @@ kill(int pid, int signum)
   if(signum < SIG_MIN || signum > SIG_MAX)
     return -1;
   struct proc *p;
-  pushcli();
+  // pushcli();
   // acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
   {
@@ -748,14 +738,14 @@ kill(int pid, int signum)
         }
         // popcli();
         // release(&ptable.lock);
-        popcli();
+        // popcli();
         return 0;
       }
-      popcli();
+      // popcli();
     }
   }
   // release(&ptable.lock);
-  popcli();
+  // popcli();
   return -1;
 }
 
@@ -839,10 +829,6 @@ sigstop_handler(){
     return;
 
   p->frozen = 1;
-  
-  // {
-  //   cas((int*)(&p->state),SLEEPING,RUNNABLE); //TODO: why not ignore on this situation? why to runnable?
-  // }
   return;
 
 
@@ -998,7 +984,7 @@ int
 sigret(void) {
   struct proc* p = myproc();
   memmove(p->tf, p->tf_backup, sizeof(struct trapframe)); // trapframe restore
-  p->sigmask = p->sigmask_backup;
-  handle_signals(p->tf);
+  p->sigmask = p->sigmask_backup; //restoring sigmask in case of change
+  handle_signals(p->tf); //jumping back to handling signals
   return 0;
 }
