@@ -378,25 +378,105 @@ SignalTests3()
         {
             if((child_pid[2]=fork()) == 0)
             {
-                sleep(250);
+                printf(0, "child 3 pid: %d\n", getpid());
+                sleep(30);
                 printf(0,"Run SigSTOP Second Child\n");
                 kill_other(child_pid[1],SIGSTOP);
+                printf(0, "@@@@@1\n");
+                sleep(20);
+                printf(0, "@@@@@2\n");
+                printf(0,"Send SIGCONT child two\n");
+                kill_other(child_pid[1],SIGCONT);
+                sleep(20);
+                printf(0,"Send SIGSTOP child2 AGAIN\n");
+                kill_other(child_pid[1],SIGSTOP);
+                printf(0, "@@@@@1\n");
+                sleep(20);
+                printf(0, "@@@@@2\n");
+                printf(0,"Send SIGKILL to child2\n");
+                kill_other(child_pid[1],SIGKILL);
+                sleep(30);
+                printf(0,"Send SIGCONT to child2\n");
+                kill_other(child_pid[1],SIGCONT);
+                sleep(30);
+                exit();
+            }
+            else
+            {
+                if((child_pid[3]=fork()) == 0)
+                {
+                    exit();
+                }
+            }
+        }
+        
+    }
+    //wait for children
+    
+    wait();
+    wait();
+    wait();
+    wait();
+    printf(0,"parent\n");
+    return;
+
+}
+
+void sleepTest() {
+    int child_pid[4];
+    /* Start children. */
+    if((child_pid[0]=fork()) == 0)
+    {
+        struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
+        KillHAndlerSignal->sa_handler = (void (*)())SIGKILL;
+        KillHAndlerSignal->sigmask = 0;
+        printf(0,"Created KillHAndlerSignal (KILL) with mask that is 0\n");
+        sigaction(4,KillHAndlerSignal,null);
+        printf(0,"Sending KillHAndlerSignal (22)to process\n");
+        kill_self_test(4);
+        sleep(1250);
+        for(;;)
+        {
+            printf(0,"Process 1 should have been killed already!\n");
+            sleep(100);
+        }
+        exit();
+    }
+    else
+    {
+        if((child_pid[1]=fork()) == 0)
+        {
+            printf(0,"Starting Loop\n");
+            for(;;)
+            {
+                printf(0,"pid - %d child two\n",getpid());
+                sleep(50);
+            }
+            exit();
+        }
+        else
+        {
+            if((child_pid[2]=fork()) == 0)
+            {
+                sleep(250);
+                printf(0,"Run SigSTOP Second Child\n");
+                //kill_other(child_pid[1],SIGSTOP);
                 printf(0, "@@@@@1\n");
                 sleep(200);
                 printf(0, "@@@@@2\n");
                 printf(0,"Send SIGCONT child two\n");
-                kill_other(child_pid[1],SIGCONT);
+                //kill_other(child_pid[1],SIGCONT);
                 sleep(200);
                 printf(0,"Send SIGSTOP child2 AGAIN\n");
-                kill_other(child_pid[1],SIGSTOP);
+                //kill_other(child_pid[1],SIGSTOP);
                 printf(0, "@@@@@1\n");
                 sleep(200);
                 printf(0, "@@@@@2\n");
                 printf(0,"Send SIGKILL to child2\n");
-                kill_other(child_pid[1],SIGKILL);
+                //kill_other(child_pid[1],SIGKILL);
                 sleep(400);
                 printf(0,"Send SIGCONT to child2\n");
-                kill_other(child_pid[1],SIGCONT);
+                //kill_other(child_pid[1],SIGCONT);
                 sleep(450);
                 exit();
             }
@@ -423,22 +503,22 @@ SignalTests3()
 
 int main()
 {
-    // printf(0,"--------- SIGPROCMASK TEST ---------\n");
-    // sigprocmask_test();
-    // printf(0,"--------- STOP_CONT_KILL_ABC TEST ---------\n");
-    // cont_stop_kill_abc_test();
-    // printf(0,"--------- CUSTOM USER HANDLER TEST ---------\n");
-    // user_handler_test();
-    // printf(0,"\n");
-    // printf(0,"--------- SIGACTION TESTS ---------\n");
-    // simple_sigaction_test();
-    // printf(0,"\n");
-    // printf(0,"--------- SIGNAL TESTS 1 --------- \n");
-    // SignalTests1();
-    // printf(0,"\n");
-    // printf(0,"---------  SIGNAL TESTS 2 --------- \n");
-    // SignalTests2();
-    // printf(0,"\n");
+    printf(0,"--------- SIGPROCMASK TEST ---------\n");
+    sigprocmask_test();
+    printf(0,"--------- STOP_CONT_KILL_ABC TEST ---------\n");
+    cont_stop_kill_abc_test();
+    printf(0,"--------- CUSTOM USER HANDLER TEST ---------\n");
+    user_handler_test();
+    printf(0,"\n");
+    printf(0,"--------- SIGACTION TESTS ---------\n");
+    simple_sigaction_test();
+    printf(0,"\n");
+    printf(0,"--------- SIGNAL TESTS 1 --------- \n");
+    SignalTests1();
+    printf(0,"\n");
+    printf(0,"---------  SIGNAL TESTS 2 --------- \n");
+    SignalTests2();
+    printf(0,"\n");
     printf(0,"---------  SIGNAL TESTS 3 --------- \n");
     SignalTests3();
     printf(0,"\n");

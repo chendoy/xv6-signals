@@ -681,8 +681,10 @@ wakeup1(void *chan)
         //     panic("error at wakeup1, process should be minus_runnable!");
         //   }
         // }
+        
       while(!cas(&p->state,SLEEPING,MINUS_RUNNABLE))
       {
+
         if (p->state == RUNNING)
         {
           break;
@@ -691,7 +693,6 @@ wakeup1(void *chan)
 
       if (p->state !=RUNNING)
       {
-        p->chan = 0;
         cas(&p->state,MINUS_RUNNABLE,RUNNABLE);
       }
       
@@ -833,11 +834,15 @@ sigkill_handler(){
 void
 sigstop_handler(){
   struct proc *p = myproc();
-  p->frozen = 1;
+
   if(p-> state == SLEEPING)
-  {
-    cas((int*)(&p->state),SLEEPING,RUNNABLE); //TODO: why not ignore on this situation? why to runnable?
-  }
+    return;
+
+  p->frozen = 1;
+  
+  // {
+  //   cas((int*)(&p->state),SLEEPING,RUNNABLE); //TODO: why not ignore on this situation? why to runnable?
+  // }
   return;
 
 
@@ -966,7 +971,7 @@ handle_signals (struct trapframe *tf){
    
 
   // acquire(&ptable.lock);
-  // pushcli();
+  //pushcli();
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
     int expected = p->psignals | (1 << sig) ;
   //signal sig is pending and is not blocked
@@ -984,7 +989,7 @@ handle_signals (struct trapframe *tf){
   //   p->psignals ^= 1 << sig;     // turn off this bit
   //   }
   }
-  // popcli();
+  //popcli();
   // release(&ptable.lock);
   return;
 }
