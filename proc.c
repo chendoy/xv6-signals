@@ -957,7 +957,7 @@ handle_signals (struct trapframe *tf){
    
 
   // acquire(&ptable.lock);
-  //pushcli();
+  // pushcli();
   for (sig = SIG_MIN; sig <= SIG_MAX; sig++) {
     int expected = p->psignals | (1 << sig) ;
   //signal sig is pending and is not blocked
@@ -975,7 +975,7 @@ handle_signals (struct trapframe *tf){
   //   p->psignals ^= 1 << sig;     // turn off this bit
   //   }
   }
-  //popcli();
+  // popcli();
   // release(&ptable.lock);
   return;
 }

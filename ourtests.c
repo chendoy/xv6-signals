@@ -60,7 +60,7 @@ cont_stop_kill_abc_test()
             }
             
             kill(pid, sigs[i%2]);
-            sleep(50);
+            sleep(30);
         }
 
         printf(1, "\nSENT: KILL!\n");
@@ -503,25 +503,25 @@ void sleepTest() {
 
 int main()
 {
-    printf(0,"--------- SIGPROCMASK TEST ---------\n");
-    sigprocmask_test();
+    // printf(0,"--------- SIGPROCMASK TEST ---------\n");
+    // sigprocmask_test();
     printf(0,"--------- STOP_CONT_KILL_ABC TEST ---------\n");
     cont_stop_kill_abc_test();
-    printf(0,"--------- CUSTOM USER HANDLER TEST ---------\n");
-    user_handler_test();
-    printf(0,"\n");
-    printf(0,"--------- SIGACTION TESTS ---------\n");
-    simple_sigaction_test();
-    printf(0,"\n");
-    printf(0,"--------- SIGNAL TESTS 1 --------- \n");
-    SignalTests1();
-    printf(0,"\n");
-    printf(0,"---------  SIGNAL TESTS 2 --------- \n");
-    SignalTests2();
-    printf(0,"\n");
-    printf(0,"---------  SIGNAL TESTS 3 --------- \n");
-    SignalTests3();
-    printf(0,"\n");
+    // printf(0,"--------- CUSTOM USER HANDLER TEST ---------\n");
+    // user_handler_test();
+    // printf(0,"\n");
+    // printf(0,"--------- SIGACTION TESTS ---------\n");
+    // simple_sigaction_test();
+    // printf(0,"\n");
+    // printf(0,"--------- SIGNAL TESTS 1 --------- \n");
+    // SignalTests1();
+    // printf(0,"\n");
+    // printf(0,"---------  SIGNAL TESTS 2 --------- \n");
+    // SignalTests2();
+    // printf(0,"\n");
+    // printf(0,"---------  SIGNAL TESTS 3 --------- \n");
+    // SignalTests3();
+    // printf(0,"\n");
 
     printf(0,"Done TESTS\n");
     exit();

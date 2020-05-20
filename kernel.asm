@@ -6899,7 +6899,7 @@ wakeup1(void *chan)
 static inline int 
 cas(volatile void *addr, int expected, int newval)
 {
-  int res;
+  int ret_val;
   asm volatile(
 80103668:	bb 06 00 00 00       	mov    $0x6,%ebx
 8010366d:	83 ec 0c             	sub    $0xc,%esp
@@ -8866,7 +8866,7 @@ handle_signals (struct trapframe *tf){
 801046d2:	74 0c                	je     801046e0 <handle_signals+0x40>
   //   }
   }
-  //popcli();
+  // popcli();
   // release(&ptable.lock);
   return;
 }

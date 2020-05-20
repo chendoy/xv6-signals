@@ -18,2686 +18,2618 @@ int main()
        b:	89 e5                	mov    %esp,%ebp
        d:	51                   	push   %ecx
        e:	83 ec 0c             	sub    $0xc,%esp
-    printf(0,"--------- SIGPROCMASK TEST ---------\n");
-      11:	68 a0 1c 00 00       	push   $0x1ca0
-      16:	6a 00                	push   $0x0
-      18:	e8 93 13 00 00       	call   13b0 <printf>
-    sigprocmask_test();
-      1d:	e8 0e 01 00 00       	call   130 <sigprocmask_test>
+    // printf(0,"--------- SIGPROCMASK TEST ---------\n");
+    // sigprocmask_test();
     printf(0,"--------- STOP_CONT_KILL_ABC TEST ---------\n");
-      22:	58                   	pop    %eax
-      23:	5a                   	pop    %edx
-      24:	68 c8 1c 00 00       	push   $0x1cc8
-      29:	6a 00                	push   $0x0
-      2b:	e8 80 13 00 00       	call   13b0 <printf>
+      11:	68 f0 1b 00 00       	push   $0x1bf0
+      16:	6a 00                	push   $0x0
+      18:	e8 e3 12 00 00       	call   1300 <printf>
     cont_stop_kill_abc_test();
-      30:	e8 8b 01 00 00       	call   1c0 <cont_stop_kill_abc_test>
-    printf(0,"--------- CUSTOM USER HANDLER TEST ---------\n");
-      35:	59                   	pop    %ecx
-      36:	58                   	pop    %eax
-      37:	68 f8 1c 00 00       	push   $0x1cf8
-      3c:	6a 00                	push   $0x0
-      3e:	e8 6d 13 00 00       	call   13b0 <printf>
-    user_handler_test();
-      43:	e8 e8 04 00 00       	call   530 <user_handler_test>
-    printf(0,"\n");
-      48:	58                   	pop    %eax
-      49:	5a                   	pop    %edx
-      4a:	68 6c 1e 00 00       	push   $0x1e6c
-      4f:	6a 00                	push   $0x0
-      51:	e8 5a 13 00 00       	call   13b0 <printf>
-    printf(0,"--------- SIGACTION TESTS ---------\n");
-      56:	59                   	pop    %ecx
-      57:	58                   	pop    %eax
-      58:	68 28 1d 00 00       	push   $0x1d28
-      5d:	6a 00                	push   $0x0
-      5f:	e8 4c 13 00 00       	call   13b0 <printf>
-    simple_sigaction_test();
-      64:	e8 87 05 00 00       	call   5f0 <simple_sigaction_test>
-    printf(0,"\n");
-      69:	58                   	pop    %eax
-      6a:	5a                   	pop    %edx
-      6b:	68 6c 1e 00 00       	push   $0x1e6c
-      70:	6a 00                	push   $0x0
-      72:	e8 39 13 00 00       	call   13b0 <printf>
-    printf(0,"--------- SIGNAL TESTS 1 --------- \n");
-      77:	59                   	pop    %ecx
-      78:	58                   	pop    %eax
-      79:	68 50 1d 00 00       	push   $0x1d50
-      7e:	6a 00                	push   $0x0
-      80:	e8 2b 13 00 00       	call   13b0 <printf>
-    SignalTests1();
-      85:	e8 16 08 00 00       	call   8a0 <SignalTests1>
-    printf(0,"\n");
-      8a:	58                   	pop    %eax
-      8b:	5a                   	pop    %edx
-      8c:	68 6c 1e 00 00       	push   $0x1e6c
-      91:	6a 00                	push   $0x0
-      93:	e8 18 13 00 00       	call   13b0 <printf>
-    printf(0,"---------  SIGNAL TESTS 2 --------- \n");
-      98:	59                   	pop    %ecx
-      99:	58                   	pop    %eax
-      9a:	68 78 1d 00 00       	push   $0x1d78
-      9f:	6a 00                	push   $0x0
-      a1:	e8 0a 13 00 00       	call   13b0 <printf>
-    SignalTests2();
-      a6:	e8 85 09 00 00       	call   a30 <SignalTests2>
-    printf(0,"\n");
-      ab:	58                   	pop    %eax
-      ac:	5a                   	pop    %edx
-      ad:	68 6c 1e 00 00       	push   $0x1e6c
-      b2:	6a 00                	push   $0x0
-      b4:	e8 f7 12 00 00       	call   13b0 <printf>
-    printf(0,"---------  SIGNAL TESTS 3 --------- \n");
-      b9:	59                   	pop    %ecx
-      ba:	58                   	pop    %eax
-      bb:	68 a0 1d 00 00       	push   $0x1da0
-      c0:	6a 00                	push   $0x0
-      c2:	e8 e9 12 00 00       	call   13b0 <printf>
-    SignalTests3();
-      c7:	e8 04 0b 00 00       	call   bd0 <SignalTests3>
-    printf(0,"\n");
-      cc:	58                   	pop    %eax
-      cd:	5a                   	pop    %edx
-      ce:	68 6c 1e 00 00       	push   $0x1e6c
-      d3:	6a 00                	push   $0x0
-      d5:	e8 d6 12 00 00       	call   13b0 <printf>
+      1d:	e8 ee 00 00 00       	call   110 <cont_stop_kill_abc_test>
+    // printf(0,"\n");
+    // printf(0,"---------  SIGNAL TESTS 3 --------- \n");
+    // SignalTests3();
+    // printf(0,"\n");
 
     printf(0,"Done TESTS\n");
-      da:	59                   	pop    %ecx
-      db:	58                   	pop    %eax
-      dc:	68 23 20 00 00       	push   $0x2023
-      e1:	6a 00                	push   $0x0
-      e3:	e8 c8 12 00 00       	call   13b0 <printf>
+      22:	58                   	pop    %eax
+      23:	5a                   	pop    %edx
+      24:	68 7b 1e 00 00       	push   $0x1e7b
+      29:	6a 00                	push   $0x0
+      2b:	e8 d0 12 00 00       	call   1300 <printf>
     exit();
-      e8:	e8 65 11 00 00       	call   1252 <exit>
-      ed:	66 90                	xchg   %ax,%ax
-      ef:	90                   	nop
+      30:	e8 6d 11 00 00       	call   11a2 <exit>
+      35:	66 90                	xchg   %ax,%ax
+      37:	66 90                	xchg   %ax,%ax
+      39:	66 90                	xchg   %ax,%ax
+      3b:	66 90                	xchg   %ax,%ax
+      3d:	66 90                	xchg   %ax,%ax
+      3f:	90                   	nop
 
-000000f0 <custom_handler>:
+00000040 <custom_handler>:
 {
-      f0:	55                   	push   %ebp
-      f1:	89 e5                	mov    %esp,%ebp
-      f3:	83 ec 10             	sub    $0x10,%esp
+      40:	55                   	push   %ebp
+      41:	89 e5                	mov    %esp,%ebp
+      43:	83 ec 10             	sub    $0x10,%esp
     printf(1, "child: CUSTOM HANDLER WAS FIRED!!\n");
-      f6:	68 08 17 00 00       	push   $0x1708
-      fb:	6a 01                	push   $0x1
-      fd:	e8 ae 12 00 00       	call   13b0 <printf>
+      46:	68 58 16 00 00       	push   $0x1658
+      4b:	6a 01                	push   $0x1
+      4d:	e8 ae 12 00 00       	call   1300 <printf>
     return;
-     102:	83 c4 10             	add    $0x10,%esp
+      52:	83 c4 10             	add    $0x10,%esp
 }
-     105:	c9                   	leave  
-     106:	c3                   	ret    
-     107:	89 f6                	mov    %esi,%esi
-     109:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+      55:	c9                   	leave  
+      56:	c3                   	ret    
+      57:	89 f6                	mov    %esi,%esi
+      59:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-00000110 <user_handler_signal>:
+00000060 <user_handler_signal>:
+{
+      60:	55                   	push   %ebp
+      61:	89 e5                	mov    %esp,%ebp
+      63:	83 ec 08             	sub    $0x8,%esp
+    printf(0,"pid : %d is Using User Handler Signal - %d!!!!WOrks!!!\n", getpid(),signum);
+      66:	e8 b7 11 00 00       	call   1222 <getpid>
+      6b:	ff 75 08             	pushl  0x8(%ebp)
+      6e:	50                   	push   %eax
+      6f:	68 7c 16 00 00       	push   $0x167c
+      74:	6a 00                	push   $0x0
+      76:	e8 85 12 00 00       	call   1300 <printf>
+    return;
+      7b:	83 c4 10             	add    $0x10,%esp
+}
+      7e:	c9                   	leave  
+      7f:	c3                   	ret    
+
+00000080 <sigprocmask_test>:
+{
+      80:	55                   	push   %ebp
+      81:	89 e5                	mov    %esp,%ebp
+      83:	56                   	push   %esi
+      84:	53                   	push   %ebx
+    for(i = 1; i < ITER_SIGPROCMASK_TEST; i++) {
+      85:	bb 01 00 00 00       	mov    $0x1,%ebx
+{
+      8a:	83 ec 10             	sub    $0x10,%esp
+      8d:	8d 76 00             	lea    0x0(%esi),%esi
+        omask = sigprocmask(mask);
+      90:	83 ec 0c             	sub    $0xc,%esp
+      93:	53                   	push   %ebx
+      94:	e8 a9 11 00 00       	call   1242 <sigprocmask>
+        printf(1, "should be %d = %d\n", i-1 ,omask);
+      99:	50                   	push   %eax
+      9a:	8d 43 ff             	lea    -0x1(%ebx),%eax
+    for(i = 1; i < ITER_SIGPROCMASK_TEST; i++) {
+      9d:	83 c3 01             	add    $0x1,%ebx
+        printf(1, "should be %d = %d\n", i-1 ,omask);
+      a0:	50                   	push   %eax
+      a1:	68 20 1c 00 00       	push   $0x1c20
+      a6:	6a 01                	push   $0x1
+      a8:	e8 53 12 00 00       	call   1300 <printf>
+    for(i = 1; i < ITER_SIGPROCMASK_TEST; i++) {
+      ad:	83 c4 20             	add    $0x20,%esp
+      b0:	83 fb 0a             	cmp    $0xa,%ebx
+      b3:	75 db                	jne    90 <sigprocmask_test+0x10>
+    sigaction(12, &newact, &oldact);
+      b5:	8d 5d f0             	lea    -0x10(%ebp),%ebx
+      b8:	8d 75 e8             	lea    -0x18(%ebp),%esi
+      bb:	83 ec 04             	sub    $0x4,%esp
+    newact.sa_handler = SIG_IGN;
+      be:	c7 45 e8 01 00 00 00 	movl   $0x1,-0x18(%ebp)
+    newact.sigmask = 12;
+      c5:	c7 45 ec 0c 00 00 00 	movl   $0xc,-0x14(%ebp)
+    sigaction(12, &newact, &oldact);
+      cc:	53                   	push   %ebx
+      cd:	56                   	push   %esi
+      ce:	6a 0c                	push   $0xc
+      d0:	e8 75 11 00 00       	call   124a <sigaction>
+    printf(1, "should be 0,0 = %d,%d\n", (uint)oldact.sa_handler, oldact.sigmask);
+      d5:	ff 75 f4             	pushl  -0xc(%ebp)
+      d8:	ff 75 f0             	pushl  -0x10(%ebp)
+      db:	68 33 1c 00 00       	push   $0x1c33
+      e0:	6a 01                	push   $0x1
+      e2:	e8 19 12 00 00       	call   1300 <printf>
+    sigaction(12, &oldact, &newact);
+      e7:	83 c4 1c             	add    $0x1c,%esp
+      ea:	56                   	push   %esi
+      eb:	53                   	push   %ebx
+      ec:	6a 0c                	push   $0xc
+      ee:	e8 57 11 00 00       	call   124a <sigaction>
+    printf(1, "should be 1,12 = %d,%d\n", (uint)newact.sa_handler, newact.sigmask);
+      f3:	ff 75 ec             	pushl  -0x14(%ebp)
+      f6:	ff 75 e8             	pushl  -0x18(%ebp)
+      f9:	68 4a 1c 00 00       	push   $0x1c4a
+      fe:	6a 01                	push   $0x1
+     100:	e8 fb 11 00 00       	call   1300 <printf>
+}
+     105:	83 c4 20             	add    $0x20,%esp
+     108:	8d 65 f8             	lea    -0x8(%ebp),%esp
+     10b:	5b                   	pop    %ebx
+     10c:	5e                   	pop    %esi
+     10d:	5d                   	pop    %ebp
+     10e:	c3                   	ret    
+     10f:	90                   	nop
+
+00000110 <cont_stop_kill_abc_test>:
 {
      110:	55                   	push   %ebp
      111:	89 e5                	mov    %esp,%ebp
-     113:	83 ec 08             	sub    $0x8,%esp
-    printf(0,"pid : %d is Using User Handler Signal - %d!!!!WOrks!!!\n", getpid(),signum);
-     116:	e8 b7 11 00 00       	call   12d2 <getpid>
-     11b:	ff 75 08             	pushl  0x8(%ebp)
-     11e:	50                   	push   %eax
-     11f:	68 2c 17 00 00       	push   $0x172c
-     124:	6a 00                	push   $0x0
-     126:	e8 85 12 00 00       	call   13b0 <printf>
-    return;
-     12b:	83 c4 10             	add    $0x10,%esp
-}
-     12e:	c9                   	leave  
-     12f:	c3                   	ret    
-
-00000130 <sigprocmask_test>:
-{
-     130:	55                   	push   %ebp
-     131:	89 e5                	mov    %esp,%ebp
-     133:	56                   	push   %esi
-     134:	53                   	push   %ebx
-    for(i = 1; i < ITER_SIGPROCMASK_TEST; i++) {
-     135:	bb 01 00 00 00       	mov    $0x1,%ebx
-{
-     13a:	83 ec 10             	sub    $0x10,%esp
-     13d:	8d 76 00             	lea    0x0(%esi),%esi
-        omask = sigprocmask(mask);
-     140:	83 ec 0c             	sub    $0xc,%esp
-     143:	53                   	push   %ebx
-     144:	e8 a9 11 00 00       	call   12f2 <sigprocmask>
-        printf(1, "should be %d = %d\n", i-1 ,omask);
-     149:	50                   	push   %eax
-     14a:	8d 43 ff             	lea    -0x1(%ebx),%eax
-    for(i = 1; i < ITER_SIGPROCMASK_TEST; i++) {
-     14d:	83 c3 01             	add    $0x1,%ebx
-        printf(1, "should be %d = %d\n", i-1 ,omask);
-     150:	50                   	push   %eax
-     151:	68 c8 1d 00 00       	push   $0x1dc8
-     156:	6a 01                	push   $0x1
-     158:	e8 53 12 00 00       	call   13b0 <printf>
-    for(i = 1; i < ITER_SIGPROCMASK_TEST; i++) {
-     15d:	83 c4 20             	add    $0x20,%esp
-     160:	83 fb 0a             	cmp    $0xa,%ebx
-     163:	75 db                	jne    140 <sigprocmask_test+0x10>
-    sigaction(12, &newact, &oldact);
-     165:	8d 5d f0             	lea    -0x10(%ebp),%ebx
-     168:	8d 75 e8             	lea    -0x18(%ebp),%esi
-     16b:	83 ec 04             	sub    $0x4,%esp
-    newact.sa_handler = SIG_IGN;
-     16e:	c7 45 e8 01 00 00 00 	movl   $0x1,-0x18(%ebp)
-    newact.sigmask = 12;
-     175:	c7 45 ec 0c 00 00 00 	movl   $0xc,-0x14(%ebp)
-    sigaction(12, &newact, &oldact);
-     17c:	53                   	push   %ebx
-     17d:	56                   	push   %esi
-     17e:	6a 0c                	push   $0xc
-     180:	e8 75 11 00 00       	call   12fa <sigaction>
-    printf(1, "should be 0,0 = %d,%d\n", (uint)oldact.sa_handler, oldact.sigmask);
-     185:	ff 75 f4             	pushl  -0xc(%ebp)
-     188:	ff 75 f0             	pushl  -0x10(%ebp)
-     18b:	68 db 1d 00 00       	push   $0x1ddb
-     190:	6a 01                	push   $0x1
-     192:	e8 19 12 00 00       	call   13b0 <printf>
-    sigaction(12, &oldact, &newact);
-     197:	83 c4 1c             	add    $0x1c,%esp
-     19a:	56                   	push   %esi
-     19b:	53                   	push   %ebx
-     19c:	6a 0c                	push   $0xc
-     19e:	e8 57 11 00 00       	call   12fa <sigaction>
-    printf(1, "should be 1,12 = %d,%d\n", (uint)newact.sa_handler, newact.sigmask);
-     1a3:	ff 75 ec             	pushl  -0x14(%ebp)
-     1a6:	ff 75 e8             	pushl  -0x18(%ebp)
-     1a9:	68 f2 1d 00 00       	push   $0x1df2
-     1ae:	6a 01                	push   $0x1
-     1b0:	e8 fb 11 00 00       	call   13b0 <printf>
-}
-     1b5:	83 c4 20             	add    $0x20,%esp
-     1b8:	8d 65 f8             	lea    -0x8(%ebp),%esp
-     1bb:	5b                   	pop    %ebx
-     1bc:	5e                   	pop    %esi
-     1bd:	5d                   	pop    %ebp
-     1be:	c3                   	ret    
-     1bf:	90                   	nop
-
-000001c0 <cont_stop_kill_abc_test>:
-{
-     1c0:	55                   	push   %ebp
-     1c1:	89 e5                	mov    %esp,%ebp
-     1c3:	57                   	push   %edi
-     1c4:	56                   	push   %esi
-     1c5:	53                   	push   %ebx
-     1c6:	83 ec 1c             	sub    $0x1c,%esp
+     113:	57                   	push   %edi
+     114:	56                   	push   %esi
+     115:	53                   	push   %ebx
+     116:	83 ec 1c             	sub    $0x1c,%esp
     int sigs[] = {SIGSTOP, SIGCONT};
-     1c9:	c7 45 e0 11 00 00 00 	movl   $0x11,-0x20(%ebp)
-     1d0:	c7 45 e4 13 00 00 00 	movl   $0x13,-0x1c(%ebp)
+     119:	c7 45 e0 11 00 00 00 	movl   $0x11,-0x20(%ebp)
+     120:	c7 45 e4 13 00 00 00 	movl   $0x13,-0x1c(%ebp)
     if((pid = fork()) == 0) {
-     1d7:	e8 6e 10 00 00       	call   124a <fork>
-     1dc:	85 c0                	test   %eax,%eax
-     1de:	74 70                	je     250 <cont_stop_kill_abc_test+0x90>
-     1e0:	89 c6                	mov    %eax,%esi
-     1e2:	bf 11 00 00 00       	mov    $0x11,%edi
+     127:	e8 6e 10 00 00       	call   119a <fork>
+     12c:	85 c0                	test   %eax,%eax
+     12e:	74 70                	je     1a0 <cont_stop_kill_abc_test+0x90>
+     130:	89 c6                	mov    %eax,%esi
+     132:	bf 11 00 00 00       	mov    $0x11,%edi
         for (int i = 0; i < 20; i++)
-     1e7:	31 db                	xor    %ebx,%ebx
-     1e9:	eb 41                	jmp    22c <cont_stop_kill_abc_test+0x6c>
+     137:	31 db                	xor    %ebx,%ebx
+     139:	eb 41                	jmp    17c <cont_stop_kill_abc_test+0x6c>
                 printf(2, "\n%d: SENT: CONT\n", i);
-     1eb:	83 ec 04             	sub    $0x4,%esp
-     1ee:	53                   	push   %ebx
-     1ef:	68 3e 1e 00 00       	push   $0x1e3e
-     1f4:	6a 02                	push   $0x2
-     1f6:	e8 b5 11 00 00       	call   13b0 <printf>
-     1fb:	83 c4 10             	add    $0x10,%esp
+     13b:	83 ec 04             	sub    $0x4,%esp
+     13e:	53                   	push   %ebx
+     13f:	68 96 1c 00 00       	push   $0x1c96
+     144:	6a 02                	push   $0x2
+     146:	e8 b5 11 00 00       	call   1300 <printf>
+     14b:	83 c4 10             	add    $0x10,%esp
             kill(pid, sigs[i%2]);
-     1fe:	83 ec 08             	sub    $0x8,%esp
+     14e:	83 ec 08             	sub    $0x8,%esp
         for (int i = 0; i < 20; i++)
-     201:	83 c3 01             	add    $0x1,%ebx
+     151:	83 c3 01             	add    $0x1,%ebx
             kill(pid, sigs[i%2]);
-     204:	57                   	push   %edi
-     205:	56                   	push   %esi
-     206:	e8 77 10 00 00       	call   1282 <kill>
-            sleep(50);
-     20b:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     212:	e8 cb 10 00 00       	call   12e2 <sleep>
-        for (int i = 0; i < 20; i++)
-     217:	83 c4 10             	add    $0x10,%esp
-     21a:	83 fb 14             	cmp    $0x14,%ebx
-     21d:	0f 84 d7 02 00 00    	je     4fa <cont_stop_kill_abc_test+0x33a>
-     223:	89 d8                	mov    %ebx,%eax
-     225:	83 e0 01             	and    $0x1,%eax
-     228:	8b 7c 85 e0          	mov    -0x20(%ebp,%eax,4),%edi
-            if (i % 2)
-     22c:	f6 c3 01             	test   $0x1,%bl
-     22f:	75 ba                	jne    1eb <cont_stop_kill_abc_test+0x2b>
-                printf(2, "\n%d: SENT: STOP\n", i);    
-     231:	83 ec 04             	sub    $0x4,%esp
-     234:	53                   	push   %ebx
-     235:	68 4f 1e 00 00       	push   $0x1e4f
-     23a:	6a 02                	push   $0x2
-     23c:	e8 6f 11 00 00       	call   13b0 <printf>
-     241:	83 c4 10             	add    $0x10,%esp
-     244:	eb b8                	jmp    1fe <cont_stop_kill_abc_test+0x3e>
-     246:	8d 76 00             	lea    0x0(%esi),%esi
-     249:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
-            sleep(5);printf(1, "a");sleep(5);printf(1, "b");sleep(5);printf(1, "c");sleep(5);printf(1, "d");
-     250:	83 ec 0c             	sub    $0xc,%esp
-     253:	6a 05                	push   $0x5
-     255:	e8 88 10 00 00       	call   12e2 <sleep>
-     25a:	59                   	pop    %ecx
-     25b:	5b                   	pop    %ebx
-     25c:	68 0a 1e 00 00       	push   $0x1e0a
-     261:	6a 01                	push   $0x1
-     263:	e8 48 11 00 00       	call   13b0 <printf>
-     268:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     26f:	e8 6e 10 00 00       	call   12e2 <sleep>
-     274:	5e                   	pop    %esi
-     275:	5f                   	pop    %edi
-     276:	68 0c 1e 00 00       	push   $0x1e0c
-     27b:	6a 01                	push   $0x1
-     27d:	e8 2e 11 00 00       	call   13b0 <printf>
-     282:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     289:	e8 54 10 00 00       	call   12e2 <sleep>
-     28e:	58                   	pop    %eax
-     28f:	5a                   	pop    %edx
-     290:	68 0e 1e 00 00       	push   $0x1e0e
-     295:	6a 01                	push   $0x1
-     297:	e8 14 11 00 00       	call   13b0 <printf>
-     29c:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     2a3:	e8 3a 10 00 00       	call   12e2 <sleep>
-     2a8:	59                   	pop    %ecx
-     2a9:	5b                   	pop    %ebx
-     2aa:	68 10 1e 00 00       	push   $0x1e10
-     2af:	6a 01                	push   $0x1
-     2b1:	e8 fa 10 00 00       	call   13b0 <printf>
-            sleep(5);printf(1, "e");sleep(5);printf(1, "f");sleep(5);printf(1, "g");sleep(5);printf(1, "h");
-     2b6:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     2bd:	e8 20 10 00 00       	call   12e2 <sleep>
-     2c2:	5e                   	pop    %esi
-     2c3:	5f                   	pop    %edi
-     2c4:	68 12 1e 00 00       	push   $0x1e12
-     2c9:	6a 01                	push   $0x1
-     2cb:	e8 e0 10 00 00       	call   13b0 <printf>
-     2d0:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     2d7:	e8 06 10 00 00       	call   12e2 <sleep>
-     2dc:	58                   	pop    %eax
-     2dd:	5a                   	pop    %edx
-     2de:	68 14 1e 00 00       	push   $0x1e14
-     2e3:	6a 01                	push   $0x1
-     2e5:	e8 c6 10 00 00       	call   13b0 <printf>
-     2ea:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     2f1:	e8 ec 0f 00 00       	call   12e2 <sleep>
-     2f6:	59                   	pop    %ecx
-     2f7:	5b                   	pop    %ebx
-     2f8:	68 16 1e 00 00       	push   $0x1e16
-     2fd:	6a 01                	push   $0x1
-     2ff:	e8 ac 10 00 00       	call   13b0 <printf>
-     304:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     30b:	e8 d2 0f 00 00       	call   12e2 <sleep>
-     310:	5e                   	pop    %esi
-     311:	5f                   	pop    %edi
-     312:	68 18 1e 00 00       	push   $0x1e18
-     317:	6a 01                	push   $0x1
-     319:	e8 92 10 00 00       	call   13b0 <printf>
-            sleep(5);printf(1, "i");sleep(5);printf(1, "j");sleep(5);printf(1, "k");sleep(5);printf(1, "l");
-     31e:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     325:	e8 b8 0f 00 00       	call   12e2 <sleep>
-     32a:	58                   	pop    %eax
-     32b:	5a                   	pop    %edx
-     32c:	68 1a 1e 00 00       	push   $0x1e1a
-     331:	6a 01                	push   $0x1
-     333:	e8 78 10 00 00       	call   13b0 <printf>
-     338:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     33f:	e8 9e 0f 00 00       	call   12e2 <sleep>
-     344:	59                   	pop    %ecx
-     345:	5b                   	pop    %ebx
-     346:	68 1c 1e 00 00       	push   $0x1e1c
-     34b:	6a 01                	push   $0x1
-     34d:	e8 5e 10 00 00       	call   13b0 <printf>
-     352:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     359:	e8 84 0f 00 00       	call   12e2 <sleep>
-     35e:	5e                   	pop    %esi
-     35f:	5f                   	pop    %edi
-     360:	68 1e 1e 00 00       	push   $0x1e1e
-     365:	6a 01                	push   $0x1
-     367:	e8 44 10 00 00       	call   13b0 <printf>
-     36c:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     373:	e8 6a 0f 00 00       	call   12e2 <sleep>
-     378:	58                   	pop    %eax
-     379:	5a                   	pop    %edx
-     37a:	68 20 1e 00 00       	push   $0x1e20
-     37f:	6a 01                	push   $0x1
-     381:	e8 2a 10 00 00       	call   13b0 <printf>
-            sleep(5);printf(1, "m");sleep(5);printf(1, "n");sleep(5);printf(1, "o");sleep(5);printf(1, "p");
-     386:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     38d:	e8 50 0f 00 00       	call   12e2 <sleep>
-     392:	59                   	pop    %ecx
-     393:	5b                   	pop    %ebx
-     394:	68 22 1e 00 00       	push   $0x1e22
-     399:	6a 01                	push   $0x1
-     39b:	e8 10 10 00 00       	call   13b0 <printf>
-     3a0:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     3a7:	e8 36 0f 00 00       	call   12e2 <sleep>
-     3ac:	5e                   	pop    %esi
-     3ad:	5f                   	pop    %edi
-     3ae:	68 24 1e 00 00       	push   $0x1e24
-     3b3:	6a 01                	push   $0x1
-     3b5:	e8 f6 0f 00 00       	call   13b0 <printf>
-     3ba:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     3c1:	e8 1c 0f 00 00       	call   12e2 <sleep>
-     3c6:	58                   	pop    %eax
-     3c7:	5a                   	pop    %edx
-     3c8:	68 26 1e 00 00       	push   $0x1e26
-     3cd:	6a 01                	push   $0x1
-     3cf:	e8 dc 0f 00 00       	call   13b0 <printf>
-     3d4:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     3db:	e8 02 0f 00 00       	call   12e2 <sleep>
-     3e0:	59                   	pop    %ecx
-     3e1:	5b                   	pop    %ebx
-     3e2:	68 28 1e 00 00       	push   $0x1e28
-     3e7:	6a 01                	push   $0x1
-     3e9:	e8 c2 0f 00 00       	call   13b0 <printf>
-            sleep(5);printf(1, "q");sleep(5);printf(1, "r");sleep(5);printf(1, "s");sleep(5);printf(1, "t");
-     3ee:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     3f5:	e8 e8 0e 00 00       	call   12e2 <sleep>
-     3fa:	5e                   	pop    %esi
-     3fb:	5f                   	pop    %edi
-     3fc:	68 2a 1e 00 00       	push   $0x1e2a
-     401:	6a 01                	push   $0x1
-     403:	e8 a8 0f 00 00       	call   13b0 <printf>
-     408:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     40f:	e8 ce 0e 00 00       	call   12e2 <sleep>
-     414:	58                   	pop    %eax
-     415:	5a                   	pop    %edx
-     416:	68 2c 1e 00 00       	push   $0x1e2c
-     41b:	6a 01                	push   $0x1
-     41d:	e8 8e 0f 00 00       	call   13b0 <printf>
-     422:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     429:	e8 b4 0e 00 00       	call   12e2 <sleep>
-     42e:	59                   	pop    %ecx
-     42f:	5b                   	pop    %ebx
-     430:	68 2e 1e 00 00       	push   $0x1e2e
-     435:	6a 01                	push   $0x1
-     437:	e8 74 0f 00 00       	call   13b0 <printf>
-     43c:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     443:	e8 9a 0e 00 00       	call   12e2 <sleep>
-     448:	5e                   	pop    %esi
-     449:	5f                   	pop    %edi
-     44a:	68 30 1e 00 00       	push   $0x1e30
-     44f:	6a 01                	push   $0x1
-     451:	e8 5a 0f 00 00       	call   13b0 <printf>
-            sleep(5);printf(1, "u");sleep(5);printf(1, "v");sleep(5);printf(1, "w");sleep(5);printf(1, "x");
-     456:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     45d:	e8 80 0e 00 00       	call   12e2 <sleep>
-     462:	58                   	pop    %eax
-     463:	5a                   	pop    %edx
-     464:	68 32 1e 00 00       	push   $0x1e32
-     469:	6a 01                	push   $0x1
-     46b:	e8 40 0f 00 00       	call   13b0 <printf>
-     470:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     477:	e8 66 0e 00 00       	call   12e2 <sleep>
-     47c:	59                   	pop    %ecx
-     47d:	5b                   	pop    %ebx
-     47e:	68 34 1e 00 00       	push   $0x1e34
-     483:	6a 01                	push   $0x1
-     485:	e8 26 0f 00 00       	call   13b0 <printf>
-     48a:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     491:	e8 4c 0e 00 00       	call   12e2 <sleep>
-     496:	5e                   	pop    %esi
-     497:	5f                   	pop    %edi
-     498:	68 36 1e 00 00       	push   $0x1e36
-     49d:	6a 01                	push   $0x1
-     49f:	e8 0c 0f 00 00       	call   13b0 <printf>
-     4a4:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     4ab:	e8 32 0e 00 00       	call   12e2 <sleep>
-     4b0:	58                   	pop    %eax
-     4b1:	5a                   	pop    %edx
-     4b2:	68 38 1e 00 00       	push   $0x1e38
-     4b7:	6a 01                	push   $0x1
-     4b9:	e8 f2 0e 00 00       	call   13b0 <printf>
-            sleep(5);printf(1, "y");sleep(5);printf(1, "z");
-     4be:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     4c5:	e8 18 0e 00 00       	call   12e2 <sleep>
-     4ca:	59                   	pop    %ecx
-     4cb:	5b                   	pop    %ebx
-     4cc:	68 3a 1e 00 00       	push   $0x1e3a
-     4d1:	6a 01                	push   $0x1
-     4d3:	e8 d8 0e 00 00       	call   13b0 <printf>
-     4d8:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     4df:	e8 fe 0d 00 00       	call   12e2 <sleep>
-     4e4:	5e                   	pop    %esi
-     4e5:	5f                   	pop    %edi
-     4e6:	68 3c 1e 00 00       	push   $0x1e3c
-     4eb:	6a 01                	push   $0x1
-     4ed:	e8 be 0e 00 00       	call   13b0 <printf>
-     4f2:	83 c4 10             	add    $0x10,%esp
-     4f5:	e9 56 fd ff ff       	jmp    250 <cont_stop_kill_abc_test+0x90>
-        printf(1, "\nSENT: KILL!\n");
-     4fa:	83 ec 08             	sub    $0x8,%esp
-     4fd:	68 60 1e 00 00       	push   $0x1e60
-     502:	6a 01                	push   $0x1
-     504:	e8 a7 0e 00 00       	call   13b0 <printf>
-        kill(pid, SIGKILL);
-     509:	58                   	pop    %eax
-     50a:	5a                   	pop    %edx
-     50b:	6a 09                	push   $0x9
-     50d:	56                   	push   %esi
-     50e:	e8 6f 0d 00 00       	call   1282 <kill>
-        wait();
-     513:	83 c4 10             	add    $0x10,%esp
-}
-     516:	8d 65 f4             	lea    -0xc(%ebp),%esp
-     519:	5b                   	pop    %ebx
-     51a:	5e                   	pop    %esi
-     51b:	5f                   	pop    %edi
-     51c:	5d                   	pop    %ebp
-        wait();
-     51d:	e9 38 0d 00 00       	jmp    125a <wait>
-     522:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-     529:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
-
-00000530 <user_handler_test>:
-{
-     530:	55                   	push   %ebp
-     531:	89 e5                	mov    %esp,%ebp
-     533:	53                   	push   %ebx
-     534:	83 ec 14             	sub    $0x14,%esp
-    act.sa_handler = &custom_handler;
-     537:	c7 45 f0 f0 00 00 00 	movl   $0xf0,-0x10(%ebp)
-    act.sigmask = mask;
-     53e:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%ebp)
-    if((pid = fork()) == 0) 
-     545:	e8 00 0d 00 00       	call   124a <fork>
-     54a:	85 c0                	test   %eax,%eax
-     54c:	75 3a                	jne    588 <user_handler_test+0x58>
-        sigaction(SIGTEST, &act, null); // register custom handler
-     54e:	8d 45 f0             	lea    -0x10(%ebp),%eax
-     551:	83 ec 04             	sub    $0x4,%esp
-     554:	6a 00                	push   $0x0
-     556:	50                   	push   %eax
-     557:	6a 14                	push   $0x14
-     559:	e8 9c 0d 00 00       	call   12fa <sigaction>
-     55e:	83 c4 10             	add    $0x10,%esp
-     561:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-            printf(1, "child: waiting...\n");
-     568:	83 ec 08             	sub    $0x8,%esp
-     56b:	68 6e 1e 00 00       	push   $0x1e6e
-     570:	6a 01                	push   $0x1
-     572:	e8 39 0e 00 00       	call   13b0 <printf>
+     154:	57                   	push   %edi
+     155:	56                   	push   %esi
+     156:	e8 77 10 00 00       	call   11d2 <kill>
             sleep(30);
-     577:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
-     57e:	e8 5f 0d 00 00       	call   12e2 <sleep>
-     583:	83 c4 10             	add    $0x10,%esp
-     586:	eb e0                	jmp    568 <user_handler_test+0x38>
-        sleep(300); // let child print some lines
-     588:	83 ec 0c             	sub    $0xc,%esp
-     58b:	89 c3                	mov    %eax,%ebx
-     58d:	68 2c 01 00 00       	push   $0x12c
-     592:	e8 4b 0d 00 00       	call   12e2 <sleep>
-        printf(1, "parent: kill(child, SIGTEST)\n");
-     597:	58                   	pop    %eax
-     598:	5a                   	pop    %edx
-     599:	68 81 1e 00 00       	push   $0x1e81
-     59e:	6a 01                	push   $0x1
-     5a0:	e8 0b 0e 00 00       	call   13b0 <printf>
-        sleep(5);
-     5a5:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
-     5ac:	e8 31 0d 00 00       	call   12e2 <sleep>
-        kill(pid, SIGTEST);
-     5b1:	59                   	pop    %ecx
-     5b2:	58                   	pop    %eax
-     5b3:	6a 14                	push   $0x14
-     5b5:	53                   	push   %ebx
-     5b6:	e8 c7 0c 00 00       	call   1282 <kill>
-        sleep(50);
-     5bb:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     5c2:	e8 1b 0d 00 00       	call   12e2 <sleep>
-        printf(1, "parent: kill(child, SIGKILL)\n");
-     5c7:	58                   	pop    %eax
-     5c8:	5a                   	pop    %edx
-     5c9:	68 9f 1e 00 00       	push   $0x1e9f
-     5ce:	6a 01                	push   $0x1
-     5d0:	e8 db 0d 00 00       	call   13b0 <printf>
+     15b:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
+     162:	e8 cb 10 00 00       	call   1232 <sleep>
+        for (int i = 0; i < 20; i++)
+     167:	83 c4 10             	add    $0x10,%esp
+     16a:	83 fb 14             	cmp    $0x14,%ebx
+     16d:	0f 84 d7 02 00 00    	je     44a <cont_stop_kill_abc_test+0x33a>
+     173:	89 d8                	mov    %ebx,%eax
+     175:	83 e0 01             	and    $0x1,%eax
+     178:	8b 7c 85 e0          	mov    -0x20(%ebp,%eax,4),%edi
+            if (i % 2)
+     17c:	f6 c3 01             	test   $0x1,%bl
+     17f:	75 ba                	jne    13b <cont_stop_kill_abc_test+0x2b>
+                printf(2, "\n%d: SENT: STOP\n", i);    
+     181:	83 ec 04             	sub    $0x4,%esp
+     184:	53                   	push   %ebx
+     185:	68 a7 1c 00 00       	push   $0x1ca7
+     18a:	6a 02                	push   $0x2
+     18c:	e8 6f 11 00 00       	call   1300 <printf>
+     191:	83 c4 10             	add    $0x10,%esp
+     194:	eb b8                	jmp    14e <cont_stop_kill_abc_test+0x3e>
+     196:	8d 76 00             	lea    0x0(%esi),%esi
+     199:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+            sleep(5);printf(1, "a");sleep(5);printf(1, "b");sleep(5);printf(1, "c");sleep(5);printf(1, "d");
+     1a0:	83 ec 0c             	sub    $0xc,%esp
+     1a3:	6a 05                	push   $0x5
+     1a5:	e8 88 10 00 00       	call   1232 <sleep>
+     1aa:	59                   	pop    %ecx
+     1ab:	5b                   	pop    %ebx
+     1ac:	68 62 1c 00 00       	push   $0x1c62
+     1b1:	6a 01                	push   $0x1
+     1b3:	e8 48 11 00 00       	call   1300 <printf>
+     1b8:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     1bf:	e8 6e 10 00 00       	call   1232 <sleep>
+     1c4:	5e                   	pop    %esi
+     1c5:	5f                   	pop    %edi
+     1c6:	68 64 1c 00 00       	push   $0x1c64
+     1cb:	6a 01                	push   $0x1
+     1cd:	e8 2e 11 00 00       	call   1300 <printf>
+     1d2:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     1d9:	e8 54 10 00 00       	call   1232 <sleep>
+     1de:	58                   	pop    %eax
+     1df:	5a                   	pop    %edx
+     1e0:	68 66 1c 00 00       	push   $0x1c66
+     1e5:	6a 01                	push   $0x1
+     1e7:	e8 14 11 00 00       	call   1300 <printf>
+     1ec:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     1f3:	e8 3a 10 00 00       	call   1232 <sleep>
+     1f8:	59                   	pop    %ecx
+     1f9:	5b                   	pop    %ebx
+     1fa:	68 68 1c 00 00       	push   $0x1c68
+     1ff:	6a 01                	push   $0x1
+     201:	e8 fa 10 00 00       	call   1300 <printf>
+            sleep(5);printf(1, "e");sleep(5);printf(1, "f");sleep(5);printf(1, "g");sleep(5);printf(1, "h");
+     206:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     20d:	e8 20 10 00 00       	call   1232 <sleep>
+     212:	5e                   	pop    %esi
+     213:	5f                   	pop    %edi
+     214:	68 6a 1c 00 00       	push   $0x1c6a
+     219:	6a 01                	push   $0x1
+     21b:	e8 e0 10 00 00       	call   1300 <printf>
+     220:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     227:	e8 06 10 00 00       	call   1232 <sleep>
+     22c:	58                   	pop    %eax
+     22d:	5a                   	pop    %edx
+     22e:	68 6c 1c 00 00       	push   $0x1c6c
+     233:	6a 01                	push   $0x1
+     235:	e8 c6 10 00 00       	call   1300 <printf>
+     23a:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     241:	e8 ec 0f 00 00       	call   1232 <sleep>
+     246:	59                   	pop    %ecx
+     247:	5b                   	pop    %ebx
+     248:	68 6e 1c 00 00       	push   $0x1c6e
+     24d:	6a 01                	push   $0x1
+     24f:	e8 ac 10 00 00       	call   1300 <printf>
+     254:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     25b:	e8 d2 0f 00 00       	call   1232 <sleep>
+     260:	5e                   	pop    %esi
+     261:	5f                   	pop    %edi
+     262:	68 70 1c 00 00       	push   $0x1c70
+     267:	6a 01                	push   $0x1
+     269:	e8 92 10 00 00       	call   1300 <printf>
+            sleep(5);printf(1, "i");sleep(5);printf(1, "j");sleep(5);printf(1, "k");sleep(5);printf(1, "l");
+     26e:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     275:	e8 b8 0f 00 00       	call   1232 <sleep>
+     27a:	58                   	pop    %eax
+     27b:	5a                   	pop    %edx
+     27c:	68 72 1c 00 00       	push   $0x1c72
+     281:	6a 01                	push   $0x1
+     283:	e8 78 10 00 00       	call   1300 <printf>
+     288:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     28f:	e8 9e 0f 00 00       	call   1232 <sleep>
+     294:	59                   	pop    %ecx
+     295:	5b                   	pop    %ebx
+     296:	68 74 1c 00 00       	push   $0x1c74
+     29b:	6a 01                	push   $0x1
+     29d:	e8 5e 10 00 00       	call   1300 <printf>
+     2a2:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     2a9:	e8 84 0f 00 00       	call   1232 <sleep>
+     2ae:	5e                   	pop    %esi
+     2af:	5f                   	pop    %edi
+     2b0:	68 76 1c 00 00       	push   $0x1c76
+     2b5:	6a 01                	push   $0x1
+     2b7:	e8 44 10 00 00       	call   1300 <printf>
+     2bc:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     2c3:	e8 6a 0f 00 00       	call   1232 <sleep>
+     2c8:	58                   	pop    %eax
+     2c9:	5a                   	pop    %edx
+     2ca:	68 78 1c 00 00       	push   $0x1c78
+     2cf:	6a 01                	push   $0x1
+     2d1:	e8 2a 10 00 00       	call   1300 <printf>
+            sleep(5);printf(1, "m");sleep(5);printf(1, "n");sleep(5);printf(1, "o");sleep(5);printf(1, "p");
+     2d6:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     2dd:	e8 50 0f 00 00       	call   1232 <sleep>
+     2e2:	59                   	pop    %ecx
+     2e3:	5b                   	pop    %ebx
+     2e4:	68 7a 1c 00 00       	push   $0x1c7a
+     2e9:	6a 01                	push   $0x1
+     2eb:	e8 10 10 00 00       	call   1300 <printf>
+     2f0:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     2f7:	e8 36 0f 00 00       	call   1232 <sleep>
+     2fc:	5e                   	pop    %esi
+     2fd:	5f                   	pop    %edi
+     2fe:	68 7c 1c 00 00       	push   $0x1c7c
+     303:	6a 01                	push   $0x1
+     305:	e8 f6 0f 00 00       	call   1300 <printf>
+     30a:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     311:	e8 1c 0f 00 00       	call   1232 <sleep>
+     316:	58                   	pop    %eax
+     317:	5a                   	pop    %edx
+     318:	68 7e 1c 00 00       	push   $0x1c7e
+     31d:	6a 01                	push   $0x1
+     31f:	e8 dc 0f 00 00       	call   1300 <printf>
+     324:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     32b:	e8 02 0f 00 00       	call   1232 <sleep>
+     330:	59                   	pop    %ecx
+     331:	5b                   	pop    %ebx
+     332:	68 80 1c 00 00       	push   $0x1c80
+     337:	6a 01                	push   $0x1
+     339:	e8 c2 0f 00 00       	call   1300 <printf>
+            sleep(5);printf(1, "q");sleep(5);printf(1, "r");sleep(5);printf(1, "s");sleep(5);printf(1, "t");
+     33e:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     345:	e8 e8 0e 00 00       	call   1232 <sleep>
+     34a:	5e                   	pop    %esi
+     34b:	5f                   	pop    %edi
+     34c:	68 82 1c 00 00       	push   $0x1c82
+     351:	6a 01                	push   $0x1
+     353:	e8 a8 0f 00 00       	call   1300 <printf>
+     358:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     35f:	e8 ce 0e 00 00       	call   1232 <sleep>
+     364:	58                   	pop    %eax
+     365:	5a                   	pop    %edx
+     366:	68 84 1c 00 00       	push   $0x1c84
+     36b:	6a 01                	push   $0x1
+     36d:	e8 8e 0f 00 00       	call   1300 <printf>
+     372:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     379:	e8 b4 0e 00 00       	call   1232 <sleep>
+     37e:	59                   	pop    %ecx
+     37f:	5b                   	pop    %ebx
+     380:	68 86 1c 00 00       	push   $0x1c86
+     385:	6a 01                	push   $0x1
+     387:	e8 74 0f 00 00       	call   1300 <printf>
+     38c:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     393:	e8 9a 0e 00 00       	call   1232 <sleep>
+     398:	5e                   	pop    %esi
+     399:	5f                   	pop    %edi
+     39a:	68 88 1c 00 00       	push   $0x1c88
+     39f:	6a 01                	push   $0x1
+     3a1:	e8 5a 0f 00 00       	call   1300 <printf>
+            sleep(5);printf(1, "u");sleep(5);printf(1, "v");sleep(5);printf(1, "w");sleep(5);printf(1, "x");
+     3a6:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     3ad:	e8 80 0e 00 00       	call   1232 <sleep>
+     3b2:	58                   	pop    %eax
+     3b3:	5a                   	pop    %edx
+     3b4:	68 8a 1c 00 00       	push   $0x1c8a
+     3b9:	6a 01                	push   $0x1
+     3bb:	e8 40 0f 00 00       	call   1300 <printf>
+     3c0:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     3c7:	e8 66 0e 00 00       	call   1232 <sleep>
+     3cc:	59                   	pop    %ecx
+     3cd:	5b                   	pop    %ebx
+     3ce:	68 8c 1c 00 00       	push   $0x1c8c
+     3d3:	6a 01                	push   $0x1
+     3d5:	e8 26 0f 00 00       	call   1300 <printf>
+     3da:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     3e1:	e8 4c 0e 00 00       	call   1232 <sleep>
+     3e6:	5e                   	pop    %esi
+     3e7:	5f                   	pop    %edi
+     3e8:	68 8e 1c 00 00       	push   $0x1c8e
+     3ed:	6a 01                	push   $0x1
+     3ef:	e8 0c 0f 00 00       	call   1300 <printf>
+     3f4:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     3fb:	e8 32 0e 00 00       	call   1232 <sleep>
+     400:	58                   	pop    %eax
+     401:	5a                   	pop    %edx
+     402:	68 90 1c 00 00       	push   $0x1c90
+     407:	6a 01                	push   $0x1
+     409:	e8 f2 0e 00 00       	call   1300 <printf>
+            sleep(5);printf(1, "y");sleep(5);printf(1, "z");
+     40e:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     415:	e8 18 0e 00 00       	call   1232 <sleep>
+     41a:	59                   	pop    %ecx
+     41b:	5b                   	pop    %ebx
+     41c:	68 92 1c 00 00       	push   $0x1c92
+     421:	6a 01                	push   $0x1
+     423:	e8 d8 0e 00 00       	call   1300 <printf>
+     428:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     42f:	e8 fe 0d 00 00       	call   1232 <sleep>
+     434:	5e                   	pop    %esi
+     435:	5f                   	pop    %edi
+     436:	68 94 1c 00 00       	push   $0x1c94
+     43b:	6a 01                	push   $0x1
+     43d:	e8 be 0e 00 00       	call   1300 <printf>
+     442:	83 c4 10             	add    $0x10,%esp
+     445:	e9 56 fd ff ff       	jmp    1a0 <cont_stop_kill_abc_test+0x90>
+        printf(1, "\nSENT: KILL!\n");
+     44a:	83 ec 08             	sub    $0x8,%esp
+     44d:	68 b8 1c 00 00       	push   $0x1cb8
+     452:	6a 01                	push   $0x1
+     454:	e8 a7 0e 00 00       	call   1300 <printf>
         kill(pid, SIGKILL);
-     5d5:	59                   	pop    %ecx
-     5d6:	58                   	pop    %eax
-     5d7:	6a 09                	push   $0x9
-     5d9:	53                   	push   %ebx
-     5da:	e8 a3 0c 00 00       	call   1282 <kill>
+     459:	58                   	pop    %eax
+     45a:	5a                   	pop    %edx
+     45b:	6a 09                	push   $0x9
+     45d:	56                   	push   %esi
+     45e:	e8 6f 0d 00 00       	call   11d2 <kill>
         wait();
-     5df:	e8 76 0c 00 00       	call   125a <wait>
-        return;
-     5e4:	83 c4 10             	add    $0x10,%esp
+     463:	83 c4 10             	add    $0x10,%esp
 }
-     5e7:	8b 5d fc             	mov    -0x4(%ebp),%ebx
-     5ea:	c9                   	leave  
-     5eb:	c3                   	ret    
-     5ec:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+     466:	8d 65 f4             	lea    -0xc(%ebp),%esp
+     469:	5b                   	pop    %ebx
+     46a:	5e                   	pop    %esi
+     46b:	5f                   	pop    %edi
+     46c:	5d                   	pop    %ebp
+        wait();
+     46d:	e9 38 0d 00 00       	jmp    11aa <wait>
+     472:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+     479:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-000005f0 <simple_sigaction_test>:
+00000480 <user_handler_test>:
 {
-     5f0:	55                   	push   %ebp
-     5f1:	89 e5                	mov    %esp,%ebp
-     5f3:	57                   	push   %edi
-     5f4:	56                   	push   %esi
-     5f5:	53                   	push   %ebx
-     5f6:	83 ec 18             	sub    $0x18,%esp
-    printf(0,"mask: %d\n",sigprocmask(0));
-     5f9:	6a 00                	push   $0x0
-     5fb:	e8 f2 0c 00 00       	call   12f2 <sigprocmask>
-     600:	83 c4 0c             	add    $0xc,%esp
-     603:	50                   	push   %eax
-     604:	68 bd 1e 00 00       	push   $0x1ebd
-     609:	6a 00                	push   $0x0
-     60b:	e8 a0 0d 00 00       	call   13b0 <printf>
-    printf(0,"mask: %d\n",sigprocmask(100));
-     610:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-     617:	e8 d6 0c 00 00       	call   12f2 <sigprocmask>
-     61c:	83 c4 0c             	add    $0xc,%esp
-     61f:	50                   	push   %eax
-     620:	68 bd 1e 00 00       	push   $0x1ebd
-     625:	6a 00                	push   $0x0
-     627:	e8 84 0d 00 00       	call   13b0 <printf>
-    printf(0,"mask: %d\n",sigprocmask(0));
-     62c:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
-     633:	e8 ba 0c 00 00       	call   12f2 <sigprocmask>
-     638:	83 c4 0c             	add    $0xc,%esp
-     63b:	50                   	push   %eax
-     63c:	68 bd 1e 00 00       	push   $0x1ebd
-     641:	6a 00                	push   $0x0
-     643:	e8 68 0d 00 00       	call   13b0 <printf>
-    printf(0,"Start SigactionTetss\n");
-     648:	58                   	pop    %eax
-     649:	5a                   	pop    %edx
-     64a:	68 c7 1e 00 00       	push   $0x1ec7
-     64f:	6a 00                	push   $0x0
-     651:	e8 5a 0d 00 00       	call   13b0 <printf>
-    struct sigaction *FIrstSigAct = malloc(sizeof(struct sigaction));
-     656:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
-     65d:	e8 ae 0f 00 00       	call   1610 <malloc>
-    FIrstSigAct->sa_handler = (void (*)())14;
-     662:	c7 00 0e 00 00 00    	movl   $0xe,(%eax)
-    FIrstSigAct->sigmask=7;
-     668:	c7 40 04 07 00 00 00 	movl   $0x7,0x4(%eax)
-    struct sigaction *FIrstSigAct = malloc(sizeof(struct sigaction));
-     66f:	89 c6                	mov    %eax,%esi
-    printf(0,"Create SigAction1 with handler(int 14) and mask (int 7)\n");
-     671:	59                   	pop    %ecx
-     672:	5b                   	pop    %ebx
-     673:	68 64 17 00 00       	push   $0x1764
-     678:	6a 00                	push   $0x0
-     67a:	e8 31 0d 00 00       	call   13b0 <printf>
-    struct sigaction *SecondSigAct = malloc(sizeof(struct sigaction));
-     67f:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
-     686:	e8 85 0f 00 00       	call   1610 <malloc>
-    SecondSigAct->sa_handler = (void (*)())22;
-     68b:	c7 00 16 00 00 00    	movl   $0x16,(%eax)
-    SecondSigAct->sigmask=8;
-     691:	c7 40 04 08 00 00 00 	movl   $0x8,0x4(%eax)
-    struct sigaction *SecondSigAct = malloc(sizeof(struct sigaction));
-     698:	89 c7                	mov    %eax,%edi
-    printf(0,"Create SigAction2 with handler(int 22) and mask (int 8)\n");
-     69a:	58                   	pop    %eax
-     69b:	5a                   	pop    %edx
-     69c:	68 a0 17 00 00       	push   $0x17a0
-     6a1:	6a 00                	push   $0x0
-     6a3:	e8 08 0d 00 00       	call   13b0 <printf>
-    printf(0,"Check SigAct1 handler number: %d\n",FIrstSigAct->sa_handler);
-     6a8:	83 c4 0c             	add    $0xc,%esp
-     6ab:	ff 36                	pushl  (%esi)
-     6ad:	68 dc 17 00 00       	push   $0x17dc
-     6b2:	6a 00                	push   $0x0
-     6b4:	e8 f7 0c 00 00       	call   13b0 <printf>
-    printf(0,"Performing First sigaction assign to signum 4 SigAction1\n");
-     6b9:	59                   	pop    %ecx
-     6ba:	5b                   	pop    %ebx
-     6bb:	68 00 18 00 00       	push   $0x1800
-     6c0:	6a 00                	push   $0x0
-     6c2:	e8 e9 0c 00 00       	call   13b0 <printf>
-    sigaction(4,FIrstSigAct,null);
-     6c7:	83 c4 0c             	add    $0xc,%esp
-     6ca:	6a 00                	push   $0x0
-     6cc:	56                   	push   %esi
-     6cd:	6a 04                	push   $0x4
-     6cf:	e8 26 0c 00 00       	call   12fa <sigaction>
-    struct sigaction *ThirdSigAct = malloc(sizeof(struct sigaction));
-     6d4:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
-     6db:	e8 30 0f 00 00       	call   1610 <malloc>
-     6e0:	89 c3                	mov    %eax,%ebx
-    printf(0,"Creating SigAction3 to hold the old action hander\n");
-     6e2:	58                   	pop    %eax
-     6e3:	5a                   	pop    %edx
-     6e4:	68 3c 18 00 00       	push   $0x183c
-     6e9:	6a 00                	push   $0x0
-     6eb:	e8 c0 0c 00 00       	call   13b0 <printf>
-    sigaction(4, SecondSigAct, ThirdSigAct);
-     6f0:	83 c4 0c             	add    $0xc,%esp
-     6f3:	53                   	push   %ebx
-     6f4:	57                   	push   %edi
-     6f5:	6a 04                	push   $0x4
-     6f7:	e8 fe 0b 00 00       	call   12fa <sigaction>
-    printf(0,"Changed signum 4 to hold SigAction2 and Sigaction 3 will hold SigAction1\n");
-     6fc:	59                   	pop    %ecx
-     6fd:	58                   	pop    %eax
-     6fe:	68 70 18 00 00       	push   $0x1870
-     703:	6a 00                	push   $0x0
-     705:	e8 a6 0c 00 00       	call   13b0 <printf>
-    printf(0,"SigAction3 handler should be 14: %d\n",ThirdSigAct->sa_handler);
-     70a:	83 c4 0c             	add    $0xc,%esp
-     70d:	ff 33                	pushl  (%ebx)
-     70f:	68 bc 18 00 00       	push   $0x18bc
-     714:	6a 00                	push   $0x0
-     716:	e8 95 0c 00 00       	call   13b0 <printf>
-    printf(0,"SigAction3 mask should be 7: %d\n",ThirdSigAct->sigmask);
-     71b:	83 c4 0c             	add    $0xc,%esp
-     71e:	ff 73 04             	pushl  0x4(%ebx)
-     721:	68 e4 18 00 00       	push   $0x18e4
-     726:	6a 00                	push   $0x0
-     728:	e8 83 0c 00 00       	call   13b0 <printf>
-    sigaction(4,SecondSigAct,null);
-     72d:	83 c4 0c             	add    $0xc,%esp
-     730:	6a 00                	push   $0x0
-     732:	57                   	push   %edi
-     733:	6a 04                	push   $0x4
-     735:	e8 c0 0b 00 00       	call   12fa <sigaction>
-    printf(0,"SigAction3 handler should be 14: %d\n",ThirdSigAct->sa_handler);
-     73a:	83 c4 0c             	add    $0xc,%esp
-     73d:	ff 33                	pushl  (%ebx)
-     73f:	68 bc 18 00 00       	push   $0x18bc
-     744:	6a 00                	push   $0x0
-     746:	e8 65 0c 00 00       	call   13b0 <printf>
-    printf(0,"SigAction3 mask should be 7: %d\n",ThirdSigAct->sigmask);
-     74b:	83 c4 0c             	add    $0xc,%esp
-     74e:	ff 73 04             	pushl  0x4(%ebx)
-     751:	68 e4 18 00 00       	push   $0x18e4
-     756:	6a 00                	push   $0x0
-     758:	e8 53 0c 00 00       	call   13b0 <printf>
-    struct sigaction *ForthSigAct = malloc(sizeof(struct sigaction));
-     75d:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
-     764:	e8 a7 0e 00 00       	call   1610 <malloc>
-     769:	89 c7                	mov    %eax,%edi
-    ForthSigAct->sa_handler = (void (*)())28;
-     76b:	c7 00 1c 00 00 00    	movl   $0x1c,(%eax)
-    ForthSigAct->sigmask=4;
-     771:	c7 40 04 04 00 00 00 	movl   $0x4,0x4(%eax)
-    printf(0,"Create SigAction4 with handler(int 28) and mask (int 4)\n");
-     778:	58                   	pop    %eax
-     779:	5a                   	pop    %edx
-     77a:	68 08 19 00 00       	push   $0x1908
-     77f:	6a 00                	push   $0x0
-     781:	e8 2a 0c 00 00       	call   13b0 <printf>
-    sigaction(4, ForthSigAct, null);
-     786:	83 c4 0c             	add    $0xc,%esp
-     789:	6a 00                	push   $0x0
-     78b:	57                   	push   %edi
-     78c:	6a 04                	push   $0x4
-     78e:	e8 67 0b 00 00       	call   12fa <sigaction>
-    printf(0,"Changed signum 4 to hold SigAction4 and do not save old\n");
-     793:	59                   	pop    %ecx
-     794:	58                   	pop    %eax
-     795:	68 44 19 00 00       	push   $0x1944
-     79a:	6a 00                	push   $0x0
-     79c:	e8 0f 0c 00 00       	call   13b0 <printf>
-    sigaction(4, ForthSigAct, FIrstSigAct);
-     7a1:	83 c4 0c             	add    $0xc,%esp
-     7a4:	56                   	push   %esi
-     7a5:	57                   	push   %edi
-     7a6:	6a 04                	push   $0x4
-     7a8:	e8 4d 0b 00 00       	call   12fa <sigaction>
-    printf(0,"Changed signum 4 to hold SigAction4 and FirstSigact will hold the old (sig4)\n");
-     7ad:	58                   	pop    %eax
-     7ae:	5a                   	pop    %edx
-     7af:	68 80 19 00 00       	push   $0x1980
-     7b4:	6a 00                	push   $0x0
-     7b6:	e8 f5 0b 00 00       	call   13b0 <printf>
-    printf(0,"SigAction1 handler should be 28: %d\n",FIrstSigAct->sa_handler);
-     7bb:	83 c4 0c             	add    $0xc,%esp
-     7be:	ff 36                	pushl  (%esi)
-     7c0:	68 d0 19 00 00       	push   $0x19d0
-     7c5:	6a 00                	push   $0x0
-     7c7:	e8 e4 0b 00 00       	call   13b0 <printf>
-    printf(0,"SigAction1 mask should be 4: %d\n",FIrstSigAct->sigmask);
-     7cc:	83 c4 0c             	add    $0xc,%esp
-     7cf:	ff 76 04             	pushl  0x4(%esi)
-     7d2:	68 f8 19 00 00       	push   $0x19f8
-     7d7:	6a 00                	push   $0x0
-     7d9:	e8 d2 0b 00 00       	call   13b0 <printf>
-    printf(0,"Error Tests - Will check things that should not changed are working\n");
-     7de:	59                   	pop    %ecx
-     7df:	5e                   	pop    %esi
-     7e0:	68 1c 1a 00 00       	push   $0x1a1c
-     7e5:	6a 00                	push   $0x0
-     7e7:	e8 c4 0b 00 00       	call   13b0 <printf>
-    printf(0,"Try to Change signum kill\n");
-     7ec:	58                   	pop    %eax
-     7ed:	5a                   	pop    %edx
-     7ee:	68 dd 1e 00 00       	push   $0x1edd
-     7f3:	6a 00                	push   $0x0
-     7f5:	e8 b6 0b 00 00       	call   13b0 <printf>
-    sigaction(SIGKILL, ForthSigAct, ThirdSigAct);
-     7fa:	83 c4 0c             	add    $0xc,%esp
-     7fd:	53                   	push   %ebx
-     7fe:	57                   	push   %edi
-     7ff:	6a 09                	push   $0x9
-     801:	e8 f4 0a 00 00       	call   12fa <sigaction>
-    printf(0,"Try to Change signum 43 (do not exist\n");
-     806:	59                   	pop    %ecx
-     807:	5e                   	pop    %esi
-     808:	68 64 1a 00 00       	push   $0x1a64
-     80d:	6a 00                	push   $0x0
-     80f:	e8 9c 0b 00 00       	call   13b0 <printf>
-    sigaction(43, ForthSigAct, ThirdSigAct);
-     814:	83 c4 0c             	add    $0xc,%esp
-     817:	53                   	push   %ebx
-     818:	57                   	push   %edi
-     819:	6a 2b                	push   $0x2b
-     81b:	e8 da 0a 00 00       	call   12fa <sigaction>
-    printf(0,"SigAction3 handler should be 14: %d\n",ThirdSigAct->sa_handler);
-     820:	83 c4 0c             	add    $0xc,%esp
-     823:	ff 33                	pushl  (%ebx)
-     825:	68 bc 18 00 00       	push   $0x18bc
-     82a:	6a 00                	push   $0x0
-     82c:	e8 7f 0b 00 00       	call   13b0 <printf>
-    printf(0,"SigAction3 mask should be 7: %d\n",ThirdSigAct->sigmask);
-     831:	83 c4 0c             	add    $0xc,%esp
-     834:	ff 73 04             	pushl  0x4(%ebx)
-     837:	68 e4 18 00 00       	push   $0x18e4
-     83c:	6a 00                	push   $0x0
-     83e:	e8 6d 0b 00 00       	call   13b0 <printf>
-    printf(0,"Finished\n");
-     843:	5f                   	pop    %edi
-     844:	58                   	pop    %eax
-     845:	68 f8 1e 00 00       	push   $0x1ef8
-     84a:	6a 00                	push   $0x0
-     84c:	e8 5f 0b 00 00       	call   13b0 <printf>
-    return;
-     851:	83 c4 10             	add    $0x10,%esp
-}
-     854:	8d 65 f4             	lea    -0xc(%ebp),%esp
-     857:	5b                   	pop    %ebx
-     858:	5e                   	pop    %esi
-     859:	5f                   	pop    %edi
-     85a:	5d                   	pop    %ebp
-     85b:	c3                   	ret    
-     85c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-
-00000860 <kill_self_test>:
-{
-     860:	55                   	push   %ebp
-     861:	89 e5                	mov    %esp,%ebp
-     863:	83 ec 08             	sub    $0x8,%esp
-    kill(getpid(),SIGKILL);
-     866:	e8 67 0a 00 00       	call   12d2 <getpid>
-     86b:	83 ec 08             	sub    $0x8,%esp
-     86e:	6a 09                	push   $0x9
-     870:	50                   	push   %eax
-     871:	e8 0c 0a 00 00       	call   1282 <kill>
-}
-     876:	31 c0                	xor    %eax,%eax
-     878:	c9                   	leave  
-     879:	c3                   	ret    
-     87a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-
-00000880 <kill_other>:
-{
-     880:	55                   	push   %ebp
-     881:	89 e5                	mov    %esp,%ebp
-     883:	83 ec 10             	sub    $0x10,%esp
-    kill(child_kill,signum);
-     886:	ff 75 0c             	pushl  0xc(%ebp)
-     889:	ff 75 08             	pushl  0x8(%ebp)
-     88c:	e8 f1 09 00 00       	call   1282 <kill>
-}
-     891:	31 c0                	xor    %eax,%eax
-     893:	c9                   	leave  
-     894:	c3                   	ret    
-     895:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-     899:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
-
-000008a0 <SignalTests1>:
-{
-     8a0:	55                   	push   %ebp
-     8a1:	89 e5                	mov    %esp,%ebp
-     8a3:	53                   	push   %ebx
-     8a4:	83 ec 04             	sub    $0x4,%esp
-    if((child_pid[0]=fork()) == 0)
-     8a7:	e8 9e 09 00 00       	call   124a <fork>
-     8ac:	85 c0                	test   %eax,%eax
-     8ae:	0f 84 cb 00 00 00    	je     97f <SignalTests1+0xdf>
-        if((child_pid[1]=fork()) == 0)
-     8b4:	e8 91 09 00 00       	call   124a <fork>
-     8b9:	85 c0                	test   %eax,%eax
-     8bb:	89 c3                	mov    %eax,%ebx
-     8bd:	75 7f                	jne    93e <SignalTests1+0x9e>
-            struct sigaction *UserHandlerSignal = malloc(sizeof(struct sigaction));
-     8bf:	83 ec 0c             	sub    $0xc,%esp
-     8c2:	6a 08                	push   $0x8
-     8c4:	e8 47 0d 00 00       	call   1610 <malloc>
-            UserHandlerSignal->sa_handler = user_handler_signal;
-     8c9:	c7 00 10 01 00 00    	movl   $0x110,(%eax)
-            UserHandlerSignal->sigmask=0;
-     8cf:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
-            struct sigaction *UserHandlerSignal = malloc(sizeof(struct sigaction));
-     8d6:	89 c3                	mov    %eax,%ebx
-            printf(0,"Created User Handler Signal with mask that is 0\n");
-     8d8:	58                   	pop    %eax
-     8d9:	5a                   	pop    %edx
-     8da:	68 dc 1a 00 00       	push   $0x1adc
-     8df:	6a 00                	push   $0x0
-     8e1:	e8 ca 0a 00 00       	call   13b0 <printf>
-            sigaction(22,UserHandlerSignal,null);
-     8e6:	83 c4 0c             	add    $0xc,%esp
-     8e9:	6a 00                	push   $0x0
-     8eb:	53                   	push   %ebx
-     8ec:	6a 16                	push   $0x16
-     8ee:	e8 07 0a 00 00       	call   12fa <sigaction>
-            printf(0,"Assigned User Handler Signal to signum 22\n");
-     8f3:	59                   	pop    %ecx
-     8f4:	5b                   	pop    %ebx
-     8f5:	68 10 1b 00 00       	push   $0x1b10
-     8fa:	6a 00                	push   $0x0
-     8fc:	e8 af 0a 00 00       	call   13b0 <printf>
-            printf(0,"Starting Loop\n");
-     901:	58                   	pop    %eax
-     902:	5a                   	pop    %edx
-     903:	68 02 1f 00 00       	push   $0x1f02
-     908:	6a 00                	push   $0x0
-     90a:	e8 a1 0a 00 00       	call   13b0 <printf>
-     90f:	83 c4 10             	add    $0x10,%esp
-     912:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-                printf(0,"pid - %d child two\n",getpid());
-     918:	e8 b5 09 00 00       	call   12d2 <getpid>
-     91d:	83 ec 04             	sub    $0x4,%esp
-     920:	50                   	push   %eax
-     921:	68 11 1f 00 00       	push   $0x1f11
-     926:	6a 00                	push   $0x0
-     928:	e8 83 0a 00 00       	call   13b0 <printf>
-                sleep(50);
-     92d:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     934:	e8 a9 09 00 00       	call   12e2 <sleep>
-     939:	83 c4 10             	add    $0x10,%esp
-     93c:	eb da                	jmp    918 <SignalTests1+0x78>
-            if((child_pid[2]=fork()) == 0)
-     93e:	e8 07 09 00 00       	call   124a <fork>
-     943:	85 c0                	test   %eax,%eax
-     945:	0f 84 a6 00 00 00    	je     9f1 <SignalTests1+0x151>
-                if((child_pid[3]=fork()) == 0)
-     94b:	e8 fa 08 00 00       	call   124a <fork>
-     950:	85 c0                	test   %eax,%eax
-     952:	74 67                	je     9bb <SignalTests1+0x11b>
-    wait();
-     954:	e8 01 09 00 00       	call   125a <wait>
-    wait();
-     959:	e8 fc 08 00 00       	call   125a <wait>
-    wait();
-     95e:	e8 f7 08 00 00       	call   125a <wait>
-    wait();
-     963:	e8 f2 08 00 00       	call   125a <wait>
-    printf(0,"parent\n");
-     968:	83 ec 08             	sub    $0x8,%esp
-     96b:	68 42 1f 00 00       	push   $0x1f42
-     970:	6a 00                	push   $0x0
-     972:	e8 39 0a 00 00       	call   13b0 <printf>
-    return;
-     977:	83 c4 10             	add    $0x10,%esp
-}
-     97a:	8b 5d fc             	mov    -0x4(%ebp),%ebx
-     97d:	c9                   	leave  
-     97e:	c3                   	ret    
-        printf(0,"Trying to self kill the process\n");
-     97f:	51                   	push   %ecx
-     980:	51                   	push   %ecx
-     981:	68 8c 1a 00 00       	push   $0x1a8c
-     986:	6a 00                	push   $0x0
-     988:	e8 23 0a 00 00       	call   13b0 <printf>
-    kill(getpid(),SIGKILL);
-     98d:	e8 40 09 00 00       	call   12d2 <getpid>
-     992:	5b                   	pop    %ebx
-     993:	5a                   	pop    %edx
-     994:	6a 09                	push   $0x9
-     996:	50                   	push   %eax
-     997:	e8 e6 08 00 00       	call   1282 <kill>
+     480:	55                   	push   %ebp
+     481:	89 e5                	mov    %esp,%ebp
+     483:	53                   	push   %ebx
+     484:	83 ec 14             	sub    $0x14,%esp
+    act.sa_handler = &custom_handler;
+     487:	c7 45 f0 40 00 00 00 	movl   $0x40,-0x10(%ebp)
+    act.sigmask = mask;
+     48e:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%ebp)
+    if((pid = fork()) == 0) 
+     495:	e8 00 0d 00 00       	call   119a <fork>
+     49a:	85 c0                	test   %eax,%eax
+     49c:	75 3a                	jne    4d8 <user_handler_test+0x58>
+        sigaction(SIGTEST, &act, null); // register custom handler
+     49e:	8d 45 f0             	lea    -0x10(%ebp),%eax
+     4a1:	83 ec 04             	sub    $0x4,%esp
+     4a4:	6a 00                	push   $0x0
+     4a6:	50                   	push   %eax
+     4a7:	6a 14                	push   $0x14
+     4a9:	e8 9c 0d 00 00       	call   124a <sigaction>
+     4ae:	83 c4 10             	add    $0x10,%esp
+     4b1:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+            printf(1, "child: waiting...\n");
+     4b8:	83 ec 08             	sub    $0x8,%esp
+     4bb:	68 c6 1c 00 00       	push   $0x1cc6
+     4c0:	6a 01                	push   $0x1
+     4c2:	e8 39 0e 00 00       	call   1300 <printf>
+            sleep(30);
+     4c7:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
+     4ce:	e8 5f 0d 00 00       	call   1232 <sleep>
+     4d3:	83 c4 10             	add    $0x10,%esp
+     4d6:	eb e0                	jmp    4b8 <user_handler_test+0x38>
+        sleep(300); // let child print some lines
+     4d8:	83 ec 0c             	sub    $0xc,%esp
+     4db:	89 c3                	mov    %eax,%ebx
+     4dd:	68 2c 01 00 00       	push   $0x12c
+     4e2:	e8 4b 0d 00 00       	call   1232 <sleep>
+        printf(1, "parent: kill(child, SIGTEST)\n");
+     4e7:	58                   	pop    %eax
+     4e8:	5a                   	pop    %edx
+     4e9:	68 d9 1c 00 00       	push   $0x1cd9
+     4ee:	6a 01                	push   $0x1
+     4f0:	e8 0b 0e 00 00       	call   1300 <printf>
+        sleep(5);
+     4f5:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+     4fc:	e8 31 0d 00 00       	call   1232 <sleep>
+        kill(pid, SIGTEST);
+     501:	59                   	pop    %ecx
+     502:	58                   	pop    %eax
+     503:	6a 14                	push   $0x14
+     505:	53                   	push   %ebx
+     506:	e8 c7 0c 00 00       	call   11d2 <kill>
         sleep(50);
-     99c:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     9a3:	e8 3a 09 00 00       	call   12e2 <sleep>
-        printf(0,"Process 1 Should have benn Killed Already!\n");
-     9a8:	59                   	pop    %ecx
-     9a9:	5b                   	pop    %ebx
-     9aa:	68 b0 1a 00 00       	push   $0x1ab0
-     9af:	6a 00                	push   $0x0
-     9b1:	e8 fa 09 00 00       	call   13b0 <printf>
-        exit();
-     9b6:	e8 97 08 00 00       	call   1252 <exit>
-                    sleep(250);
-     9bb:	83 ec 0c             	sub    $0xc,%esp
-     9be:	68 fa 00 00 00       	push   $0xfa
-     9c3:	e8 1a 09 00 00       	call   12e2 <sleep>
-                    printf(0,"signal kill to second child\n");
-     9c8:	58                   	pop    %eax
-     9c9:	5a                   	pop    %edx
-     9ca:	68 25 1f 00 00       	push   $0x1f25
-     9cf:	6a 00                	push   $0x0
-     9d1:	e8 da 09 00 00       	call   13b0 <printf>
-                    kill(child_pid[1],SIGKILL);
-     9d6:	59                   	pop    %ecx
-     9d7:	58                   	pop    %eax
-     9d8:	6a 09                	push   $0x9
-     9da:	53                   	push   %ebx
-     9db:	e8 a2 08 00 00       	call   1282 <kill>
-                    sleep(100);
-     9e0:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-     9e7:	e8 f6 08 00 00       	call   12e2 <sleep>
-                    exit();
-     9ec:	e8 61 08 00 00       	call   1252 <exit>
-                sleep(150);
-     9f1:	83 ec 0c             	sub    $0xc,%esp
-     9f4:	68 96 00 00 00       	push   $0x96
-     9f9:	e8 e4 08 00 00       	call   12e2 <sleep>
-                printf(0,"Run User Handler Signal Second Child\n");
-     9fe:	58                   	pop    %eax
-     9ff:	5a                   	pop    %edx
-     a00:	68 3c 1b 00 00       	push   $0x1b3c
-     a05:	6a 00                	push   $0x0
-     a07:	e8 a4 09 00 00       	call   13b0 <printf>
-    kill(child_kill,signum);
-     a0c:	59                   	pop    %ecx
-     a0d:	58                   	pop    %eax
-     a0e:	6a 16                	push   $0x16
-     a10:	53                   	push   %ebx
-     a11:	e8 6c 08 00 00       	call   1282 <kill>
-                sleep(450);
-     a16:	c7 04 24 c2 01 00 00 	movl   $0x1c2,(%esp)
-     a1d:	e8 c0 08 00 00       	call   12e2 <sleep>
-                exit();
-     a22:	e8 2b 08 00 00       	call   1252 <exit>
-     a27:	89 f6                	mov    %esi,%esi
-     a29:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+     50b:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
+     512:	e8 1b 0d 00 00       	call   1232 <sleep>
+        printf(1, "parent: kill(child, SIGKILL)\n");
+     517:	58                   	pop    %eax
+     518:	5a                   	pop    %edx
+     519:	68 f7 1c 00 00       	push   $0x1cf7
+     51e:	6a 01                	push   $0x1
+     520:	e8 db 0d 00 00       	call   1300 <printf>
+        kill(pid, SIGKILL);
+     525:	59                   	pop    %ecx
+     526:	58                   	pop    %eax
+     527:	6a 09                	push   $0x9
+     529:	53                   	push   %ebx
+     52a:	e8 a3 0c 00 00       	call   11d2 <kill>
+        wait();
+     52f:	e8 76 0c 00 00       	call   11aa <wait>
+        return;
+     534:	83 c4 10             	add    $0x10,%esp
+}
+     537:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+     53a:	c9                   	leave  
+     53b:	c3                   	ret    
+     53c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
 
-00000a30 <SignalTests2>:
+00000540 <simple_sigaction_test>:
 {
-     a30:	55                   	push   %ebp
-     a31:	89 e5                	mov    %esp,%ebp
-     a33:	53                   	push   %ebx
-     a34:	83 ec 04             	sub    $0x4,%esp
-    if((child_pid[0]=fork()) == 0)
-     a37:	e8 0e 08 00 00       	call   124a <fork>
-     a3c:	85 c0                	test   %eax,%eax
-     a3e:	75 54                	jne    a94 <SignalTests2+0x64>
-        printf(0,"Trying to self kill the process even while Mask is Blocking\n");
-     a40:	83 ec 08             	sub    $0x8,%esp
-     a43:	68 64 1b 00 00       	push   $0x1b64
-     a48:	6a 00                	push   $0x0
-     a4a:	e8 61 09 00 00       	call   13b0 <printf>
-        sigprocmask(896);
-     a4f:	c7 04 24 80 03 00 00 	movl   $0x380,(%esp)
-     a56:	e8 97 08 00 00       	call   12f2 <sigprocmask>
+     540:	55                   	push   %ebp
+     541:	89 e5                	mov    %esp,%ebp
+     543:	57                   	push   %edi
+     544:	56                   	push   %esi
+     545:	53                   	push   %ebx
+     546:	83 ec 18             	sub    $0x18,%esp
+    printf(0,"mask: %d\n",sigprocmask(0));
+     549:	6a 00                	push   $0x0
+     54b:	e8 f2 0c 00 00       	call   1242 <sigprocmask>
+     550:	83 c4 0c             	add    $0xc,%esp
+     553:	50                   	push   %eax
+     554:	68 15 1d 00 00       	push   $0x1d15
+     559:	6a 00                	push   $0x0
+     55b:	e8 a0 0d 00 00       	call   1300 <printf>
+    printf(0,"mask: %d\n",sigprocmask(100));
+     560:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
+     567:	e8 d6 0c 00 00       	call   1242 <sigprocmask>
+     56c:	83 c4 0c             	add    $0xc,%esp
+     56f:	50                   	push   %eax
+     570:	68 15 1d 00 00       	push   $0x1d15
+     575:	6a 00                	push   $0x0
+     577:	e8 84 0d 00 00       	call   1300 <printf>
+    printf(0,"mask: %d\n",sigprocmask(0));
+     57c:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+     583:	e8 ba 0c 00 00       	call   1242 <sigprocmask>
+     588:	83 c4 0c             	add    $0xc,%esp
+     58b:	50                   	push   %eax
+     58c:	68 15 1d 00 00       	push   $0x1d15
+     591:	6a 00                	push   $0x0
+     593:	e8 68 0d 00 00       	call   1300 <printf>
+    printf(0,"Start SigactionTetss\n");
+     598:	58                   	pop    %eax
+     599:	5a                   	pop    %edx
+     59a:	68 1f 1d 00 00       	push   $0x1d1f
+     59f:	6a 00                	push   $0x0
+     5a1:	e8 5a 0d 00 00       	call   1300 <printf>
+    struct sigaction *FIrstSigAct = malloc(sizeof(struct sigaction));
+     5a6:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+     5ad:	e8 ae 0f 00 00       	call   1560 <malloc>
+    FIrstSigAct->sa_handler = (void (*)())14;
+     5b2:	c7 00 0e 00 00 00    	movl   $0xe,(%eax)
+    FIrstSigAct->sigmask=7;
+     5b8:	c7 40 04 07 00 00 00 	movl   $0x7,0x4(%eax)
+    struct sigaction *FIrstSigAct = malloc(sizeof(struct sigaction));
+     5bf:	89 c6                	mov    %eax,%esi
+    printf(0,"Create SigAction1 with handler(int 14) and mask (int 7)\n");
+     5c1:	59                   	pop    %ecx
+     5c2:	5b                   	pop    %ebx
+     5c3:	68 b4 16 00 00       	push   $0x16b4
+     5c8:	6a 00                	push   $0x0
+     5ca:	e8 31 0d 00 00       	call   1300 <printf>
+    struct sigaction *SecondSigAct = malloc(sizeof(struct sigaction));
+     5cf:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+     5d6:	e8 85 0f 00 00       	call   1560 <malloc>
+    SecondSigAct->sa_handler = (void (*)())22;
+     5db:	c7 00 16 00 00 00    	movl   $0x16,(%eax)
+    SecondSigAct->sigmask=8;
+     5e1:	c7 40 04 08 00 00 00 	movl   $0x8,0x4(%eax)
+    struct sigaction *SecondSigAct = malloc(sizeof(struct sigaction));
+     5e8:	89 c7                	mov    %eax,%edi
+    printf(0,"Create SigAction2 with handler(int 22) and mask (int 8)\n");
+     5ea:	58                   	pop    %eax
+     5eb:	5a                   	pop    %edx
+     5ec:	68 f0 16 00 00       	push   $0x16f0
+     5f1:	6a 00                	push   $0x0
+     5f3:	e8 08 0d 00 00       	call   1300 <printf>
+    printf(0,"Check SigAct1 handler number: %d\n",FIrstSigAct->sa_handler);
+     5f8:	83 c4 0c             	add    $0xc,%esp
+     5fb:	ff 36                	pushl  (%esi)
+     5fd:	68 2c 17 00 00       	push   $0x172c
+     602:	6a 00                	push   $0x0
+     604:	e8 f7 0c 00 00       	call   1300 <printf>
+    printf(0,"Performing First sigaction assign to signum 4 SigAction1\n");
+     609:	59                   	pop    %ecx
+     60a:	5b                   	pop    %ebx
+     60b:	68 50 17 00 00       	push   $0x1750
+     610:	6a 00                	push   $0x0
+     612:	e8 e9 0c 00 00       	call   1300 <printf>
+    sigaction(4,FIrstSigAct,null);
+     617:	83 c4 0c             	add    $0xc,%esp
+     61a:	6a 00                	push   $0x0
+     61c:	56                   	push   %esi
+     61d:	6a 04                	push   $0x4
+     61f:	e8 26 0c 00 00       	call   124a <sigaction>
+    struct sigaction *ThirdSigAct = malloc(sizeof(struct sigaction));
+     624:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+     62b:	e8 30 0f 00 00       	call   1560 <malloc>
+     630:	89 c3                	mov    %eax,%ebx
+    printf(0,"Creating SigAction3 to hold the old action hander\n");
+     632:	58                   	pop    %eax
+     633:	5a                   	pop    %edx
+     634:	68 8c 17 00 00       	push   $0x178c
+     639:	6a 00                	push   $0x0
+     63b:	e8 c0 0c 00 00       	call   1300 <printf>
+    sigaction(4, SecondSigAct, ThirdSigAct);
+     640:	83 c4 0c             	add    $0xc,%esp
+     643:	53                   	push   %ebx
+     644:	57                   	push   %edi
+     645:	6a 04                	push   $0x4
+     647:	e8 fe 0b 00 00       	call   124a <sigaction>
+    printf(0,"Changed signum 4 to hold SigAction2 and Sigaction 3 will hold SigAction1\n");
+     64c:	59                   	pop    %ecx
+     64d:	58                   	pop    %eax
+     64e:	68 c0 17 00 00       	push   $0x17c0
+     653:	6a 00                	push   $0x0
+     655:	e8 a6 0c 00 00       	call   1300 <printf>
+    printf(0,"SigAction3 handler should be 14: %d\n",ThirdSigAct->sa_handler);
+     65a:	83 c4 0c             	add    $0xc,%esp
+     65d:	ff 33                	pushl  (%ebx)
+     65f:	68 0c 18 00 00       	push   $0x180c
+     664:	6a 00                	push   $0x0
+     666:	e8 95 0c 00 00       	call   1300 <printf>
+    printf(0,"SigAction3 mask should be 7: %d\n",ThirdSigAct->sigmask);
+     66b:	83 c4 0c             	add    $0xc,%esp
+     66e:	ff 73 04             	pushl  0x4(%ebx)
+     671:	68 34 18 00 00       	push   $0x1834
+     676:	6a 00                	push   $0x0
+     678:	e8 83 0c 00 00       	call   1300 <printf>
+    sigaction(4,SecondSigAct,null);
+     67d:	83 c4 0c             	add    $0xc,%esp
+     680:	6a 00                	push   $0x0
+     682:	57                   	push   %edi
+     683:	6a 04                	push   $0x4
+     685:	e8 c0 0b 00 00       	call   124a <sigaction>
+    printf(0,"SigAction3 handler should be 14: %d\n",ThirdSigAct->sa_handler);
+     68a:	83 c4 0c             	add    $0xc,%esp
+     68d:	ff 33                	pushl  (%ebx)
+     68f:	68 0c 18 00 00       	push   $0x180c
+     694:	6a 00                	push   $0x0
+     696:	e8 65 0c 00 00       	call   1300 <printf>
+    printf(0,"SigAction3 mask should be 7: %d\n",ThirdSigAct->sigmask);
+     69b:	83 c4 0c             	add    $0xc,%esp
+     69e:	ff 73 04             	pushl  0x4(%ebx)
+     6a1:	68 34 18 00 00       	push   $0x1834
+     6a6:	6a 00                	push   $0x0
+     6a8:	e8 53 0c 00 00       	call   1300 <printf>
+    struct sigaction *ForthSigAct = malloc(sizeof(struct sigaction));
+     6ad:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+     6b4:	e8 a7 0e 00 00       	call   1560 <malloc>
+     6b9:	89 c7                	mov    %eax,%edi
+    ForthSigAct->sa_handler = (void (*)())28;
+     6bb:	c7 00 1c 00 00 00    	movl   $0x1c,(%eax)
+    ForthSigAct->sigmask=4;
+     6c1:	c7 40 04 04 00 00 00 	movl   $0x4,0x4(%eax)
+    printf(0,"Create SigAction4 with handler(int 28) and mask (int 4)\n");
+     6c8:	58                   	pop    %eax
+     6c9:	5a                   	pop    %edx
+     6ca:	68 58 18 00 00       	push   $0x1858
+     6cf:	6a 00                	push   $0x0
+     6d1:	e8 2a 0c 00 00       	call   1300 <printf>
+    sigaction(4, ForthSigAct, null);
+     6d6:	83 c4 0c             	add    $0xc,%esp
+     6d9:	6a 00                	push   $0x0
+     6db:	57                   	push   %edi
+     6dc:	6a 04                	push   $0x4
+     6de:	e8 67 0b 00 00       	call   124a <sigaction>
+    printf(0,"Changed signum 4 to hold SigAction4 and do not save old\n");
+     6e3:	59                   	pop    %ecx
+     6e4:	58                   	pop    %eax
+     6e5:	68 94 18 00 00       	push   $0x1894
+     6ea:	6a 00                	push   $0x0
+     6ec:	e8 0f 0c 00 00       	call   1300 <printf>
+    sigaction(4, ForthSigAct, FIrstSigAct);
+     6f1:	83 c4 0c             	add    $0xc,%esp
+     6f4:	56                   	push   %esi
+     6f5:	57                   	push   %edi
+     6f6:	6a 04                	push   $0x4
+     6f8:	e8 4d 0b 00 00       	call   124a <sigaction>
+    printf(0,"Changed signum 4 to hold SigAction4 and FirstSigact will hold the old (sig4)\n");
+     6fd:	58                   	pop    %eax
+     6fe:	5a                   	pop    %edx
+     6ff:	68 d0 18 00 00       	push   $0x18d0
+     704:	6a 00                	push   $0x0
+     706:	e8 f5 0b 00 00       	call   1300 <printf>
+    printf(0,"SigAction1 handler should be 28: %d\n",FIrstSigAct->sa_handler);
+     70b:	83 c4 0c             	add    $0xc,%esp
+     70e:	ff 36                	pushl  (%esi)
+     710:	68 20 19 00 00       	push   $0x1920
+     715:	6a 00                	push   $0x0
+     717:	e8 e4 0b 00 00       	call   1300 <printf>
+    printf(0,"SigAction1 mask should be 4: %d\n",FIrstSigAct->sigmask);
+     71c:	83 c4 0c             	add    $0xc,%esp
+     71f:	ff 76 04             	pushl  0x4(%esi)
+     722:	68 48 19 00 00       	push   $0x1948
+     727:	6a 00                	push   $0x0
+     729:	e8 d2 0b 00 00       	call   1300 <printf>
+    printf(0,"Error Tests - Will check things that should not changed are working\n");
+     72e:	59                   	pop    %ecx
+     72f:	5e                   	pop    %esi
+     730:	68 6c 19 00 00       	push   $0x196c
+     735:	6a 00                	push   $0x0
+     737:	e8 c4 0b 00 00       	call   1300 <printf>
+    printf(0,"Try to Change signum kill\n");
+     73c:	58                   	pop    %eax
+     73d:	5a                   	pop    %edx
+     73e:	68 35 1d 00 00       	push   $0x1d35
+     743:	6a 00                	push   $0x0
+     745:	e8 b6 0b 00 00       	call   1300 <printf>
+    sigaction(SIGKILL, ForthSigAct, ThirdSigAct);
+     74a:	83 c4 0c             	add    $0xc,%esp
+     74d:	53                   	push   %ebx
+     74e:	57                   	push   %edi
+     74f:	6a 09                	push   $0x9
+     751:	e8 f4 0a 00 00       	call   124a <sigaction>
+    printf(0,"Try to Change signum 43 (do not exist\n");
+     756:	59                   	pop    %ecx
+     757:	5e                   	pop    %esi
+     758:	68 b4 19 00 00       	push   $0x19b4
+     75d:	6a 00                	push   $0x0
+     75f:	e8 9c 0b 00 00       	call   1300 <printf>
+    sigaction(43, ForthSigAct, ThirdSigAct);
+     764:	83 c4 0c             	add    $0xc,%esp
+     767:	53                   	push   %ebx
+     768:	57                   	push   %edi
+     769:	6a 2b                	push   $0x2b
+     76b:	e8 da 0a 00 00       	call   124a <sigaction>
+    printf(0,"SigAction3 handler should be 14: %d\n",ThirdSigAct->sa_handler);
+     770:	83 c4 0c             	add    $0xc,%esp
+     773:	ff 33                	pushl  (%ebx)
+     775:	68 0c 18 00 00       	push   $0x180c
+     77a:	6a 00                	push   $0x0
+     77c:	e8 7f 0b 00 00       	call   1300 <printf>
+    printf(0,"SigAction3 mask should be 7: %d\n",ThirdSigAct->sigmask);
+     781:	83 c4 0c             	add    $0xc,%esp
+     784:	ff 73 04             	pushl  0x4(%ebx)
+     787:	68 34 18 00 00       	push   $0x1834
+     78c:	6a 00                	push   $0x0
+     78e:	e8 6d 0b 00 00       	call   1300 <printf>
+    printf(0,"Finished\n");
+     793:	5f                   	pop    %edi
+     794:	58                   	pop    %eax
+     795:	68 50 1d 00 00       	push   $0x1d50
+     79a:	6a 00                	push   $0x0
+     79c:	e8 5f 0b 00 00       	call   1300 <printf>
+    return;
+     7a1:	83 c4 10             	add    $0x10,%esp
+}
+     7a4:	8d 65 f4             	lea    -0xc(%ebp),%esp
+     7a7:	5b                   	pop    %ebx
+     7a8:	5e                   	pop    %esi
+     7a9:	5f                   	pop    %edi
+     7aa:	5d                   	pop    %ebp
+     7ab:	c3                   	ret    
+     7ac:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+
+000007b0 <kill_self_test>:
+{
+     7b0:	55                   	push   %ebp
+     7b1:	89 e5                	mov    %esp,%ebp
+     7b3:	83 ec 08             	sub    $0x8,%esp
     kill(getpid(),SIGKILL);
-     a5b:	e8 72 08 00 00       	call   12d2 <getpid>
-     a60:	59                   	pop    %ecx
-     a61:	5b                   	pop    %ebx
-     a62:	6a 09                	push   $0x9
-     a64:	50                   	push   %eax
-     a65:	e8 18 08 00 00       	call   1282 <kill>
-        sleep(250);
-     a6a:	c7 04 24 fa 00 00 00 	movl   $0xfa,(%esp)
-     a71:	e8 6c 08 00 00       	call   12e2 <sleep>
-     a76:	83 c4 10             	add    $0x10,%esp
-     a79:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-            printf(0,"Process 1 Should have benn Killed Alreadyyyyy!\n");
-     a80:	83 ec 08             	sub    $0x8,%esp
-     a83:	68 a4 1b 00 00       	push   $0x1ba4
-     a88:	6a 00                	push   $0x0
-     a8a:	e8 21 09 00 00       	call   13b0 <printf>
-     a8f:	83 c4 10             	add    $0x10,%esp
-     a92:	eb ec                	jmp    a80 <SignalTests2+0x50>
-        if((child_pid[1]=fork()) == 0)
-     a94:	e8 b1 07 00 00       	call   124a <fork>
-     a99:	85 c0                	test   %eax,%eax
-     a9b:	89 c3                	mov    %eax,%ebx
-     a9d:	75 7f                	jne    b1e <SignalTests2+0xee>
-            printf(0,"Trying to Ignore All\n");
-     a9f:	51                   	push   %ecx
-     aa0:	51                   	push   %ecx
-     aa1:	68 4a 1f 00 00       	push   $0x1f4a
-     aa6:	6a 00                	push   $0x0
-     aa8:	e8 03 09 00 00       	call   13b0 <printf>
-            sigprocmask(4294967295);
-     aad:	c7 04 24 ff ff ff ff 	movl   $0xffffffff,(%esp)
-     ab4:	e8 39 08 00 00       	call   12f2 <sigprocmask>
-            struct sigaction *SigAction1 = malloc(sizeof(struct sigaction));
-     ab9:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
-     ac0:	e8 4b 0b 00 00       	call   1610 <malloc>
-            SigAction1->sa_handler = (void (*)())SIGKILL;
-     ac5:	c7 00 09 00 00 00    	movl   $0x9,(%eax)
-            SigAction1->sigmask=4294967295;
-     acb:	c7 40 04 ff ff ff ff 	movl   $0xffffffff,0x4(%eax)
-            struct sigaction *SigAction1 = malloc(sizeof(struct sigaction));
-     ad2:	89 c3                	mov    %eax,%ebx
-            printf(0,"Creating sinum 4 handler is SIGKILL and mask is Ignore ALl\n");
-     ad4:	58                   	pop    %eax
-     ad5:	5a                   	pop    %edx
-     ad6:	68 d4 1b 00 00       	push   $0x1bd4
-     adb:	6a 00                	push   $0x0
-     add:	e8 ce 08 00 00       	call   13b0 <printf>
-            sigaction(4,SigAction1,null);
-     ae2:	83 c4 0c             	add    $0xc,%esp
-     ae5:	6a 00                	push   $0x0
-     ae7:	53                   	push   %ebx
-     ae8:	6a 04                	push   $0x4
-     aea:	e8 0b 08 00 00       	call   12fa <sigaction>
-     aef:	83 c4 10             	add    $0x10,%esp
-     af2:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-                printf(0,"pid - %d child two\n",getpid());
-     af8:	e8 d5 07 00 00       	call   12d2 <getpid>
-     afd:	83 ec 04             	sub    $0x4,%esp
-     b00:	50                   	push   %eax
-     b01:	68 11 1f 00 00       	push   $0x1f11
-     b06:	6a 00                	push   $0x0
-     b08:	e8 a3 08 00 00       	call   13b0 <printf>
-                sleep(50);
-     b0d:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     b14:	e8 c9 07 00 00       	call   12e2 <sleep>
-     b19:	83 c4 10             	add    $0x10,%esp
-     b1c:	eb da                	jmp    af8 <SignalTests2+0xc8>
-            if((child_pid[2]=fork()) == 0)
-     b1e:	e8 27 07 00 00       	call   124a <fork>
-     b23:	85 c0                	test   %eax,%eax
-     b25:	74 33                	je     b5a <SignalTests2+0x12a>
-                if((child_pid[3]=fork()) == 0)
-     b27:	e8 1e 07 00 00       	call   124a <fork>
-     b2c:	85 c0                	test   %eax,%eax
-     b2e:	74 60                	je     b90 <SignalTests2+0x160>
-    wait();
-     b30:	e8 25 07 00 00       	call   125a <wait>
-    wait();
-     b35:	e8 20 07 00 00       	call   125a <wait>
-    wait();
-     b3a:	e8 1b 07 00 00       	call   125a <wait>
-    wait();
-     b3f:	e8 16 07 00 00       	call   125a <wait>
-    printf(0,"parent\n");
-     b44:	50                   	push   %eax
-     b45:	50                   	push   %eax
-     b46:	68 42 1f 00 00       	push   $0x1f42
-     b4b:	6a 00                	push   $0x0
-     b4d:	e8 5e 08 00 00       	call   13b0 <printf>
-    return;
-     b52:	83 c4 10             	add    $0x10,%esp
+     7b6:	e8 67 0a 00 00       	call   1222 <getpid>
+     7bb:	83 ec 08             	sub    $0x8,%esp
+     7be:	6a 09                	push   $0x9
+     7c0:	50                   	push   %eax
+     7c1:	e8 0c 0a 00 00       	call   11d2 <kill>
 }
-     b55:	8b 5d fc             	mov    -0x4(%ebp),%ebx
-     b58:	c9                   	leave  
-     b59:	c3                   	ret    
-                sleep(250);
-     b5a:	83 ec 0c             	sub    $0xc,%esp
-     b5d:	68 fa 00 00 00       	push   $0xfa
-     b62:	e8 7b 07 00 00       	call   12e2 <sleep>
-    kill(child_kill,signum);
-     b67:	59                   	pop    %ecx
-     b68:	58                   	pop    %eax
-     b69:	6a 04                	push   $0x4
-     b6b:	53                   	push   %ebx
-     b6c:	e8 11 07 00 00       	call   1282 <kill>
-                printf(0,"Should Ignore Signla 4\n");
-     b71:	58                   	pop    %eax
-     b72:	5a                   	pop    %edx
-     b73:	68 60 1f 00 00       	push   $0x1f60
-     b78:	6a 00                	push   $0x0
-     b7a:	e8 31 08 00 00       	call   13b0 <printf>
-                sleep(550);
-     b7f:	c7 04 24 26 02 00 00 	movl   $0x226,(%esp)
-     b86:	e8 57 07 00 00       	call   12e2 <sleep>
-                exit();
-     b8b:	e8 c2 06 00 00       	call   1252 <exit>
-                    sleep(480);
-     b90:	83 ec 0c             	sub    $0xc,%esp
-     b93:	68 e0 01 00 00       	push   $0x1e0
-     b98:	e8 45 07 00 00       	call   12e2 <sleep>
-                    printf(0,"signal kill\n");
-     b9d:	5a                   	pop    %edx
-     b9e:	59                   	pop    %ecx
-     b9f:	68 78 1f 00 00       	push   $0x1f78
-     ba4:	6a 00                	push   $0x0
-     ba6:	e8 05 08 00 00       	call   13b0 <printf>
-                    kill(child_pid[1],SIGKILL);
-     bab:	58                   	pop    %eax
-     bac:	5a                   	pop    %edx
-     bad:	6a 09                	push   $0x9
-     baf:	53                   	push   %ebx
-     bb0:	e8 cd 06 00 00       	call   1282 <kill>
-                    sleep(100);
-     bb5:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-     bbc:	e8 21 07 00 00       	call   12e2 <sleep>
-                    exit();
-     bc1:	e8 8c 06 00 00       	call   1252 <exit>
-     bc6:	8d 76 00             	lea    0x0(%esi),%esi
-     bc9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+     7c6:	31 c0                	xor    %eax,%eax
+     7c8:	c9                   	leave  
+     7c9:	c3                   	ret    
+     7ca:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
 
-00000bd0 <SignalTests3>:
+000007d0 <kill_other>:
 {
-     bd0:	55                   	push   %ebp
-     bd1:	89 e5                	mov    %esp,%ebp
-     bd3:	53                   	push   %ebx
-     bd4:	83 ec 04             	sub    $0x4,%esp
-    if((child_pid[0]=fork()) == 0)
-     bd7:	e8 6e 06 00 00       	call   124a <fork>
-     bdc:	85 c0                	test   %eax,%eax
-     bde:	0f 85 84 00 00 00    	jne    c68 <SignalTests3+0x98>
-        struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
-     be4:	83 ec 0c             	sub    $0xc,%esp
-     be7:	6a 08                	push   $0x8
-     be9:	e8 22 0a 00 00       	call   1610 <malloc>
-        KillHAndlerSignal->sa_handler = (void (*)())SIGKILL;
-     bee:	c7 00 09 00 00 00    	movl   $0x9,(%eax)
-        KillHAndlerSignal->sigmask = 0;
-     bf4:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
-        struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
-     bfb:	89 c3                	mov    %eax,%ebx
-        printf(0,"Created KillHAndlerSignal (KILL) with mask that is 0\n");
-     bfd:	58                   	pop    %eax
-     bfe:	5a                   	pop    %edx
-     bff:	68 10 1c 00 00       	push   $0x1c10
-     c04:	6a 00                	push   $0x0
-     c06:	e8 a5 07 00 00       	call   13b0 <printf>
-        sigaction(4,KillHAndlerSignal,null);
-     c0b:	83 c4 0c             	add    $0xc,%esp
-     c0e:	6a 00                	push   $0x0
-     c10:	53                   	push   %ebx
-     c11:	6a 04                	push   $0x4
-     c13:	e8 e2 06 00 00       	call   12fa <sigaction>
-        printf(0,"Sending KillHAndlerSignal (22)to process\n");
-     c18:	59                   	pop    %ecx
-     c19:	5b                   	pop    %ebx
-     c1a:	68 48 1c 00 00       	push   $0x1c48
-     c1f:	6a 00                	push   $0x0
-     c21:	e8 8a 07 00 00       	call   13b0 <printf>
-        kill_self_test(4);
-     c26:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)
-     c2d:	e8 2e fc ff ff       	call   860 <kill_self_test>
-        sleep(1250);
-     c32:	c7 04 24 e2 04 00 00 	movl   $0x4e2,(%esp)
-     c39:	e8 a4 06 00 00       	call   12e2 <sleep>
-     c3e:	83 c4 10             	add    $0x10,%esp
-     c41:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-            printf(0,"Process 1 should have been killed already!\n");
-     c48:	83 ec 08             	sub    $0x8,%esp
-     c4b:	68 74 1c 00 00       	push   $0x1c74
-     c50:	6a 00                	push   $0x0
-     c52:	e8 59 07 00 00       	call   13b0 <printf>
-            sleep(100);
-     c57:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-     c5e:	e8 7f 06 00 00       	call   12e2 <sleep>
-     c63:	83 c4 10             	add    $0x10,%esp
-     c66:	eb e0                	jmp    c48 <SignalTests3+0x78>
-        if((child_pid[1]=fork()) == 0)
-     c68:	e8 dd 05 00 00       	call   124a <fork>
-     c6d:	85 c0                	test   %eax,%eax
-     c6f:	89 c3                	mov    %eax,%ebx
-     c71:	75 3b                	jne    cae <SignalTests3+0xde>
-            printf(0,"Starting Loop\n");
-     c73:	51                   	push   %ecx
-     c74:	51                   	push   %ecx
-     c75:	68 02 1f 00 00       	push   $0x1f02
-     c7a:	6a 00                	push   $0x0
-     c7c:	e8 2f 07 00 00       	call   13b0 <printf>
-     c81:	83 c4 10             	add    $0x10,%esp
-     c84:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-                printf(0,"pid - %d child two\n",getpid());
-     c88:	e8 45 06 00 00       	call   12d2 <getpid>
-     c8d:	83 ec 04             	sub    $0x4,%esp
-     c90:	50                   	push   %eax
-     c91:	68 11 1f 00 00       	push   $0x1f11
-     c96:	6a 00                	push   $0x0
-     c98:	e8 13 07 00 00       	call   13b0 <printf>
-                sleep(50);
-     c9d:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     ca4:	e8 39 06 00 00       	call   12e2 <sleep>
-     ca9:	83 c4 10             	add    $0x10,%esp
-     cac:	eb da                	jmp    c88 <SignalTests3+0xb8>
-            if((child_pid[2]=fork()) == 0)
-     cae:	e8 97 05 00 00       	call   124a <fork>
-     cb3:	85 c0                	test   %eax,%eax
-     cb5:	74 37                	je     cee <SignalTests3+0x11e>
-                if((child_pid[3]=fork()) == 0)
-     cb7:	e8 8e 05 00 00       	call   124a <fork>
-     cbc:	85 c0                	test   %eax,%eax
-     cbe:	0f 84 3a 01 00 00    	je     dfe <SignalTests3+0x22e>
-    wait();
-     cc4:	e8 91 05 00 00       	call   125a <wait>
-    wait();
-     cc9:	e8 8c 05 00 00       	call   125a <wait>
-    wait();
-     cce:	e8 87 05 00 00       	call   125a <wait>
-    wait();
-     cd3:	e8 82 05 00 00       	call   125a <wait>
-    printf(0,"parent\n");
-     cd8:	50                   	push   %eax
-     cd9:	50                   	push   %eax
-     cda:	68 42 1f 00 00       	push   $0x1f42
-     cdf:	6a 00                	push   $0x0
-     ce1:	e8 ca 06 00 00       	call   13b0 <printf>
-    return;
-     ce6:	83 c4 10             	add    $0x10,%esp
-}
-     ce9:	8b 5d fc             	mov    -0x4(%ebp),%ebx
-     cec:	c9                   	leave  
-     ced:	c3                   	ret    
-                printf(0, "child 3 pid: %d\n", getpid());
-     cee:	e8 df 05 00 00       	call   12d2 <getpid>
-     cf3:	52                   	push   %edx
-     cf4:	50                   	push   %eax
-     cf5:	68 85 1f 00 00       	push   $0x1f85
-     cfa:	6a 00                	push   $0x0
-     cfc:	e8 af 06 00 00       	call   13b0 <printf>
-                sleep(30);
-     d01:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
-     d08:	e8 d5 05 00 00       	call   12e2 <sleep>
-                printf(0,"Run SigSTOP Second Child\n");
-     d0d:	59                   	pop    %ecx
-     d0e:	58                   	pop    %eax
-     d0f:	68 96 1f 00 00       	push   $0x1f96
-     d14:	6a 00                	push   $0x0
-     d16:	e8 95 06 00 00       	call   13b0 <printf>
+     7d0:	55                   	push   %ebp
+     7d1:	89 e5                	mov    %esp,%ebp
+     7d3:	83 ec 10             	sub    $0x10,%esp
     kill(child_kill,signum);
-     d1b:	58                   	pop    %eax
-     d1c:	5a                   	pop    %edx
-     d1d:	6a 11                	push   $0x11
-     d1f:	53                   	push   %ebx
-     d20:	e8 5d 05 00 00       	call   1282 <kill>
+     7d6:	ff 75 0c             	pushl  0xc(%ebp)
+     7d9:	ff 75 08             	pushl  0x8(%ebp)
+     7dc:	e8 f1 09 00 00       	call   11d2 <kill>
+}
+     7e1:	31 c0                	xor    %eax,%eax
+     7e3:	c9                   	leave  
+     7e4:	c3                   	ret    
+     7e5:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+     7e9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+
+000007f0 <SignalTests1>:
+{
+     7f0:	55                   	push   %ebp
+     7f1:	89 e5                	mov    %esp,%ebp
+     7f3:	53                   	push   %ebx
+     7f4:	83 ec 04             	sub    $0x4,%esp
+    if((child_pid[0]=fork()) == 0)
+     7f7:	e8 9e 09 00 00       	call   119a <fork>
+     7fc:	85 c0                	test   %eax,%eax
+     7fe:	0f 84 cb 00 00 00    	je     8cf <SignalTests1+0xdf>
+        if((child_pid[1]=fork()) == 0)
+     804:	e8 91 09 00 00       	call   119a <fork>
+     809:	85 c0                	test   %eax,%eax
+     80b:	89 c3                	mov    %eax,%ebx
+     80d:	75 7f                	jne    88e <SignalTests1+0x9e>
+            struct sigaction *UserHandlerSignal = malloc(sizeof(struct sigaction));
+     80f:	83 ec 0c             	sub    $0xc,%esp
+     812:	6a 08                	push   $0x8
+     814:	e8 47 0d 00 00       	call   1560 <malloc>
+            UserHandlerSignal->sa_handler = user_handler_signal;
+     819:	c7 00 60 00 00 00    	movl   $0x60,(%eax)
+            UserHandlerSignal->sigmask=0;
+     81f:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
+            struct sigaction *UserHandlerSignal = malloc(sizeof(struct sigaction));
+     826:	89 c3                	mov    %eax,%ebx
+            printf(0,"Created User Handler Signal with mask that is 0\n");
+     828:	58                   	pop    %eax
+     829:	5a                   	pop    %edx
+     82a:	68 2c 1a 00 00       	push   $0x1a2c
+     82f:	6a 00                	push   $0x0
+     831:	e8 ca 0a 00 00       	call   1300 <printf>
+            sigaction(22,UserHandlerSignal,null);
+     836:	83 c4 0c             	add    $0xc,%esp
+     839:	6a 00                	push   $0x0
+     83b:	53                   	push   %ebx
+     83c:	6a 16                	push   $0x16
+     83e:	e8 07 0a 00 00       	call   124a <sigaction>
+            printf(0,"Assigned User Handler Signal to signum 22\n");
+     843:	59                   	pop    %ecx
+     844:	5b                   	pop    %ebx
+     845:	68 60 1a 00 00       	push   $0x1a60
+     84a:	6a 00                	push   $0x0
+     84c:	e8 af 0a 00 00       	call   1300 <printf>
+            printf(0,"Starting Loop\n");
+     851:	58                   	pop    %eax
+     852:	5a                   	pop    %edx
+     853:	68 5a 1d 00 00       	push   $0x1d5a
+     858:	6a 00                	push   $0x0
+     85a:	e8 a1 0a 00 00       	call   1300 <printf>
+     85f:	83 c4 10             	add    $0x10,%esp
+     862:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+                printf(0,"pid - %d child two\n",getpid());
+     868:	e8 b5 09 00 00       	call   1222 <getpid>
+     86d:	83 ec 04             	sub    $0x4,%esp
+     870:	50                   	push   %eax
+     871:	68 69 1d 00 00       	push   $0x1d69
+     876:	6a 00                	push   $0x0
+     878:	e8 83 0a 00 00       	call   1300 <printf>
+                sleep(50);
+     87d:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
+     884:	e8 a9 09 00 00       	call   1232 <sleep>
+     889:	83 c4 10             	add    $0x10,%esp
+     88c:	eb da                	jmp    868 <SignalTests1+0x78>
+            if((child_pid[2]=fork()) == 0)
+     88e:	e8 07 09 00 00       	call   119a <fork>
+     893:	85 c0                	test   %eax,%eax
+     895:	0f 84 a6 00 00 00    	je     941 <SignalTests1+0x151>
+                if((child_pid[3]=fork()) == 0)
+     89b:	e8 fa 08 00 00       	call   119a <fork>
+     8a0:	85 c0                	test   %eax,%eax
+     8a2:	74 67                	je     90b <SignalTests1+0x11b>
+    wait();
+     8a4:	e8 01 09 00 00       	call   11aa <wait>
+    wait();
+     8a9:	e8 fc 08 00 00       	call   11aa <wait>
+    wait();
+     8ae:	e8 f7 08 00 00       	call   11aa <wait>
+    wait();
+     8b3:	e8 f2 08 00 00       	call   11aa <wait>
+    printf(0,"parent\n");
+     8b8:	83 ec 08             	sub    $0x8,%esp
+     8bb:	68 9a 1d 00 00       	push   $0x1d9a
+     8c0:	6a 00                	push   $0x0
+     8c2:	e8 39 0a 00 00       	call   1300 <printf>
+    return;
+     8c7:	83 c4 10             	add    $0x10,%esp
+}
+     8ca:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+     8cd:	c9                   	leave  
+     8ce:	c3                   	ret    
+        printf(0,"Trying to self kill the process\n");
+     8cf:	51                   	push   %ecx
+     8d0:	51                   	push   %ecx
+     8d1:	68 dc 19 00 00       	push   $0x19dc
+     8d6:	6a 00                	push   $0x0
+     8d8:	e8 23 0a 00 00       	call   1300 <printf>
+    kill(getpid(),SIGKILL);
+     8dd:	e8 40 09 00 00       	call   1222 <getpid>
+     8e2:	5b                   	pop    %ebx
+     8e3:	5a                   	pop    %edx
+     8e4:	6a 09                	push   $0x9
+     8e6:	50                   	push   %eax
+     8e7:	e8 e6 08 00 00       	call   11d2 <kill>
+        sleep(50);
+     8ec:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
+     8f3:	e8 3a 09 00 00       	call   1232 <sleep>
+        printf(0,"Process 1 Should have benn Killed Already!\n");
+     8f8:	59                   	pop    %ecx
+     8f9:	5b                   	pop    %ebx
+     8fa:	68 00 1a 00 00       	push   $0x1a00
+     8ff:	6a 00                	push   $0x0
+     901:	e8 fa 09 00 00       	call   1300 <printf>
+        exit();
+     906:	e8 97 08 00 00       	call   11a2 <exit>
+                    sleep(250);
+     90b:	83 ec 0c             	sub    $0xc,%esp
+     90e:	68 fa 00 00 00       	push   $0xfa
+     913:	e8 1a 09 00 00       	call   1232 <sleep>
+                    printf(0,"signal kill to second child\n");
+     918:	58                   	pop    %eax
+     919:	5a                   	pop    %edx
+     91a:	68 7d 1d 00 00       	push   $0x1d7d
+     91f:	6a 00                	push   $0x0
+     921:	e8 da 09 00 00       	call   1300 <printf>
+                    kill(child_pid[1],SIGKILL);
+     926:	59                   	pop    %ecx
+     927:	58                   	pop    %eax
+     928:	6a 09                	push   $0x9
+     92a:	53                   	push   %ebx
+     92b:	e8 a2 08 00 00       	call   11d2 <kill>
+                    sleep(100);
+     930:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
+     937:	e8 f6 08 00 00       	call   1232 <sleep>
+                    exit();
+     93c:	e8 61 08 00 00       	call   11a2 <exit>
+                sleep(150);
+     941:	83 ec 0c             	sub    $0xc,%esp
+     944:	68 96 00 00 00       	push   $0x96
+     949:	e8 e4 08 00 00       	call   1232 <sleep>
+                printf(0,"Run User Handler Signal Second Child\n");
+     94e:	58                   	pop    %eax
+     94f:	5a                   	pop    %edx
+     950:	68 8c 1a 00 00       	push   $0x1a8c
+     955:	6a 00                	push   $0x0
+     957:	e8 a4 09 00 00       	call   1300 <printf>
+    kill(child_kill,signum);
+     95c:	59                   	pop    %ecx
+     95d:	58                   	pop    %eax
+     95e:	6a 16                	push   $0x16
+     960:	53                   	push   %ebx
+     961:	e8 6c 08 00 00       	call   11d2 <kill>
+                sleep(450);
+     966:	c7 04 24 c2 01 00 00 	movl   $0x1c2,(%esp)
+     96d:	e8 c0 08 00 00       	call   1232 <sleep>
+                exit();
+     972:	e8 2b 08 00 00       	call   11a2 <exit>
+     977:	89 f6                	mov    %esi,%esi
+     979:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+
+00000980 <SignalTests2>:
+{
+     980:	55                   	push   %ebp
+     981:	89 e5                	mov    %esp,%ebp
+     983:	53                   	push   %ebx
+     984:	83 ec 04             	sub    $0x4,%esp
+    if((child_pid[0]=fork()) == 0)
+     987:	e8 0e 08 00 00       	call   119a <fork>
+     98c:	85 c0                	test   %eax,%eax
+     98e:	75 54                	jne    9e4 <SignalTests2+0x64>
+        printf(0,"Trying to self kill the process even while Mask is Blocking\n");
+     990:	83 ec 08             	sub    $0x8,%esp
+     993:	68 b4 1a 00 00       	push   $0x1ab4
+     998:	6a 00                	push   $0x0
+     99a:	e8 61 09 00 00       	call   1300 <printf>
+        sigprocmask(896);
+     99f:	c7 04 24 80 03 00 00 	movl   $0x380,(%esp)
+     9a6:	e8 97 08 00 00       	call   1242 <sigprocmask>
+    kill(getpid(),SIGKILL);
+     9ab:	e8 72 08 00 00       	call   1222 <getpid>
+     9b0:	59                   	pop    %ecx
+     9b1:	5b                   	pop    %ebx
+     9b2:	6a 09                	push   $0x9
+     9b4:	50                   	push   %eax
+     9b5:	e8 18 08 00 00       	call   11d2 <kill>
+        sleep(250);
+     9ba:	c7 04 24 fa 00 00 00 	movl   $0xfa,(%esp)
+     9c1:	e8 6c 08 00 00       	call   1232 <sleep>
+     9c6:	83 c4 10             	add    $0x10,%esp
+     9c9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+            printf(0,"Process 1 Should have benn Killed Alreadyyyyy!\n");
+     9d0:	83 ec 08             	sub    $0x8,%esp
+     9d3:	68 f4 1a 00 00       	push   $0x1af4
+     9d8:	6a 00                	push   $0x0
+     9da:	e8 21 09 00 00       	call   1300 <printf>
+     9df:	83 c4 10             	add    $0x10,%esp
+     9e2:	eb ec                	jmp    9d0 <SignalTests2+0x50>
+        if((child_pid[1]=fork()) == 0)
+     9e4:	e8 b1 07 00 00       	call   119a <fork>
+     9e9:	85 c0                	test   %eax,%eax
+     9eb:	89 c3                	mov    %eax,%ebx
+     9ed:	75 7f                	jne    a6e <SignalTests2+0xee>
+            printf(0,"Trying to Ignore All\n");
+     9ef:	51                   	push   %ecx
+     9f0:	51                   	push   %ecx
+     9f1:	68 a2 1d 00 00       	push   $0x1da2
+     9f6:	6a 00                	push   $0x0
+     9f8:	e8 03 09 00 00       	call   1300 <printf>
+            sigprocmask(4294967295);
+     9fd:	c7 04 24 ff ff ff ff 	movl   $0xffffffff,(%esp)
+     a04:	e8 39 08 00 00       	call   1242 <sigprocmask>
+            struct sigaction *SigAction1 = malloc(sizeof(struct sigaction));
+     a09:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+     a10:	e8 4b 0b 00 00       	call   1560 <malloc>
+            SigAction1->sa_handler = (void (*)())SIGKILL;
+     a15:	c7 00 09 00 00 00    	movl   $0x9,(%eax)
+            SigAction1->sigmask=4294967295;
+     a1b:	c7 40 04 ff ff ff ff 	movl   $0xffffffff,0x4(%eax)
+            struct sigaction *SigAction1 = malloc(sizeof(struct sigaction));
+     a22:	89 c3                	mov    %eax,%ebx
+            printf(0,"Creating sinum 4 handler is SIGKILL and mask is Ignore ALl\n");
+     a24:	58                   	pop    %eax
+     a25:	5a                   	pop    %edx
+     a26:	68 24 1b 00 00       	push   $0x1b24
+     a2b:	6a 00                	push   $0x0
+     a2d:	e8 ce 08 00 00       	call   1300 <printf>
+            sigaction(4,SigAction1,null);
+     a32:	83 c4 0c             	add    $0xc,%esp
+     a35:	6a 00                	push   $0x0
+     a37:	53                   	push   %ebx
+     a38:	6a 04                	push   $0x4
+     a3a:	e8 0b 08 00 00       	call   124a <sigaction>
+     a3f:	83 c4 10             	add    $0x10,%esp
+     a42:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+                printf(0,"pid - %d child two\n",getpid());
+     a48:	e8 d5 07 00 00       	call   1222 <getpid>
+     a4d:	83 ec 04             	sub    $0x4,%esp
+     a50:	50                   	push   %eax
+     a51:	68 69 1d 00 00       	push   $0x1d69
+     a56:	6a 00                	push   $0x0
+     a58:	e8 a3 08 00 00       	call   1300 <printf>
+                sleep(50);
+     a5d:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
+     a64:	e8 c9 07 00 00       	call   1232 <sleep>
+     a69:	83 c4 10             	add    $0x10,%esp
+     a6c:	eb da                	jmp    a48 <SignalTests2+0xc8>
+            if((child_pid[2]=fork()) == 0)
+     a6e:	e8 27 07 00 00       	call   119a <fork>
+     a73:	85 c0                	test   %eax,%eax
+     a75:	74 33                	je     aaa <SignalTests2+0x12a>
+                if((child_pid[3]=fork()) == 0)
+     a77:	e8 1e 07 00 00       	call   119a <fork>
+     a7c:	85 c0                	test   %eax,%eax
+     a7e:	74 60                	je     ae0 <SignalTests2+0x160>
+    wait();
+     a80:	e8 25 07 00 00       	call   11aa <wait>
+    wait();
+     a85:	e8 20 07 00 00       	call   11aa <wait>
+    wait();
+     a8a:	e8 1b 07 00 00       	call   11aa <wait>
+    wait();
+     a8f:	e8 16 07 00 00       	call   11aa <wait>
+    printf(0,"parent\n");
+     a94:	50                   	push   %eax
+     a95:	50                   	push   %eax
+     a96:	68 9a 1d 00 00       	push   $0x1d9a
+     a9b:	6a 00                	push   $0x0
+     a9d:	e8 5e 08 00 00       	call   1300 <printf>
+    return;
+     aa2:	83 c4 10             	add    $0x10,%esp
+}
+     aa5:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+     aa8:	c9                   	leave  
+     aa9:	c3                   	ret    
+                sleep(250);
+     aaa:	83 ec 0c             	sub    $0xc,%esp
+     aad:	68 fa 00 00 00       	push   $0xfa
+     ab2:	e8 7b 07 00 00       	call   1232 <sleep>
+    kill(child_kill,signum);
+     ab7:	59                   	pop    %ecx
+     ab8:	58                   	pop    %eax
+     ab9:	6a 04                	push   $0x4
+     abb:	53                   	push   %ebx
+     abc:	e8 11 07 00 00       	call   11d2 <kill>
+                printf(0,"Should Ignore Signla 4\n");
+     ac1:	58                   	pop    %eax
+     ac2:	5a                   	pop    %edx
+     ac3:	68 b8 1d 00 00       	push   $0x1db8
+     ac8:	6a 00                	push   $0x0
+     aca:	e8 31 08 00 00       	call   1300 <printf>
+                sleep(550);
+     acf:	c7 04 24 26 02 00 00 	movl   $0x226,(%esp)
+     ad6:	e8 57 07 00 00       	call   1232 <sleep>
+                exit();
+     adb:	e8 c2 06 00 00       	call   11a2 <exit>
+                    sleep(480);
+     ae0:	83 ec 0c             	sub    $0xc,%esp
+     ae3:	68 e0 01 00 00       	push   $0x1e0
+     ae8:	e8 45 07 00 00       	call   1232 <sleep>
+                    printf(0,"signal kill\n");
+     aed:	5a                   	pop    %edx
+     aee:	59                   	pop    %ecx
+     aef:	68 d0 1d 00 00       	push   $0x1dd0
+     af4:	6a 00                	push   $0x0
+     af6:	e8 05 08 00 00       	call   1300 <printf>
+                    kill(child_pid[1],SIGKILL);
+     afb:	58                   	pop    %eax
+     afc:	5a                   	pop    %edx
+     afd:	6a 09                	push   $0x9
+     aff:	53                   	push   %ebx
+     b00:	e8 cd 06 00 00       	call   11d2 <kill>
+                    sleep(100);
+     b05:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
+     b0c:	e8 21 07 00 00       	call   1232 <sleep>
+                    exit();
+     b11:	e8 8c 06 00 00       	call   11a2 <exit>
+     b16:	8d 76 00             	lea    0x0(%esi),%esi
+     b19:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+
+00000b20 <SignalTests3>:
+{
+     b20:	55                   	push   %ebp
+     b21:	89 e5                	mov    %esp,%ebp
+     b23:	53                   	push   %ebx
+     b24:	83 ec 04             	sub    $0x4,%esp
+    if((child_pid[0]=fork()) == 0)
+     b27:	e8 6e 06 00 00       	call   119a <fork>
+     b2c:	85 c0                	test   %eax,%eax
+     b2e:	0f 85 84 00 00 00    	jne    bb8 <SignalTests3+0x98>
+        struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
+     b34:	83 ec 0c             	sub    $0xc,%esp
+     b37:	6a 08                	push   $0x8
+     b39:	e8 22 0a 00 00       	call   1560 <malloc>
+        KillHAndlerSignal->sa_handler = (void (*)())SIGKILL;
+     b3e:	c7 00 09 00 00 00    	movl   $0x9,(%eax)
+        KillHAndlerSignal->sigmask = 0;
+     b44:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
+        struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
+     b4b:	89 c3                	mov    %eax,%ebx
+        printf(0,"Created KillHAndlerSignal (KILL) with mask that is 0\n");
+     b4d:	58                   	pop    %eax
+     b4e:	5a                   	pop    %edx
+     b4f:	68 60 1b 00 00       	push   $0x1b60
+     b54:	6a 00                	push   $0x0
+     b56:	e8 a5 07 00 00       	call   1300 <printf>
+        sigaction(4,KillHAndlerSignal,null);
+     b5b:	83 c4 0c             	add    $0xc,%esp
+     b5e:	6a 00                	push   $0x0
+     b60:	53                   	push   %ebx
+     b61:	6a 04                	push   $0x4
+     b63:	e8 e2 06 00 00       	call   124a <sigaction>
+        printf(0,"Sending KillHAndlerSignal (22)to process\n");
+     b68:	59                   	pop    %ecx
+     b69:	5b                   	pop    %ebx
+     b6a:	68 98 1b 00 00       	push   $0x1b98
+     b6f:	6a 00                	push   $0x0
+     b71:	e8 8a 07 00 00       	call   1300 <printf>
+        kill_self_test(4);
+     b76:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)
+     b7d:	e8 2e fc ff ff       	call   7b0 <kill_self_test>
+        sleep(1250);
+     b82:	c7 04 24 e2 04 00 00 	movl   $0x4e2,(%esp)
+     b89:	e8 a4 06 00 00       	call   1232 <sleep>
+     b8e:	83 c4 10             	add    $0x10,%esp
+     b91:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+            printf(0,"Process 1 should have been killed already!\n");
+     b98:	83 ec 08             	sub    $0x8,%esp
+     b9b:	68 c4 1b 00 00       	push   $0x1bc4
+     ba0:	6a 00                	push   $0x0
+     ba2:	e8 59 07 00 00       	call   1300 <printf>
+            sleep(100);
+     ba7:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
+     bae:	e8 7f 06 00 00       	call   1232 <sleep>
+     bb3:	83 c4 10             	add    $0x10,%esp
+     bb6:	eb e0                	jmp    b98 <SignalTests3+0x78>
+        if((child_pid[1]=fork()) == 0)
+     bb8:	e8 dd 05 00 00       	call   119a <fork>
+     bbd:	85 c0                	test   %eax,%eax
+     bbf:	89 c3                	mov    %eax,%ebx
+     bc1:	75 3b                	jne    bfe <SignalTests3+0xde>
+            printf(0,"Starting Loop\n");
+     bc3:	51                   	push   %ecx
+     bc4:	51                   	push   %ecx
+     bc5:	68 5a 1d 00 00       	push   $0x1d5a
+     bca:	6a 00                	push   $0x0
+     bcc:	e8 2f 07 00 00       	call   1300 <printf>
+     bd1:	83 c4 10             	add    $0x10,%esp
+     bd4:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+                printf(0,"pid - %d child two\n",getpid());
+     bd8:	e8 45 06 00 00       	call   1222 <getpid>
+     bdd:	83 ec 04             	sub    $0x4,%esp
+     be0:	50                   	push   %eax
+     be1:	68 69 1d 00 00       	push   $0x1d69
+     be6:	6a 00                	push   $0x0
+     be8:	e8 13 07 00 00       	call   1300 <printf>
+                sleep(50);
+     bed:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
+     bf4:	e8 39 06 00 00       	call   1232 <sleep>
+     bf9:	83 c4 10             	add    $0x10,%esp
+     bfc:	eb da                	jmp    bd8 <SignalTests3+0xb8>
+            if((child_pid[2]=fork()) == 0)
+     bfe:	e8 97 05 00 00       	call   119a <fork>
+     c03:	85 c0                	test   %eax,%eax
+     c05:	74 37                	je     c3e <SignalTests3+0x11e>
+                if((child_pid[3]=fork()) == 0)
+     c07:	e8 8e 05 00 00       	call   119a <fork>
+     c0c:	85 c0                	test   %eax,%eax
+     c0e:	0f 84 3a 01 00 00    	je     d4e <SignalTests3+0x22e>
+    wait();
+     c14:	e8 91 05 00 00       	call   11aa <wait>
+    wait();
+     c19:	e8 8c 05 00 00       	call   11aa <wait>
+    wait();
+     c1e:	e8 87 05 00 00       	call   11aa <wait>
+    wait();
+     c23:	e8 82 05 00 00       	call   11aa <wait>
+    printf(0,"parent\n");
+     c28:	50                   	push   %eax
+     c29:	50                   	push   %eax
+     c2a:	68 9a 1d 00 00       	push   $0x1d9a
+     c2f:	6a 00                	push   $0x0
+     c31:	e8 ca 06 00 00       	call   1300 <printf>
+    return;
+     c36:	83 c4 10             	add    $0x10,%esp
+}
+     c39:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+     c3c:	c9                   	leave  
+     c3d:	c3                   	ret    
+                printf(0, "child 3 pid: %d\n", getpid());
+     c3e:	e8 df 05 00 00       	call   1222 <getpid>
+     c43:	52                   	push   %edx
+     c44:	50                   	push   %eax
+     c45:	68 dd 1d 00 00       	push   $0x1ddd
+     c4a:	6a 00                	push   $0x0
+     c4c:	e8 af 06 00 00       	call   1300 <printf>
+                sleep(30);
+     c51:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
+     c58:	e8 d5 05 00 00       	call   1232 <sleep>
+                printf(0,"Run SigSTOP Second Child\n");
+     c5d:	59                   	pop    %ecx
+     c5e:	58                   	pop    %eax
+     c5f:	68 ee 1d 00 00       	push   $0x1dee
+     c64:	6a 00                	push   $0x0
+     c66:	e8 95 06 00 00       	call   1300 <printf>
+    kill(child_kill,signum);
+     c6b:	58                   	pop    %eax
+     c6c:	5a                   	pop    %edx
+     c6d:	6a 11                	push   $0x11
+     c6f:	53                   	push   %ebx
+     c70:	e8 5d 05 00 00       	call   11d2 <kill>
                 printf(0, "@@@@@1\n");
+     c75:	59                   	pop    %ecx
+     c76:	58                   	pop    %eax
+     c77:	68 08 1e 00 00       	push   $0x1e08
+     c7c:	6a 00                	push   $0x0
+     c7e:	e8 7d 06 00 00       	call   1300 <printf>
+                sleep(20);
+     c83:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     c8a:	e8 a3 05 00 00       	call   1232 <sleep>
+                printf(0, "@@@@@2\n");
+     c8f:	58                   	pop    %eax
+     c90:	5a                   	pop    %edx
+     c91:	68 10 1e 00 00       	push   $0x1e10
+     c96:	6a 00                	push   $0x0
+     c98:	e8 63 06 00 00       	call   1300 <printf>
+                printf(0,"Send SIGCONT child two\n");
+     c9d:	59                   	pop    %ecx
+     c9e:	58                   	pop    %eax
+     c9f:	68 18 1e 00 00       	push   $0x1e18
+     ca4:	6a 00                	push   $0x0
+     ca6:	e8 55 06 00 00       	call   1300 <printf>
+    kill(child_kill,signum);
+     cab:	58                   	pop    %eax
+     cac:	5a                   	pop    %edx
+     cad:	6a 13                	push   $0x13
+     caf:	53                   	push   %ebx
+     cb0:	e8 1d 05 00 00       	call   11d2 <kill>
+                sleep(20);
+     cb5:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     cbc:	e8 71 05 00 00       	call   1232 <sleep>
+                printf(0,"Send SIGSTOP child2 AGAIN\n");
+     cc1:	59                   	pop    %ecx
+     cc2:	58                   	pop    %eax
+     cc3:	68 30 1e 00 00       	push   $0x1e30
+     cc8:	6a 00                	push   $0x0
+     cca:	e8 31 06 00 00       	call   1300 <printf>
+    kill(child_kill,signum);
+     ccf:	58                   	pop    %eax
+     cd0:	5a                   	pop    %edx
+     cd1:	6a 11                	push   $0x11
+     cd3:	53                   	push   %ebx
+     cd4:	e8 f9 04 00 00       	call   11d2 <kill>
+                printf(0, "@@@@@1\n");
+     cd9:	59                   	pop    %ecx
+     cda:	58                   	pop    %eax
+     cdb:	68 08 1e 00 00       	push   $0x1e08
+     ce0:	6a 00                	push   $0x0
+     ce2:	e8 19 06 00 00       	call   1300 <printf>
+                sleep(20);
+     ce7:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     cee:	e8 3f 05 00 00       	call   1232 <sleep>
+                printf(0, "@@@@@2\n");
+     cf3:	58                   	pop    %eax
+     cf4:	5a                   	pop    %edx
+     cf5:	68 10 1e 00 00       	push   $0x1e10
+     cfa:	6a 00                	push   $0x0
+     cfc:	e8 ff 05 00 00       	call   1300 <printf>
+                printf(0,"Send SIGKILL to child2\n");
+     d01:	59                   	pop    %ecx
+     d02:	58                   	pop    %eax
+     d03:	68 4b 1e 00 00       	push   $0x1e4b
+     d08:	6a 00                	push   $0x0
+     d0a:	e8 f1 05 00 00       	call   1300 <printf>
+    kill(child_kill,signum);
+     d0f:	58                   	pop    %eax
+     d10:	5a                   	pop    %edx
+     d11:	6a 09                	push   $0x9
+     d13:	53                   	push   %ebx
+     d14:	e8 b9 04 00 00       	call   11d2 <kill>
+                sleep(30);
+     d19:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
+     d20:	e8 0d 05 00 00       	call   1232 <sleep>
+                printf(0,"Send SIGCONT to child2\n");
      d25:	59                   	pop    %ecx
      d26:	58                   	pop    %eax
-     d27:	68 b0 1f 00 00       	push   $0x1fb0
+     d27:	68 63 1e 00 00       	push   $0x1e63
      d2c:	6a 00                	push   $0x0
-     d2e:	e8 7d 06 00 00       	call   13b0 <printf>
-                sleep(20);
-     d33:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
-     d3a:	e8 a3 05 00 00       	call   12e2 <sleep>
-                printf(0, "@@@@@2\n");
-     d3f:	58                   	pop    %eax
-     d40:	5a                   	pop    %edx
-     d41:	68 b8 1f 00 00       	push   $0x1fb8
-     d46:	6a 00                	push   $0x0
-     d48:	e8 63 06 00 00       	call   13b0 <printf>
-                printf(0,"Send SIGCONT child two\n");
-     d4d:	59                   	pop    %ecx
-     d4e:	58                   	pop    %eax
-     d4f:	68 c0 1f 00 00       	push   $0x1fc0
-     d54:	6a 00                	push   $0x0
-     d56:	e8 55 06 00 00       	call   13b0 <printf>
+     d2e:	e8 cd 05 00 00       	call   1300 <printf>
     kill(child_kill,signum);
-     d5b:	58                   	pop    %eax
-     d5c:	5a                   	pop    %edx
-     d5d:	6a 13                	push   $0x13
-     d5f:	53                   	push   %ebx
-     d60:	e8 1d 05 00 00       	call   1282 <kill>
-                sleep(20);
-     d65:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
-     d6c:	e8 71 05 00 00       	call   12e2 <sleep>
-                printf(0,"Send SIGSTOP child2 AGAIN\n");
-     d71:	59                   	pop    %ecx
-     d72:	58                   	pop    %eax
-     d73:	68 d8 1f 00 00       	push   $0x1fd8
-     d78:	6a 00                	push   $0x0
-     d7a:	e8 31 06 00 00       	call   13b0 <printf>
-    kill(child_kill,signum);
-     d7f:	58                   	pop    %eax
-     d80:	5a                   	pop    %edx
-     d81:	6a 11                	push   $0x11
-     d83:	53                   	push   %ebx
-     d84:	e8 f9 04 00 00       	call   1282 <kill>
-                printf(0, "@@@@@1\n");
-     d89:	59                   	pop    %ecx
-     d8a:	58                   	pop    %eax
-     d8b:	68 b0 1f 00 00       	push   $0x1fb0
-     d90:	6a 00                	push   $0x0
-     d92:	e8 19 06 00 00       	call   13b0 <printf>
-                sleep(20);
-     d97:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
-     d9e:	e8 3f 05 00 00       	call   12e2 <sleep>
-                printf(0, "@@@@@2\n");
-     da3:	58                   	pop    %eax
-     da4:	5a                   	pop    %edx
-     da5:	68 b8 1f 00 00       	push   $0x1fb8
-     daa:	6a 00                	push   $0x0
-     dac:	e8 ff 05 00 00       	call   13b0 <printf>
-                printf(0,"Send SIGKILL to child2\n");
-     db1:	59                   	pop    %ecx
-     db2:	58                   	pop    %eax
-     db3:	68 f3 1f 00 00       	push   $0x1ff3
-     db8:	6a 00                	push   $0x0
-     dba:	e8 f1 05 00 00       	call   13b0 <printf>
-    kill(child_kill,signum);
-     dbf:	58                   	pop    %eax
-     dc0:	5a                   	pop    %edx
-     dc1:	6a 09                	push   $0x9
-     dc3:	53                   	push   %ebx
-     dc4:	e8 b9 04 00 00       	call   1282 <kill>
+     d33:	58                   	pop    %eax
+     d34:	5a                   	pop    %edx
+     d35:	6a 13                	push   $0x13
+     d37:	53                   	push   %ebx
+     d38:	e8 95 04 00 00       	call   11d2 <kill>
                 sleep(30);
-     dc9:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
-     dd0:	e8 0d 05 00 00       	call   12e2 <sleep>
-                printf(0,"Send SIGCONT to child2\n");
-     dd5:	59                   	pop    %ecx
-     dd6:	58                   	pop    %eax
-     dd7:	68 0b 20 00 00       	push   $0x200b
-     ddc:	6a 00                	push   $0x0
-     dde:	e8 cd 05 00 00       	call   13b0 <printf>
-    kill(child_kill,signum);
-     de3:	58                   	pop    %eax
-     de4:	5a                   	pop    %edx
-     de5:	6a 13                	push   $0x13
-     de7:	53                   	push   %ebx
-     de8:	e8 95 04 00 00       	call   1282 <kill>
-                sleep(30);
-     ded:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
-     df4:	e8 e9 04 00 00       	call   12e2 <sleep>
+     d3d:	c7 04 24 1e 00 00 00 	movl   $0x1e,(%esp)
+     d44:	e8 e9 04 00 00       	call   1232 <sleep>
                 exit();
-     df9:	e8 54 04 00 00       	call   1252 <exit>
+     d49:	e8 54 04 00 00       	call   11a2 <exit>
                     exit();
-     dfe:	e8 4f 04 00 00       	call   1252 <exit>
-     e03:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-     e09:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+     d4e:	e8 4f 04 00 00       	call   11a2 <exit>
+     d53:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+     d59:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-00000e10 <sleepTest>:
+00000d60 <sleepTest>:
 void sleepTest() {
-     e10:	55                   	push   %ebp
-     e11:	89 e5                	mov    %esp,%ebp
-     e13:	53                   	push   %ebx
-     e14:	83 ec 04             	sub    $0x4,%esp
+     d60:	55                   	push   %ebp
+     d61:	89 e5                	mov    %esp,%ebp
+     d63:	53                   	push   %ebx
+     d64:	83 ec 04             	sub    $0x4,%esp
     if((child_pid[0]=fork()) == 0)
-     e17:	e8 2e 04 00 00       	call   124a <fork>
-     e1c:	85 c0                	test   %eax,%eax
-     e1e:	0f 85 84 00 00 00    	jne    ea8 <sleepTest+0x98>
+     d67:	e8 2e 04 00 00       	call   119a <fork>
+     d6c:	85 c0                	test   %eax,%eax
+     d6e:	0f 85 84 00 00 00    	jne    df8 <sleepTest+0x98>
         struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
-     e24:	83 ec 0c             	sub    $0xc,%esp
-     e27:	6a 08                	push   $0x8
-     e29:	e8 e2 07 00 00       	call   1610 <malloc>
+     d74:	83 ec 0c             	sub    $0xc,%esp
+     d77:	6a 08                	push   $0x8
+     d79:	e8 e2 07 00 00       	call   1560 <malloc>
         KillHAndlerSignal->sa_handler = (void (*)())SIGKILL;
-     e2e:	c7 00 09 00 00 00    	movl   $0x9,(%eax)
+     d7e:	c7 00 09 00 00 00    	movl   $0x9,(%eax)
         KillHAndlerSignal->sigmask = 0;
-     e34:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
+     d84:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
         struct sigaction *KillHAndlerSignal = malloc(sizeof(struct sigaction));
-     e3b:	89 c3                	mov    %eax,%ebx
+     d8b:	89 c3                	mov    %eax,%ebx
         printf(0,"Created KillHAndlerSignal (KILL) with mask that is 0\n");
-     e3d:	58                   	pop    %eax
-     e3e:	5a                   	pop    %edx
-     e3f:	68 10 1c 00 00       	push   $0x1c10
-     e44:	6a 00                	push   $0x0
-     e46:	e8 65 05 00 00       	call   13b0 <printf>
+     d8d:	58                   	pop    %eax
+     d8e:	5a                   	pop    %edx
+     d8f:	68 60 1b 00 00       	push   $0x1b60
+     d94:	6a 00                	push   $0x0
+     d96:	e8 65 05 00 00       	call   1300 <printf>
         sigaction(4,KillHAndlerSignal,null);
-     e4b:	83 c4 0c             	add    $0xc,%esp
-     e4e:	6a 00                	push   $0x0
-     e50:	53                   	push   %ebx
-     e51:	6a 04                	push   $0x4
-     e53:	e8 a2 04 00 00       	call   12fa <sigaction>
+     d9b:	83 c4 0c             	add    $0xc,%esp
+     d9e:	6a 00                	push   $0x0
+     da0:	53                   	push   %ebx
+     da1:	6a 04                	push   $0x4
+     da3:	e8 a2 04 00 00       	call   124a <sigaction>
         printf(0,"Sending KillHAndlerSignal (22)to process\n");
-     e58:	59                   	pop    %ecx
-     e59:	5b                   	pop    %ebx
-     e5a:	68 48 1c 00 00       	push   $0x1c48
-     e5f:	6a 00                	push   $0x0
-     e61:	e8 4a 05 00 00       	call   13b0 <printf>
+     da8:	59                   	pop    %ecx
+     da9:	5b                   	pop    %ebx
+     daa:	68 98 1b 00 00       	push   $0x1b98
+     daf:	6a 00                	push   $0x0
+     db1:	e8 4a 05 00 00       	call   1300 <printf>
         kill_self_test(4);
-     e66:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)
-     e6d:	e8 ee f9 ff ff       	call   860 <kill_self_test>
+     db6:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)
+     dbd:	e8 ee f9 ff ff       	call   7b0 <kill_self_test>
         sleep(1250);
-     e72:	c7 04 24 e2 04 00 00 	movl   $0x4e2,(%esp)
-     e79:	e8 64 04 00 00       	call   12e2 <sleep>
-     e7e:	83 c4 10             	add    $0x10,%esp
-     e81:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+     dc2:	c7 04 24 e2 04 00 00 	movl   $0x4e2,(%esp)
+     dc9:	e8 64 04 00 00       	call   1232 <sleep>
+     dce:	83 c4 10             	add    $0x10,%esp
+     dd1:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
             printf(0,"Process 1 should have been killed already!\n");
-     e88:	83 ec 08             	sub    $0x8,%esp
-     e8b:	68 74 1c 00 00       	push   $0x1c74
-     e90:	6a 00                	push   $0x0
-     e92:	e8 19 05 00 00       	call   13b0 <printf>
+     dd8:	83 ec 08             	sub    $0x8,%esp
+     ddb:	68 c4 1b 00 00       	push   $0x1bc4
+     de0:	6a 00                	push   $0x0
+     de2:	e8 19 05 00 00       	call   1300 <printf>
             sleep(100);
-     e97:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
-     e9e:	e8 3f 04 00 00       	call   12e2 <sleep>
-     ea3:	83 c4 10             	add    $0x10,%esp
-     ea6:	eb e0                	jmp    e88 <sleepTest+0x78>
+     de7:	c7 04 24 64 00 00 00 	movl   $0x64,(%esp)
+     dee:	e8 3f 04 00 00       	call   1232 <sleep>
+     df3:	83 c4 10             	add    $0x10,%esp
+     df6:	eb e0                	jmp    dd8 <sleepTest+0x78>
         if((child_pid[1]=fork()) == 0)
-     ea8:	e8 9d 03 00 00       	call   124a <fork>
-     ead:	85 c0                	test   %eax,%eax
-     eaf:	75 3d                	jne    eee <sleepTest+0xde>
+     df8:	e8 9d 03 00 00       	call   119a <fork>
+     dfd:	85 c0                	test   %eax,%eax
+     dff:	75 3d                	jne    e3e <sleepTest+0xde>
             printf(0,"Starting Loop\n");
-     eb1:	51                   	push   %ecx
-     eb2:	51                   	push   %ecx
-     eb3:	68 02 1f 00 00       	push   $0x1f02
-     eb8:	6a 00                	push   $0x0
-     eba:	e8 f1 04 00 00       	call   13b0 <printf>
-     ebf:	83 c4 10             	add    $0x10,%esp
-     ec2:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+     e01:	51                   	push   %ecx
+     e02:	51                   	push   %ecx
+     e03:	68 5a 1d 00 00       	push   $0x1d5a
+     e08:	6a 00                	push   $0x0
+     e0a:	e8 f1 04 00 00       	call   1300 <printf>
+     e0f:	83 c4 10             	add    $0x10,%esp
+     e12:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
                 printf(0,"pid - %d child two\n",getpid());
-     ec8:	e8 05 04 00 00       	call   12d2 <getpid>
-     ecd:	83 ec 04             	sub    $0x4,%esp
-     ed0:	50                   	push   %eax
-     ed1:	68 11 1f 00 00       	push   $0x1f11
-     ed6:	6a 00                	push   $0x0
-     ed8:	e8 d3 04 00 00       	call   13b0 <printf>
+     e18:	e8 05 04 00 00       	call   1222 <getpid>
+     e1d:	83 ec 04             	sub    $0x4,%esp
+     e20:	50                   	push   %eax
+     e21:	68 69 1d 00 00       	push   $0x1d69
+     e26:	6a 00                	push   $0x0
+     e28:	e8 d3 04 00 00       	call   1300 <printf>
                 sleep(50);
-     edd:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
-     ee4:	e8 f9 03 00 00       	call   12e2 <sleep>
-     ee9:	83 c4 10             	add    $0x10,%esp
-     eec:	eb da                	jmp    ec8 <sleepTest+0xb8>
+     e2d:	c7 04 24 32 00 00 00 	movl   $0x32,(%esp)
+     e34:	e8 f9 03 00 00       	call   1232 <sleep>
+     e39:	83 c4 10             	add    $0x10,%esp
+     e3c:	eb da                	jmp    e18 <sleepTest+0xb8>
             if((child_pid[2]=fork()) == 0)
-     eee:	e8 57 03 00 00       	call   124a <fork>
-     ef3:	85 c0                	test   %eax,%eax
-     ef5:	74 37                	je     f2e <sleepTest+0x11e>
+     e3e:	e8 57 03 00 00       	call   119a <fork>
+     e43:	85 c0                	test   %eax,%eax
+     e45:	74 37                	je     e7e <sleepTest+0x11e>
                 if((child_pid[3]=fork()) == 0)
-     ef7:	e8 4e 03 00 00       	call   124a <fork>
-     efc:	85 c0                	test   %eax,%eax
-     efe:	0f 84 f3 00 00 00    	je     ff7 <sleepTest+0x1e7>
+     e47:	e8 4e 03 00 00       	call   119a <fork>
+     e4c:	85 c0                	test   %eax,%eax
+     e4e:	0f 84 f3 00 00 00    	je     f47 <sleepTest+0x1e7>
     wait();
-     f04:	e8 51 03 00 00       	call   125a <wait>
+     e54:	e8 51 03 00 00       	call   11aa <wait>
     wait();
-     f09:	e8 4c 03 00 00       	call   125a <wait>
+     e59:	e8 4c 03 00 00       	call   11aa <wait>
     wait();
-     f0e:	e8 47 03 00 00       	call   125a <wait>
+     e5e:	e8 47 03 00 00       	call   11aa <wait>
     wait();
-     f13:	e8 42 03 00 00       	call   125a <wait>
+     e63:	e8 42 03 00 00       	call   11aa <wait>
     printf(0,"parent\n");
-     f18:	50                   	push   %eax
-     f19:	50                   	push   %eax
-     f1a:	68 42 1f 00 00       	push   $0x1f42
-     f1f:	6a 00                	push   $0x0
-     f21:	e8 8a 04 00 00       	call   13b0 <printf>
+     e68:	50                   	push   %eax
+     e69:	50                   	push   %eax
+     e6a:	68 9a 1d 00 00       	push   $0x1d9a
+     e6f:	6a 00                	push   $0x0
+     e71:	e8 8a 04 00 00       	call   1300 <printf>
     return;
-     f26:	83 c4 10             	add    $0x10,%esp
+     e76:	83 c4 10             	add    $0x10,%esp
 }
-     f29:	8b 5d fc             	mov    -0x4(%ebp),%ebx
-     f2c:	c9                   	leave  
-     f2d:	c3                   	ret    
+     e79:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+     e7c:	c9                   	leave  
+     e7d:	c3                   	ret    
                 sleep(25);
-     f2e:	83 ec 0c             	sub    $0xc,%esp
-     f31:	6a 19                	push   $0x19
-     f33:	e8 aa 03 00 00       	call   12e2 <sleep>
+     e7e:	83 ec 0c             	sub    $0xc,%esp
+     e81:	6a 19                	push   $0x19
+     e83:	e8 aa 03 00 00       	call   1232 <sleep>
                 printf(0,"Run SigSTOP Second Child\n");
-     f38:	5a                   	pop    %edx
-     f39:	59                   	pop    %ecx
-     f3a:	68 96 1f 00 00       	push   $0x1f96
-     f3f:	6a 00                	push   $0x0
-     f41:	e8 6a 04 00 00       	call   13b0 <printf>
+     e88:	5a                   	pop    %edx
+     e89:	59                   	pop    %ecx
+     e8a:	68 ee 1d 00 00       	push   $0x1dee
+     e8f:	6a 00                	push   $0x0
+     e91:	e8 6a 04 00 00       	call   1300 <printf>
                 printf(0, "@@@@@1\n");
-     f46:	5b                   	pop    %ebx
-     f47:	58                   	pop    %eax
-     f48:	68 b0 1f 00 00       	push   $0x1fb0
-     f4d:	6a 00                	push   $0x0
-     f4f:	e8 5c 04 00 00       	call   13b0 <printf>
+     e96:	5b                   	pop    %ebx
+     e97:	58                   	pop    %eax
+     e98:	68 08 1e 00 00       	push   $0x1e08
+     e9d:	6a 00                	push   $0x0
+     e9f:	e8 5c 04 00 00       	call   1300 <printf>
                 sleep(20);
-     f54:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
-     f5b:	e8 82 03 00 00       	call   12e2 <sleep>
+     ea4:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     eab:	e8 82 03 00 00       	call   1232 <sleep>
                 printf(0, "@@@@@2\n");
-     f60:	58                   	pop    %eax
-     f61:	5a                   	pop    %edx
-     f62:	68 b8 1f 00 00       	push   $0x1fb8
-     f67:	6a 00                	push   $0x0
-     f69:	e8 42 04 00 00       	call   13b0 <printf>
+     eb0:	58                   	pop    %eax
+     eb1:	5a                   	pop    %edx
+     eb2:	68 10 1e 00 00       	push   $0x1e10
+     eb7:	6a 00                	push   $0x0
+     eb9:	e8 42 04 00 00       	call   1300 <printf>
                 printf(0,"Send SIGCONT child two\n");
-     f6e:	59                   	pop    %ecx
-     f6f:	5b                   	pop    %ebx
-     f70:	68 c0 1f 00 00       	push   $0x1fc0
-     f75:	6a 00                	push   $0x0
-     f77:	e8 34 04 00 00       	call   13b0 <printf>
+     ebe:	59                   	pop    %ecx
+     ebf:	5b                   	pop    %ebx
+     ec0:	68 18 1e 00 00       	push   $0x1e18
+     ec5:	6a 00                	push   $0x0
+     ec7:	e8 34 04 00 00       	call   1300 <printf>
                 sleep(20);
-     f7c:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
-     f83:	e8 5a 03 00 00       	call   12e2 <sleep>
+     ecc:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     ed3:	e8 5a 03 00 00       	call   1232 <sleep>
                 printf(0,"Send SIGSTOP child2 AGAIN\n");
-     f88:	58                   	pop    %eax
-     f89:	5a                   	pop    %edx
-     f8a:	68 d8 1f 00 00       	push   $0x1fd8
-     f8f:	6a 00                	push   $0x0
-     f91:	e8 1a 04 00 00       	call   13b0 <printf>
+     ed8:	58                   	pop    %eax
+     ed9:	5a                   	pop    %edx
+     eda:	68 30 1e 00 00       	push   $0x1e30
+     edf:	6a 00                	push   $0x0
+     ee1:	e8 1a 04 00 00       	call   1300 <printf>
                 printf(0, "@@@@@1\n");
-     f96:	59                   	pop    %ecx
-     f97:	5b                   	pop    %ebx
-     f98:	68 b0 1f 00 00       	push   $0x1fb0
-     f9d:	6a 00                	push   $0x0
-     f9f:	e8 0c 04 00 00       	call   13b0 <printf>
+     ee6:	59                   	pop    %ecx
+     ee7:	5b                   	pop    %ebx
+     ee8:	68 08 1e 00 00       	push   $0x1e08
+     eed:	6a 00                	push   $0x0
+     eef:	e8 0c 04 00 00       	call   1300 <printf>
                 sleep(20);
-     fa4:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
-     fab:	e8 32 03 00 00       	call   12e2 <sleep>
+     ef4:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+     efb:	e8 32 03 00 00       	call   1232 <sleep>
                 printf(0, "@@@@@2\n");
-     fb0:	58                   	pop    %eax
-     fb1:	5a                   	pop    %edx
-     fb2:	68 b8 1f 00 00       	push   $0x1fb8
-     fb7:	6a 00                	push   $0x0
-     fb9:	e8 f2 03 00 00       	call   13b0 <printf>
+     f00:	58                   	pop    %eax
+     f01:	5a                   	pop    %edx
+     f02:	68 10 1e 00 00       	push   $0x1e10
+     f07:	6a 00                	push   $0x0
+     f09:	e8 f2 03 00 00       	call   1300 <printf>
                 printf(0,"Send SIGKILL to child2\n");
-     fbe:	59                   	pop    %ecx
-     fbf:	5b                   	pop    %ebx
-     fc0:	68 f3 1f 00 00       	push   $0x1ff3
-     fc5:	6a 00                	push   $0x0
-     fc7:	e8 e4 03 00 00       	call   13b0 <printf>
+     f0e:	59                   	pop    %ecx
+     f0f:	5b                   	pop    %ebx
+     f10:	68 4b 1e 00 00       	push   $0x1e4b
+     f15:	6a 00                	push   $0x0
+     f17:	e8 e4 03 00 00       	call   1300 <printf>
                 sleep(40);
-     fcc:	c7 04 24 28 00 00 00 	movl   $0x28,(%esp)
-     fd3:	e8 0a 03 00 00       	call   12e2 <sleep>
+     f1c:	c7 04 24 28 00 00 00 	movl   $0x28,(%esp)
+     f23:	e8 0a 03 00 00       	call   1232 <sleep>
                 printf(0,"Send SIGCONT to child2\n");
-     fd8:	58                   	pop    %eax
-     fd9:	5a                   	pop    %edx
-     fda:	68 0b 20 00 00       	push   $0x200b
-     fdf:	6a 00                	push   $0x0
-     fe1:	e8 ca 03 00 00       	call   13b0 <printf>
+     f28:	58                   	pop    %eax
+     f29:	5a                   	pop    %edx
+     f2a:	68 63 1e 00 00       	push   $0x1e63
+     f2f:	6a 00                	push   $0x0
+     f31:	e8 ca 03 00 00       	call   1300 <printf>
                 sleep(45);
-     fe6:	c7 04 24 2d 00 00 00 	movl   $0x2d,(%esp)
-     fed:	e8 f0 02 00 00       	call   12e2 <sleep>
+     f36:	c7 04 24 2d 00 00 00 	movl   $0x2d,(%esp)
+     f3d:	e8 f0 02 00 00       	call   1232 <sleep>
                 exit();
-     ff2:	e8 5b 02 00 00       	call   1252 <exit>
+     f42:	e8 5b 02 00 00       	call   11a2 <exit>
                     exit();
-     ff7:	e8 56 02 00 00       	call   1252 <exit>
-     ffc:	66 90                	xchg   %ax,%ax
-     ffe:	66 90                	xchg   %ax,%ax
+     f47:	e8 56 02 00 00       	call   11a2 <exit>
+     f4c:	66 90                	xchg   %ax,%ax
+     f4e:	66 90                	xchg   %ax,%ax
 
-00001000 <strcpy>:
+00000f50 <strcpy>:
 #include "user.h"
 #include "x86.h"
 
 char*
 strcpy(char *s, const char *t)
 {
-    1000:	55                   	push   %ebp
-    1001:	89 e5                	mov    %esp,%ebp
-    1003:	53                   	push   %ebx
-    1004:	8b 45 08             	mov    0x8(%ebp),%eax
-    1007:	8b 4d 0c             	mov    0xc(%ebp),%ecx
+     f50:	55                   	push   %ebp
+     f51:	89 e5                	mov    %esp,%ebp
+     f53:	53                   	push   %ebx
+     f54:	8b 45 08             	mov    0x8(%ebp),%eax
+     f57:	8b 4d 0c             	mov    0xc(%ebp),%ecx
   char *os;
 
   os = s;
   while((*s++ = *t++) != 0)
-    100a:	89 c2                	mov    %eax,%edx
-    100c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-    1010:	83 c1 01             	add    $0x1,%ecx
-    1013:	0f b6 59 ff          	movzbl -0x1(%ecx),%ebx
-    1017:	83 c2 01             	add    $0x1,%edx
-    101a:	84 db                	test   %bl,%bl
-    101c:	88 5a ff             	mov    %bl,-0x1(%edx)
-    101f:	75 ef                	jne    1010 <strcpy+0x10>
+     f5a:	89 c2                	mov    %eax,%edx
+     f5c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+     f60:	83 c1 01             	add    $0x1,%ecx
+     f63:	0f b6 59 ff          	movzbl -0x1(%ecx),%ebx
+     f67:	83 c2 01             	add    $0x1,%edx
+     f6a:	84 db                	test   %bl,%bl
+     f6c:	88 5a ff             	mov    %bl,-0x1(%edx)
+     f6f:	75 ef                	jne    f60 <strcpy+0x10>
     ;
   return os;
 }
-    1021:	5b                   	pop    %ebx
-    1022:	5d                   	pop    %ebp
-    1023:	c3                   	ret    
-    1024:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-    102a:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+     f71:	5b                   	pop    %ebx
+     f72:	5d                   	pop    %ebp
+     f73:	c3                   	ret    
+     f74:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+     f7a:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
 
-00001030 <strcmp>:
+00000f80 <strcmp>:
 
 int
 strcmp(const char *p, const char *q)
 {
-    1030:	55                   	push   %ebp
-    1031:	89 e5                	mov    %esp,%ebp
-    1033:	53                   	push   %ebx
-    1034:	8b 55 08             	mov    0x8(%ebp),%edx
-    1037:	8b 4d 0c             	mov    0xc(%ebp),%ecx
+     f80:	55                   	push   %ebp
+     f81:	89 e5                	mov    %esp,%ebp
+     f83:	53                   	push   %ebx
+     f84:	8b 55 08             	mov    0x8(%ebp),%edx
+     f87:	8b 4d 0c             	mov    0xc(%ebp),%ecx
   while(*p && *p == *q)
-    103a:	0f b6 02             	movzbl (%edx),%eax
-    103d:	0f b6 19             	movzbl (%ecx),%ebx
-    1040:	84 c0                	test   %al,%al
-    1042:	75 1c                	jne    1060 <strcmp+0x30>
-    1044:	eb 2a                	jmp    1070 <strcmp+0x40>
-    1046:	8d 76 00             	lea    0x0(%esi),%esi
-    1049:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+     f8a:	0f b6 02             	movzbl (%edx),%eax
+     f8d:	0f b6 19             	movzbl (%ecx),%ebx
+     f90:	84 c0                	test   %al,%al
+     f92:	75 1c                	jne    fb0 <strcmp+0x30>
+     f94:	eb 2a                	jmp    fc0 <strcmp+0x40>
+     f96:	8d 76 00             	lea    0x0(%esi),%esi
+     f99:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
     p++, q++;
-    1050:	83 c2 01             	add    $0x1,%edx
+     fa0:	83 c2 01             	add    $0x1,%edx
   while(*p && *p == *q)
-    1053:	0f b6 02             	movzbl (%edx),%eax
+     fa3:	0f b6 02             	movzbl (%edx),%eax
     p++, q++;
-    1056:	83 c1 01             	add    $0x1,%ecx
-    1059:	0f b6 19             	movzbl (%ecx),%ebx
+     fa6:	83 c1 01             	add    $0x1,%ecx
+     fa9:	0f b6 19             	movzbl (%ecx),%ebx
   while(*p && *p == *q)
-    105c:	84 c0                	test   %al,%al
-    105e:	74 10                	je     1070 <strcmp+0x40>
-    1060:	38 d8                	cmp    %bl,%al
-    1062:	74 ec                	je     1050 <strcmp+0x20>
+     fac:	84 c0                	test   %al,%al
+     fae:	74 10                	je     fc0 <strcmp+0x40>
+     fb0:	38 d8                	cmp    %bl,%al
+     fb2:	74 ec                	je     fa0 <strcmp+0x20>
   return (uchar)*p - (uchar)*q;
-    1064:	29 d8                	sub    %ebx,%eax
+     fb4:	29 d8                	sub    %ebx,%eax
 }
-    1066:	5b                   	pop    %ebx
-    1067:	5d                   	pop    %ebp
-    1068:	c3                   	ret    
-    1069:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-    1070:	31 c0                	xor    %eax,%eax
+     fb6:	5b                   	pop    %ebx
+     fb7:	5d                   	pop    %ebp
+     fb8:	c3                   	ret    
+     fb9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+     fc0:	31 c0                	xor    %eax,%eax
   return (uchar)*p - (uchar)*q;
-    1072:	29 d8                	sub    %ebx,%eax
+     fc2:	29 d8                	sub    %ebx,%eax
 }
-    1074:	5b                   	pop    %ebx
-    1075:	5d                   	pop    %ebp
-    1076:	c3                   	ret    
-    1077:	89 f6                	mov    %esi,%esi
-    1079:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+     fc4:	5b                   	pop    %ebx
+     fc5:	5d                   	pop    %ebp
+     fc6:	c3                   	ret    
+     fc7:	89 f6                	mov    %esi,%esi
+     fc9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-00001080 <strlen>:
+00000fd0 <strlen>:
 
 uint
 strlen(const char *s)
 {
-    1080:	55                   	push   %ebp
-    1081:	89 e5                	mov    %esp,%ebp
-    1083:	8b 4d 08             	mov    0x8(%ebp),%ecx
+     fd0:	55                   	push   %ebp
+     fd1:	89 e5                	mov    %esp,%ebp
+     fd3:	8b 4d 08             	mov    0x8(%ebp),%ecx
   int n;
 
   for(n = 0; s[n]; n++)
-    1086:	80 39 00             	cmpb   $0x0,(%ecx)
-    1089:	74 15                	je     10a0 <strlen+0x20>
-    108b:	31 d2                	xor    %edx,%edx
-    108d:	8d 76 00             	lea    0x0(%esi),%esi
-    1090:	83 c2 01             	add    $0x1,%edx
-    1093:	80 3c 11 00          	cmpb   $0x0,(%ecx,%edx,1)
-    1097:	89 d0                	mov    %edx,%eax
-    1099:	75 f5                	jne    1090 <strlen+0x10>
+     fd6:	80 39 00             	cmpb   $0x0,(%ecx)
+     fd9:	74 15                	je     ff0 <strlen+0x20>
+     fdb:	31 d2                	xor    %edx,%edx
+     fdd:	8d 76 00             	lea    0x0(%esi),%esi
+     fe0:	83 c2 01             	add    $0x1,%edx
+     fe3:	80 3c 11 00          	cmpb   $0x0,(%ecx,%edx,1)
+     fe7:	89 d0                	mov    %edx,%eax
+     fe9:	75 f5                	jne    fe0 <strlen+0x10>
     ;
   return n;
 }
-    109b:	5d                   	pop    %ebp
-    109c:	c3                   	ret    
-    109d:	8d 76 00             	lea    0x0(%esi),%esi
+     feb:	5d                   	pop    %ebp
+     fec:	c3                   	ret    
+     fed:	8d 76 00             	lea    0x0(%esi),%esi
   for(n = 0; s[n]; n++)
-    10a0:	31 c0                	xor    %eax,%eax
+     ff0:	31 c0                	xor    %eax,%eax
 }
-    10a2:	5d                   	pop    %ebp
-    10a3:	c3                   	ret    
-    10a4:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-    10aa:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+     ff2:	5d                   	pop    %ebp
+     ff3:	c3                   	ret    
+     ff4:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+     ffa:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
 
-000010b0 <memset>:
+00001000 <memset>:
 
 void*
 memset(void *dst, int c, uint n)
 {
-    10b0:	55                   	push   %ebp
-    10b1:	89 e5                	mov    %esp,%ebp
-    10b3:	57                   	push   %edi
-    10b4:	8b 55 08             	mov    0x8(%ebp),%edx
+    1000:	55                   	push   %ebp
+    1001:	89 e5                	mov    %esp,%ebp
+    1003:	57                   	push   %edi
+    1004:	8b 55 08             	mov    0x8(%ebp),%edx
 }
 
 static inline void
 stosb(void *addr, int data, int cnt)
 {
   asm volatile("cld; rep stosb" :
-    10b7:	8b 4d 10             	mov    0x10(%ebp),%ecx
-    10ba:	8b 45 0c             	mov    0xc(%ebp),%eax
-    10bd:	89 d7                	mov    %edx,%edi
-    10bf:	fc                   	cld    
-    10c0:	f3 aa                	rep stos %al,%es:(%edi)
+    1007:	8b 4d 10             	mov    0x10(%ebp),%ecx
+    100a:	8b 45 0c             	mov    0xc(%ebp),%eax
+    100d:	89 d7                	mov    %edx,%edi
+    100f:	fc                   	cld    
+    1010:	f3 aa                	rep stos %al,%es:(%edi)
   stosb(dst, c, n);
   return dst;
 }
-    10c2:	89 d0                	mov    %edx,%eax
-    10c4:	5f                   	pop    %edi
-    10c5:	5d                   	pop    %ebp
-    10c6:	c3                   	ret    
-    10c7:	89 f6                	mov    %esi,%esi
-    10c9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+    1012:	89 d0                	mov    %edx,%eax
+    1014:	5f                   	pop    %edi
+    1015:	5d                   	pop    %ebp
+    1016:	c3                   	ret    
+    1017:	89 f6                	mov    %esi,%esi
+    1019:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-000010d0 <strchr>:
+00001020 <strchr>:
 
 char*
 strchr(const char *s, char c)
 {
-    10d0:	55                   	push   %ebp
-    10d1:	89 e5                	mov    %esp,%ebp
-    10d3:	53                   	push   %ebx
-    10d4:	8b 45 08             	mov    0x8(%ebp),%eax
-    10d7:	8b 5d 0c             	mov    0xc(%ebp),%ebx
+    1020:	55                   	push   %ebp
+    1021:	89 e5                	mov    %esp,%ebp
+    1023:	53                   	push   %ebx
+    1024:	8b 45 08             	mov    0x8(%ebp),%eax
+    1027:	8b 5d 0c             	mov    0xc(%ebp),%ebx
   for(; *s; s++)
-    10da:	0f b6 10             	movzbl (%eax),%edx
-    10dd:	84 d2                	test   %dl,%dl
-    10df:	74 1d                	je     10fe <strchr+0x2e>
+    102a:	0f b6 10             	movzbl (%eax),%edx
+    102d:	84 d2                	test   %dl,%dl
+    102f:	74 1d                	je     104e <strchr+0x2e>
     if(*s == c)
-    10e1:	38 d3                	cmp    %dl,%bl
-    10e3:	89 d9                	mov    %ebx,%ecx
-    10e5:	75 0d                	jne    10f4 <strchr+0x24>
-    10e7:	eb 17                	jmp    1100 <strchr+0x30>
-    10e9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-    10f0:	38 ca                	cmp    %cl,%dl
-    10f2:	74 0c                	je     1100 <strchr+0x30>
+    1031:	38 d3                	cmp    %dl,%bl
+    1033:	89 d9                	mov    %ebx,%ecx
+    1035:	75 0d                	jne    1044 <strchr+0x24>
+    1037:	eb 17                	jmp    1050 <strchr+0x30>
+    1039:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1040:	38 ca                	cmp    %cl,%dl
+    1042:	74 0c                	je     1050 <strchr+0x30>
   for(; *s; s++)
-    10f4:	83 c0 01             	add    $0x1,%eax
-    10f7:	0f b6 10             	movzbl (%eax),%edx
-    10fa:	84 d2                	test   %dl,%dl
-    10fc:	75 f2                	jne    10f0 <strchr+0x20>
+    1044:	83 c0 01             	add    $0x1,%eax
+    1047:	0f b6 10             	movzbl (%eax),%edx
+    104a:	84 d2                	test   %dl,%dl
+    104c:	75 f2                	jne    1040 <strchr+0x20>
       return (char*)s;
   return 0;
-    10fe:	31 c0                	xor    %eax,%eax
+    104e:	31 c0                	xor    %eax,%eax
 }
-    1100:	5b                   	pop    %ebx
-    1101:	5d                   	pop    %ebp
-    1102:	c3                   	ret    
-    1103:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-    1109:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+    1050:	5b                   	pop    %ebx
+    1051:	5d                   	pop    %ebp
+    1052:	c3                   	ret    
+    1053:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+    1059:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-00001110 <gets>:
+00001060 <gets>:
 
 char*
 gets(char *buf, int max)
 {
-    1110:	55                   	push   %ebp
-    1111:	89 e5                	mov    %esp,%ebp
-    1113:	57                   	push   %edi
-    1114:	56                   	push   %esi
-    1115:	53                   	push   %ebx
+    1060:	55                   	push   %ebp
+    1061:	89 e5                	mov    %esp,%ebp
+    1063:	57                   	push   %edi
+    1064:	56                   	push   %esi
+    1065:	53                   	push   %ebx
   int i, cc;
   char c;
 
   for(i=0; i+1 < max; ){
-    1116:	31 f6                	xor    %esi,%esi
-    1118:	89 f3                	mov    %esi,%ebx
+    1066:	31 f6                	xor    %esi,%esi
+    1068:	89 f3                	mov    %esi,%ebx
 {
-    111a:	83 ec 1c             	sub    $0x1c,%esp
-    111d:	8b 7d 08             	mov    0x8(%ebp),%edi
+    106a:	83 ec 1c             	sub    $0x1c,%esp
+    106d:	8b 7d 08             	mov    0x8(%ebp),%edi
   for(i=0; i+1 < max; ){
-    1120:	eb 2f                	jmp    1151 <gets+0x41>
-    1122:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+    1070:	eb 2f                	jmp    10a1 <gets+0x41>
+    1072:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
     cc = read(0, &c, 1);
-    1128:	8d 45 e7             	lea    -0x19(%ebp),%eax
-    112b:	83 ec 04             	sub    $0x4,%esp
-    112e:	6a 01                	push   $0x1
-    1130:	50                   	push   %eax
-    1131:	6a 00                	push   $0x0
-    1133:	e8 32 01 00 00       	call   126a <read>
+    1078:	8d 45 e7             	lea    -0x19(%ebp),%eax
+    107b:	83 ec 04             	sub    $0x4,%esp
+    107e:	6a 01                	push   $0x1
+    1080:	50                   	push   %eax
+    1081:	6a 00                	push   $0x0
+    1083:	e8 32 01 00 00       	call   11ba <read>
     if(cc < 1)
-    1138:	83 c4 10             	add    $0x10,%esp
-    113b:	85 c0                	test   %eax,%eax
-    113d:	7e 1c                	jle    115b <gets+0x4b>
+    1088:	83 c4 10             	add    $0x10,%esp
+    108b:	85 c0                	test   %eax,%eax
+    108d:	7e 1c                	jle    10ab <gets+0x4b>
       break;
     buf[i++] = c;
-    113f:	0f b6 45 e7          	movzbl -0x19(%ebp),%eax
-    1143:	83 c7 01             	add    $0x1,%edi
-    1146:	88 47 ff             	mov    %al,-0x1(%edi)
+    108f:	0f b6 45 e7          	movzbl -0x19(%ebp),%eax
+    1093:	83 c7 01             	add    $0x1,%edi
+    1096:	88 47 ff             	mov    %al,-0x1(%edi)
     if(c == '\n' || c == '\r')
-    1149:	3c 0a                	cmp    $0xa,%al
-    114b:	74 23                	je     1170 <gets+0x60>
-    114d:	3c 0d                	cmp    $0xd,%al
-    114f:	74 1f                	je     1170 <gets+0x60>
+    1099:	3c 0a                	cmp    $0xa,%al
+    109b:	74 23                	je     10c0 <gets+0x60>
+    109d:	3c 0d                	cmp    $0xd,%al
+    109f:	74 1f                	je     10c0 <gets+0x60>
   for(i=0; i+1 < max; ){
-    1151:	83 c3 01             	add    $0x1,%ebx
-    1154:	3b 5d 0c             	cmp    0xc(%ebp),%ebx
-    1157:	89 fe                	mov    %edi,%esi
-    1159:	7c cd                	jl     1128 <gets+0x18>
-    115b:	89 f3                	mov    %esi,%ebx
+    10a1:	83 c3 01             	add    $0x1,%ebx
+    10a4:	3b 5d 0c             	cmp    0xc(%ebp),%ebx
+    10a7:	89 fe                	mov    %edi,%esi
+    10a9:	7c cd                	jl     1078 <gets+0x18>
+    10ab:	89 f3                	mov    %esi,%ebx
       break;
   }
   buf[i] = '\0';
   return buf;
 }
-    115d:	8b 45 08             	mov    0x8(%ebp),%eax
+    10ad:	8b 45 08             	mov    0x8(%ebp),%eax
   buf[i] = '\0';
-    1160:	c6 03 00             	movb   $0x0,(%ebx)
+    10b0:	c6 03 00             	movb   $0x0,(%ebx)
 }
-    1163:	8d 65 f4             	lea    -0xc(%ebp),%esp
-    1166:	5b                   	pop    %ebx
-    1167:	5e                   	pop    %esi
-    1168:	5f                   	pop    %edi
-    1169:	5d                   	pop    %ebp
-    116a:	c3                   	ret    
-    116b:	90                   	nop
-    116c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-    1170:	8b 75 08             	mov    0x8(%ebp),%esi
-    1173:	8b 45 08             	mov    0x8(%ebp),%eax
-    1176:	01 de                	add    %ebx,%esi
-    1178:	89 f3                	mov    %esi,%ebx
+    10b3:	8d 65 f4             	lea    -0xc(%ebp),%esp
+    10b6:	5b                   	pop    %ebx
+    10b7:	5e                   	pop    %esi
+    10b8:	5f                   	pop    %edi
+    10b9:	5d                   	pop    %ebp
+    10ba:	c3                   	ret    
+    10bb:	90                   	nop
+    10bc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    10c0:	8b 75 08             	mov    0x8(%ebp),%esi
+    10c3:	8b 45 08             	mov    0x8(%ebp),%eax
+    10c6:	01 de                	add    %ebx,%esi
+    10c8:	89 f3                	mov    %esi,%ebx
   buf[i] = '\0';
-    117a:	c6 03 00             	movb   $0x0,(%ebx)
+    10ca:	c6 03 00             	movb   $0x0,(%ebx)
 }
-    117d:	8d 65 f4             	lea    -0xc(%ebp),%esp
-    1180:	5b                   	pop    %ebx
-    1181:	5e                   	pop    %esi
-    1182:	5f                   	pop    %edi
-    1183:	5d                   	pop    %ebp
-    1184:	c3                   	ret    
-    1185:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-    1189:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+    10cd:	8d 65 f4             	lea    -0xc(%ebp),%esp
+    10d0:	5b                   	pop    %ebx
+    10d1:	5e                   	pop    %esi
+    10d2:	5f                   	pop    %edi
+    10d3:	5d                   	pop    %ebp
+    10d4:	c3                   	ret    
+    10d5:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    10d9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-00001190 <stat>:
+000010e0 <stat>:
 
 int
 stat(const char *n, struct stat *st)
 {
-    1190:	55                   	push   %ebp
-    1191:	89 e5                	mov    %esp,%ebp
-    1193:	56                   	push   %esi
-    1194:	53                   	push   %ebx
+    10e0:	55                   	push   %ebp
+    10e1:	89 e5                	mov    %esp,%ebp
+    10e3:	56                   	push   %esi
+    10e4:	53                   	push   %ebx
   int fd;
   int r;
 
   fd = open(n, O_RDONLY);
-    1195:	83 ec 08             	sub    $0x8,%esp
-    1198:	6a 00                	push   $0x0
-    119a:	ff 75 08             	pushl  0x8(%ebp)
-    119d:	e8 f0 00 00 00       	call   1292 <open>
+    10e5:	83 ec 08             	sub    $0x8,%esp
+    10e8:	6a 00                	push   $0x0
+    10ea:	ff 75 08             	pushl  0x8(%ebp)
+    10ed:	e8 f0 00 00 00       	call   11e2 <open>
   if(fd < 0)
-    11a2:	83 c4 10             	add    $0x10,%esp
-    11a5:	85 c0                	test   %eax,%eax
-    11a7:	78 27                	js     11d0 <stat+0x40>
+    10f2:	83 c4 10             	add    $0x10,%esp
+    10f5:	85 c0                	test   %eax,%eax
+    10f7:	78 27                	js     1120 <stat+0x40>
     return -1;
   r = fstat(fd, st);
-    11a9:	83 ec 08             	sub    $0x8,%esp
-    11ac:	ff 75 0c             	pushl  0xc(%ebp)
-    11af:	89 c3                	mov    %eax,%ebx
-    11b1:	50                   	push   %eax
-    11b2:	e8 f3 00 00 00       	call   12aa <fstat>
+    10f9:	83 ec 08             	sub    $0x8,%esp
+    10fc:	ff 75 0c             	pushl  0xc(%ebp)
+    10ff:	89 c3                	mov    %eax,%ebx
+    1101:	50                   	push   %eax
+    1102:	e8 f3 00 00 00       	call   11fa <fstat>
   close(fd);
-    11b7:	89 1c 24             	mov    %ebx,(%esp)
+    1107:	89 1c 24             	mov    %ebx,(%esp)
   r = fstat(fd, st);
-    11ba:	89 c6                	mov    %eax,%esi
+    110a:	89 c6                	mov    %eax,%esi
   close(fd);
-    11bc:	e8 b9 00 00 00       	call   127a <close>
+    110c:	e8 b9 00 00 00       	call   11ca <close>
   return r;
-    11c1:	83 c4 10             	add    $0x10,%esp
+    1111:	83 c4 10             	add    $0x10,%esp
 }
-    11c4:	8d 65 f8             	lea    -0x8(%ebp),%esp
-    11c7:	89 f0                	mov    %esi,%eax
-    11c9:	5b                   	pop    %ebx
-    11ca:	5e                   	pop    %esi
-    11cb:	5d                   	pop    %ebp
-    11cc:	c3                   	ret    
-    11cd:	8d 76 00             	lea    0x0(%esi),%esi
+    1114:	8d 65 f8             	lea    -0x8(%ebp),%esp
+    1117:	89 f0                	mov    %esi,%eax
+    1119:	5b                   	pop    %ebx
+    111a:	5e                   	pop    %esi
+    111b:	5d                   	pop    %ebp
+    111c:	c3                   	ret    
+    111d:	8d 76 00             	lea    0x0(%esi),%esi
     return -1;
-    11d0:	be ff ff ff ff       	mov    $0xffffffff,%esi
-    11d5:	eb ed                	jmp    11c4 <stat+0x34>
-    11d7:	89 f6                	mov    %esi,%esi
-    11d9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+    1120:	be ff ff ff ff       	mov    $0xffffffff,%esi
+    1125:	eb ed                	jmp    1114 <stat+0x34>
+    1127:	89 f6                	mov    %esi,%esi
+    1129:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
 
-000011e0 <atoi>:
+00001130 <atoi>:
 
 int
 atoi(const char *s)
 {
-    11e0:	55                   	push   %ebp
-    11e1:	89 e5                	mov    %esp,%ebp
-    11e3:	53                   	push   %ebx
-    11e4:	8b 4d 08             	mov    0x8(%ebp),%ecx
+    1130:	55                   	push   %ebp
+    1131:	89 e5                	mov    %esp,%ebp
+    1133:	53                   	push   %ebx
+    1134:	8b 4d 08             	mov    0x8(%ebp),%ecx
   int n;
 
   n = 0;
   while('0' <= *s && *s <= '9')
-    11e7:	0f be 11             	movsbl (%ecx),%edx
-    11ea:	8d 42 d0             	lea    -0x30(%edx),%eax
-    11ed:	3c 09                	cmp    $0x9,%al
+    1137:	0f be 11             	movsbl (%ecx),%edx
+    113a:	8d 42 d0             	lea    -0x30(%edx),%eax
+    113d:	3c 09                	cmp    $0x9,%al
   n = 0;
-    11ef:	b8 00 00 00 00       	mov    $0x0,%eax
+    113f:	b8 00 00 00 00       	mov    $0x0,%eax
   while('0' <= *s && *s <= '9')
-    11f4:	77 1f                	ja     1215 <atoi+0x35>
-    11f6:	8d 76 00             	lea    0x0(%esi),%esi
-    11f9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+    1144:	77 1f                	ja     1165 <atoi+0x35>
+    1146:	8d 76 00             	lea    0x0(%esi),%esi
+    1149:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
     n = n*10 + *s++ - '0';
-    1200:	8d 04 80             	lea    (%eax,%eax,4),%eax
-    1203:	83 c1 01             	add    $0x1,%ecx
-    1206:	8d 44 42 d0          	lea    -0x30(%edx,%eax,2),%eax
+    1150:	8d 04 80             	lea    (%eax,%eax,4),%eax
+    1153:	83 c1 01             	add    $0x1,%ecx
+    1156:	8d 44 42 d0          	lea    -0x30(%edx,%eax,2),%eax
   while('0' <= *s && *s <= '9')
-    120a:	0f be 11             	movsbl (%ecx),%edx
-    120d:	8d 5a d0             	lea    -0x30(%edx),%ebx
-    1210:	80 fb 09             	cmp    $0x9,%bl
-    1213:	76 eb                	jbe    1200 <atoi+0x20>
+    115a:	0f be 11             	movsbl (%ecx),%edx
+    115d:	8d 5a d0             	lea    -0x30(%edx),%ebx
+    1160:	80 fb 09             	cmp    $0x9,%bl
+    1163:	76 eb                	jbe    1150 <atoi+0x20>
   return n;
 }
-    1215:	5b                   	pop    %ebx
-    1216:	5d                   	pop    %ebp
-    1217:	c3                   	ret    
-    1218:	90                   	nop
-    1219:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1165:	5b                   	pop    %ebx
+    1166:	5d                   	pop    %ebp
+    1167:	c3                   	ret    
+    1168:	90                   	nop
+    1169:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
 
-00001220 <memmove>:
+00001170 <memmove>:
 
 void*
 memmove(void *vdst, const void *vsrc, int n)
 {
-    1220:	55                   	push   %ebp
-    1221:	89 e5                	mov    %esp,%ebp
-    1223:	56                   	push   %esi
-    1224:	53                   	push   %ebx
-    1225:	8b 5d 10             	mov    0x10(%ebp),%ebx
-    1228:	8b 45 08             	mov    0x8(%ebp),%eax
-    122b:	8b 75 0c             	mov    0xc(%ebp),%esi
+    1170:	55                   	push   %ebp
+    1171:	89 e5                	mov    %esp,%ebp
+    1173:	56                   	push   %esi
+    1174:	53                   	push   %ebx
+    1175:	8b 5d 10             	mov    0x10(%ebp),%ebx
+    1178:	8b 45 08             	mov    0x8(%ebp),%eax
+    117b:	8b 75 0c             	mov    0xc(%ebp),%esi
   char *dst;
   const char *src;
 
   dst = vdst;
   src = vsrc;
   while(n-- > 0)
-    122e:	85 db                	test   %ebx,%ebx
-    1230:	7e 14                	jle    1246 <memmove+0x26>
-    1232:	31 d2                	xor    %edx,%edx
-    1234:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    117e:	85 db                	test   %ebx,%ebx
+    1180:	7e 14                	jle    1196 <memmove+0x26>
+    1182:	31 d2                	xor    %edx,%edx
+    1184:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
     *dst++ = *src++;
-    1238:	0f b6 0c 16          	movzbl (%esi,%edx,1),%ecx
-    123c:	88 0c 10             	mov    %cl,(%eax,%edx,1)
-    123f:	83 c2 01             	add    $0x1,%edx
+    1188:	0f b6 0c 16          	movzbl (%esi,%edx,1),%ecx
+    118c:	88 0c 10             	mov    %cl,(%eax,%edx,1)
+    118f:	83 c2 01             	add    $0x1,%edx
   while(n-- > 0)
-    1242:	39 d3                	cmp    %edx,%ebx
-    1244:	75 f2                	jne    1238 <memmove+0x18>
+    1192:	39 d3                	cmp    %edx,%ebx
+    1194:	75 f2                	jne    1188 <memmove+0x18>
   return vdst;
 }
-    1246:	5b                   	pop    %ebx
-    1247:	5e                   	pop    %esi
-    1248:	5d                   	pop    %ebp
-    1249:	c3                   	ret    
+    1196:	5b                   	pop    %ebx
+    1197:	5e                   	pop    %esi
+    1198:	5d                   	pop    %ebp
+    1199:	c3                   	ret    
 
-0000124a <fork>:
+0000119a <fork>:
   name: \
     movl $SYS_ ## name, %eax; \
     int $T_SYSCALL; \
     ret
 
 SYSCALL(fork)
-    124a:	b8 01 00 00 00       	mov    $0x1,%eax
+    119a:	b8 01 00 00 00       	mov    $0x1,%eax
+    119f:	cd 40                	int    $0x40
+    11a1:	c3                   	ret    
+
+000011a2 <exit>:
+SYSCALL(exit)
+    11a2:	b8 02 00 00 00       	mov    $0x2,%eax
+    11a7:	cd 40                	int    $0x40
+    11a9:	c3                   	ret    
+
+000011aa <wait>:
+SYSCALL(wait)
+    11aa:	b8 03 00 00 00       	mov    $0x3,%eax
+    11af:	cd 40                	int    $0x40
+    11b1:	c3                   	ret    
+
+000011b2 <pipe>:
+SYSCALL(pipe)
+    11b2:	b8 04 00 00 00       	mov    $0x4,%eax
+    11b7:	cd 40                	int    $0x40
+    11b9:	c3                   	ret    
+
+000011ba <read>:
+SYSCALL(read)
+    11ba:	b8 05 00 00 00       	mov    $0x5,%eax
+    11bf:	cd 40                	int    $0x40
+    11c1:	c3                   	ret    
+
+000011c2 <write>:
+SYSCALL(write)
+    11c2:	b8 10 00 00 00       	mov    $0x10,%eax
+    11c7:	cd 40                	int    $0x40
+    11c9:	c3                   	ret    
+
+000011ca <close>:
+SYSCALL(close)
+    11ca:	b8 15 00 00 00       	mov    $0x15,%eax
+    11cf:	cd 40                	int    $0x40
+    11d1:	c3                   	ret    
+
+000011d2 <kill>:
+SYSCALL(kill)
+    11d2:	b8 06 00 00 00       	mov    $0x6,%eax
+    11d7:	cd 40                	int    $0x40
+    11d9:	c3                   	ret    
+
+000011da <exec>:
+SYSCALL(exec)
+    11da:	b8 07 00 00 00       	mov    $0x7,%eax
+    11df:	cd 40                	int    $0x40
+    11e1:	c3                   	ret    
+
+000011e2 <open>:
+SYSCALL(open)
+    11e2:	b8 0f 00 00 00       	mov    $0xf,%eax
+    11e7:	cd 40                	int    $0x40
+    11e9:	c3                   	ret    
+
+000011ea <mknod>:
+SYSCALL(mknod)
+    11ea:	b8 11 00 00 00       	mov    $0x11,%eax
+    11ef:	cd 40                	int    $0x40
+    11f1:	c3                   	ret    
+
+000011f2 <unlink>:
+SYSCALL(unlink)
+    11f2:	b8 12 00 00 00       	mov    $0x12,%eax
+    11f7:	cd 40                	int    $0x40
+    11f9:	c3                   	ret    
+
+000011fa <fstat>:
+SYSCALL(fstat)
+    11fa:	b8 08 00 00 00       	mov    $0x8,%eax
+    11ff:	cd 40                	int    $0x40
+    1201:	c3                   	ret    
+
+00001202 <link>:
+SYSCALL(link)
+    1202:	b8 13 00 00 00       	mov    $0x13,%eax
+    1207:	cd 40                	int    $0x40
+    1209:	c3                   	ret    
+
+0000120a <mkdir>:
+SYSCALL(mkdir)
+    120a:	b8 14 00 00 00       	mov    $0x14,%eax
+    120f:	cd 40                	int    $0x40
+    1211:	c3                   	ret    
+
+00001212 <chdir>:
+SYSCALL(chdir)
+    1212:	b8 09 00 00 00       	mov    $0x9,%eax
+    1217:	cd 40                	int    $0x40
+    1219:	c3                   	ret    
+
+0000121a <dup>:
+SYSCALL(dup)
+    121a:	b8 0a 00 00 00       	mov    $0xa,%eax
+    121f:	cd 40                	int    $0x40
+    1221:	c3                   	ret    
+
+00001222 <getpid>:
+SYSCALL(getpid)
+    1222:	b8 0b 00 00 00       	mov    $0xb,%eax
+    1227:	cd 40                	int    $0x40
+    1229:	c3                   	ret    
+
+0000122a <sbrk>:
+SYSCALL(sbrk)
+    122a:	b8 0c 00 00 00       	mov    $0xc,%eax
+    122f:	cd 40                	int    $0x40
+    1231:	c3                   	ret    
+
+00001232 <sleep>:
+SYSCALL(sleep)
+    1232:	b8 0d 00 00 00       	mov    $0xd,%eax
+    1237:	cd 40                	int    $0x40
+    1239:	c3                   	ret    
+
+0000123a <uptime>:
+SYSCALL(uptime)
+    123a:	b8 0e 00 00 00       	mov    $0xe,%eax
+    123f:	cd 40                	int    $0x40
+    1241:	c3                   	ret    
+
+00001242 <sigprocmask>:
+SYSCALL(sigprocmask)
+    1242:	b8 16 00 00 00       	mov    $0x16,%eax
+    1247:	cd 40                	int    $0x40
+    1249:	c3                   	ret    
+
+0000124a <sigaction>:
+SYSCALL(sigaction)
+    124a:	b8 17 00 00 00       	mov    $0x17,%eax
     124f:	cd 40                	int    $0x40
     1251:	c3                   	ret    
 
-00001252 <exit>:
-SYSCALL(exit)
-    1252:	b8 02 00 00 00       	mov    $0x2,%eax
+00001252 <sigret>:
+SYSCALL(sigret)
+    1252:	b8 18 00 00 00       	mov    $0x18,%eax
     1257:	cd 40                	int    $0x40
     1259:	c3                   	ret    
+    125a:	66 90                	xchg   %ax,%ax
+    125c:	66 90                	xchg   %ax,%ax
+    125e:	66 90                	xchg   %ax,%ax
 
-0000125a <wait>:
-SYSCALL(wait)
-    125a:	b8 03 00 00 00       	mov    $0x3,%eax
-    125f:	cd 40                	int    $0x40
-    1261:	c3                   	ret    
-
-00001262 <pipe>:
-SYSCALL(pipe)
-    1262:	b8 04 00 00 00       	mov    $0x4,%eax
-    1267:	cd 40                	int    $0x40
-    1269:	c3                   	ret    
-
-0000126a <read>:
-SYSCALL(read)
-    126a:	b8 05 00 00 00       	mov    $0x5,%eax
-    126f:	cd 40                	int    $0x40
-    1271:	c3                   	ret    
-
-00001272 <write>:
-SYSCALL(write)
-    1272:	b8 10 00 00 00       	mov    $0x10,%eax
-    1277:	cd 40                	int    $0x40
-    1279:	c3                   	ret    
-
-0000127a <close>:
-SYSCALL(close)
-    127a:	b8 15 00 00 00       	mov    $0x15,%eax
-    127f:	cd 40                	int    $0x40
-    1281:	c3                   	ret    
-
-00001282 <kill>:
-SYSCALL(kill)
-    1282:	b8 06 00 00 00       	mov    $0x6,%eax
-    1287:	cd 40                	int    $0x40
-    1289:	c3                   	ret    
-
-0000128a <exec>:
-SYSCALL(exec)
-    128a:	b8 07 00 00 00       	mov    $0x7,%eax
-    128f:	cd 40                	int    $0x40
-    1291:	c3                   	ret    
-
-00001292 <open>:
-SYSCALL(open)
-    1292:	b8 0f 00 00 00       	mov    $0xf,%eax
-    1297:	cd 40                	int    $0x40
-    1299:	c3                   	ret    
-
-0000129a <mknod>:
-SYSCALL(mknod)
-    129a:	b8 11 00 00 00       	mov    $0x11,%eax
-    129f:	cd 40                	int    $0x40
-    12a1:	c3                   	ret    
-
-000012a2 <unlink>:
-SYSCALL(unlink)
-    12a2:	b8 12 00 00 00       	mov    $0x12,%eax
-    12a7:	cd 40                	int    $0x40
-    12a9:	c3                   	ret    
-
-000012aa <fstat>:
-SYSCALL(fstat)
-    12aa:	b8 08 00 00 00       	mov    $0x8,%eax
-    12af:	cd 40                	int    $0x40
-    12b1:	c3                   	ret    
-
-000012b2 <link>:
-SYSCALL(link)
-    12b2:	b8 13 00 00 00       	mov    $0x13,%eax
-    12b7:	cd 40                	int    $0x40
-    12b9:	c3                   	ret    
-
-000012ba <mkdir>:
-SYSCALL(mkdir)
-    12ba:	b8 14 00 00 00       	mov    $0x14,%eax
-    12bf:	cd 40                	int    $0x40
-    12c1:	c3                   	ret    
-
-000012c2 <chdir>:
-SYSCALL(chdir)
-    12c2:	b8 09 00 00 00       	mov    $0x9,%eax
-    12c7:	cd 40                	int    $0x40
-    12c9:	c3                   	ret    
-
-000012ca <dup>:
-SYSCALL(dup)
-    12ca:	b8 0a 00 00 00       	mov    $0xa,%eax
-    12cf:	cd 40                	int    $0x40
-    12d1:	c3                   	ret    
-
-000012d2 <getpid>:
-SYSCALL(getpid)
-    12d2:	b8 0b 00 00 00       	mov    $0xb,%eax
-    12d7:	cd 40                	int    $0x40
-    12d9:	c3                   	ret    
-
-000012da <sbrk>:
-SYSCALL(sbrk)
-    12da:	b8 0c 00 00 00       	mov    $0xc,%eax
-    12df:	cd 40                	int    $0x40
-    12e1:	c3                   	ret    
-
-000012e2 <sleep>:
-SYSCALL(sleep)
-    12e2:	b8 0d 00 00 00       	mov    $0xd,%eax
-    12e7:	cd 40                	int    $0x40
-    12e9:	c3                   	ret    
-
-000012ea <uptime>:
-SYSCALL(uptime)
-    12ea:	b8 0e 00 00 00       	mov    $0xe,%eax
-    12ef:	cd 40                	int    $0x40
-    12f1:	c3                   	ret    
-
-000012f2 <sigprocmask>:
-SYSCALL(sigprocmask)
-    12f2:	b8 16 00 00 00       	mov    $0x16,%eax
-    12f7:	cd 40                	int    $0x40
-    12f9:	c3                   	ret    
-
-000012fa <sigaction>:
-SYSCALL(sigaction)
-    12fa:	b8 17 00 00 00       	mov    $0x17,%eax
-    12ff:	cd 40                	int    $0x40
-    1301:	c3                   	ret    
-
-00001302 <sigret>:
-SYSCALL(sigret)
-    1302:	b8 18 00 00 00       	mov    $0x18,%eax
-    1307:	cd 40                	int    $0x40
-    1309:	c3                   	ret    
-    130a:	66 90                	xchg   %ax,%ax
-    130c:	66 90                	xchg   %ax,%ax
-    130e:	66 90                	xchg   %ax,%ax
-
-00001310 <printint>:
+00001260 <printint>:
   write(fd, &c, 1);
 }
 
 static void
 printint(int fd, int xx, int base, int sgn)
 {
-    1310:	55                   	push   %ebp
-    1311:	89 e5                	mov    %esp,%ebp
-    1313:	57                   	push   %edi
-    1314:	56                   	push   %esi
-    1315:	53                   	push   %ebx
-    1316:	83 ec 3c             	sub    $0x3c,%esp
+    1260:	55                   	push   %ebp
+    1261:	89 e5                	mov    %esp,%ebp
+    1263:	57                   	push   %edi
+    1264:	56                   	push   %esi
+    1265:	53                   	push   %ebx
+    1266:	83 ec 3c             	sub    $0x3c,%esp
   char buf[16];
   int i, neg;
   uint x;
 
   neg = 0;
   if(sgn && xx < 0){
-    1319:	85 d2                	test   %edx,%edx
+    1269:	85 d2                	test   %edx,%edx
 {
-    131b:	89 45 c0             	mov    %eax,-0x40(%ebp)
+    126b:	89 45 c0             	mov    %eax,-0x40(%ebp)
     neg = 1;
     x = -xx;
-    131e:	89 d0                	mov    %edx,%eax
+    126e:	89 d0                	mov    %edx,%eax
   if(sgn && xx < 0){
-    1320:	79 76                	jns    1398 <printint+0x88>
-    1322:	f6 45 08 01          	testb  $0x1,0x8(%ebp)
-    1326:	74 70                	je     1398 <printint+0x88>
+    1270:	79 76                	jns    12e8 <printint+0x88>
+    1272:	f6 45 08 01          	testb  $0x1,0x8(%ebp)
+    1276:	74 70                	je     12e8 <printint+0x88>
     x = -xx;
-    1328:	f7 d8                	neg    %eax
+    1278:	f7 d8                	neg    %eax
     neg = 1;
-    132a:	c7 45 c4 01 00 00 00 	movl   $0x1,-0x3c(%ebp)
+    127a:	c7 45 c4 01 00 00 00 	movl   $0x1,-0x3c(%ebp)
   } else {
     x = xx;
   }
 
   i = 0;
-    1331:	31 f6                	xor    %esi,%esi
-    1333:	8d 5d d7             	lea    -0x29(%ebp),%ebx
-    1336:	eb 0a                	jmp    1342 <printint+0x32>
-    1338:	90                   	nop
-    1339:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1281:	31 f6                	xor    %esi,%esi
+    1283:	8d 5d d7             	lea    -0x29(%ebp),%ebx
+    1286:	eb 0a                	jmp    1292 <printint+0x32>
+    1288:	90                   	nop
+    1289:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
   do{
     buf[i++] = digits[x % base];
-    1340:	89 fe                	mov    %edi,%esi
-    1342:	31 d2                	xor    %edx,%edx
-    1344:	8d 7e 01             	lea    0x1(%esi),%edi
-    1347:	f7 f1                	div    %ecx
-    1349:	0f b6 92 38 20 00 00 	movzbl 0x2038(%edx),%edx
+    1290:	89 fe                	mov    %edi,%esi
+    1292:	31 d2                	xor    %edx,%edx
+    1294:	8d 7e 01             	lea    0x1(%esi),%edi
+    1297:	f7 f1                	div    %ecx
+    1299:	0f b6 92 90 1e 00 00 	movzbl 0x1e90(%edx),%edx
   }while((x /= base) != 0);
-    1350:	85 c0                	test   %eax,%eax
+    12a0:	85 c0                	test   %eax,%eax
     buf[i++] = digits[x % base];
-    1352:	88 14 3b             	mov    %dl,(%ebx,%edi,1)
+    12a2:	88 14 3b             	mov    %dl,(%ebx,%edi,1)
   }while((x /= base) != 0);
-    1355:	75 e9                	jne    1340 <printint+0x30>
+    12a5:	75 e9                	jne    1290 <printint+0x30>
   if(neg)
-    1357:	8b 45 c4             	mov    -0x3c(%ebp),%eax
-    135a:	85 c0                	test   %eax,%eax
-    135c:	74 08                	je     1366 <printint+0x56>
+    12a7:	8b 45 c4             	mov    -0x3c(%ebp),%eax
+    12aa:	85 c0                	test   %eax,%eax
+    12ac:	74 08                	je     12b6 <printint+0x56>
     buf[i++] = '-';
-    135e:	c6 44 3d d8 2d       	movb   $0x2d,-0x28(%ebp,%edi,1)
-    1363:	8d 7e 02             	lea    0x2(%esi),%edi
-    1366:	8d 74 3d d7          	lea    -0x29(%ebp,%edi,1),%esi
-    136a:	8b 7d c0             	mov    -0x40(%ebp),%edi
-    136d:	8d 76 00             	lea    0x0(%esi),%esi
-    1370:	0f b6 06             	movzbl (%esi),%eax
+    12ae:	c6 44 3d d8 2d       	movb   $0x2d,-0x28(%ebp,%edi,1)
+    12b3:	8d 7e 02             	lea    0x2(%esi),%edi
+    12b6:	8d 74 3d d7          	lea    -0x29(%ebp,%edi,1),%esi
+    12ba:	8b 7d c0             	mov    -0x40(%ebp),%edi
+    12bd:	8d 76 00             	lea    0x0(%esi),%esi
+    12c0:	0f b6 06             	movzbl (%esi),%eax
   write(fd, &c, 1);
-    1373:	83 ec 04             	sub    $0x4,%esp
-    1376:	83 ee 01             	sub    $0x1,%esi
-    1379:	6a 01                	push   $0x1
-    137b:	53                   	push   %ebx
-    137c:	57                   	push   %edi
-    137d:	88 45 d7             	mov    %al,-0x29(%ebp)
-    1380:	e8 ed fe ff ff       	call   1272 <write>
+    12c3:	83 ec 04             	sub    $0x4,%esp
+    12c6:	83 ee 01             	sub    $0x1,%esi
+    12c9:	6a 01                	push   $0x1
+    12cb:	53                   	push   %ebx
+    12cc:	57                   	push   %edi
+    12cd:	88 45 d7             	mov    %al,-0x29(%ebp)
+    12d0:	e8 ed fe ff ff       	call   11c2 <write>
 
   while(--i >= 0)
-    1385:	83 c4 10             	add    $0x10,%esp
-    1388:	39 de                	cmp    %ebx,%esi
-    138a:	75 e4                	jne    1370 <printint+0x60>
+    12d5:	83 c4 10             	add    $0x10,%esp
+    12d8:	39 de                	cmp    %ebx,%esi
+    12da:	75 e4                	jne    12c0 <printint+0x60>
     putc(fd, buf[i]);
 }
-    138c:	8d 65 f4             	lea    -0xc(%ebp),%esp
-    138f:	5b                   	pop    %ebx
-    1390:	5e                   	pop    %esi
-    1391:	5f                   	pop    %edi
-    1392:	5d                   	pop    %ebp
-    1393:	c3                   	ret    
-    1394:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    12dc:	8d 65 f4             	lea    -0xc(%ebp),%esp
+    12df:	5b                   	pop    %ebx
+    12e0:	5e                   	pop    %esi
+    12e1:	5f                   	pop    %edi
+    12e2:	5d                   	pop    %ebp
+    12e3:	c3                   	ret    
+    12e4:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
   neg = 0;
-    1398:	c7 45 c4 00 00 00 00 	movl   $0x0,-0x3c(%ebp)
-    139f:	eb 90                	jmp    1331 <printint+0x21>
-    13a1:	eb 0d                	jmp    13b0 <printf>
-    13a3:	90                   	nop
-    13a4:	90                   	nop
-    13a5:	90                   	nop
-    13a6:	90                   	nop
-    13a7:	90                   	nop
-    13a8:	90                   	nop
-    13a9:	90                   	nop
-    13aa:	90                   	nop
-    13ab:	90                   	nop
-    13ac:	90                   	nop
-    13ad:	90                   	nop
-    13ae:	90                   	nop
-    13af:	90                   	nop
+    12e8:	c7 45 c4 00 00 00 00 	movl   $0x0,-0x3c(%ebp)
+    12ef:	eb 90                	jmp    1281 <printint+0x21>
+    12f1:	eb 0d                	jmp    1300 <printf>
+    12f3:	90                   	nop
+    12f4:	90                   	nop
+    12f5:	90                   	nop
+    12f6:	90                   	nop
+    12f7:	90                   	nop
+    12f8:	90                   	nop
+    12f9:	90                   	nop
+    12fa:	90                   	nop
+    12fb:	90                   	nop
+    12fc:	90                   	nop
+    12fd:	90                   	nop
+    12fe:	90                   	nop
+    12ff:	90                   	nop
 
-000013b0 <printf>:
+00001300 <printf>:
 
 // Print to the given fd. Only understands %d, %x, %p, %s.
 void
 printf(int fd, const char *fmt, ...)
 {
-    13b0:	55                   	push   %ebp
-    13b1:	89 e5                	mov    %esp,%ebp
-    13b3:	57                   	push   %edi
-    13b4:	56                   	push   %esi
-    13b5:	53                   	push   %ebx
-    13b6:	83 ec 2c             	sub    $0x2c,%esp
+    1300:	55                   	push   %ebp
+    1301:	89 e5                	mov    %esp,%ebp
+    1303:	57                   	push   %edi
+    1304:	56                   	push   %esi
+    1305:	53                   	push   %ebx
+    1306:	83 ec 2c             	sub    $0x2c,%esp
   int c, i, state;
   uint *ap;
 
   state = 0;
   ap = (uint*)(void*)&fmt + 1;
   for(i = 0; fmt[i]; i++){
-    13b9:	8b 75 0c             	mov    0xc(%ebp),%esi
-    13bc:	0f b6 1e             	movzbl (%esi),%ebx
-    13bf:	84 db                	test   %bl,%bl
-    13c1:	0f 84 b3 00 00 00    	je     147a <printf+0xca>
+    1309:	8b 75 0c             	mov    0xc(%ebp),%esi
+    130c:	0f b6 1e             	movzbl (%esi),%ebx
+    130f:	84 db                	test   %bl,%bl
+    1311:	0f 84 b3 00 00 00    	je     13ca <printf+0xca>
   ap = (uint*)(void*)&fmt + 1;
-    13c7:	8d 45 10             	lea    0x10(%ebp),%eax
-    13ca:	83 c6 01             	add    $0x1,%esi
+    1317:	8d 45 10             	lea    0x10(%ebp),%eax
+    131a:	83 c6 01             	add    $0x1,%esi
   state = 0;
-    13cd:	31 ff                	xor    %edi,%edi
+    131d:	31 ff                	xor    %edi,%edi
   ap = (uint*)(void*)&fmt + 1;
-    13cf:	89 45 d4             	mov    %eax,-0x2c(%ebp)
-    13d2:	eb 2f                	jmp    1403 <printf+0x53>
-    13d4:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    131f:	89 45 d4             	mov    %eax,-0x2c(%ebp)
+    1322:	eb 2f                	jmp    1353 <printf+0x53>
+    1324:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
     c = fmt[i] & 0xff;
     if(state == 0){
       if(c == '%'){
-    13d8:	83 f8 25             	cmp    $0x25,%eax
-    13db:	0f 84 a7 00 00 00    	je     1488 <printf+0xd8>
+    1328:	83 f8 25             	cmp    $0x25,%eax
+    132b:	0f 84 a7 00 00 00    	je     13d8 <printf+0xd8>
   write(fd, &c, 1);
-    13e1:	8d 45 e2             	lea    -0x1e(%ebp),%eax
-    13e4:	83 ec 04             	sub    $0x4,%esp
-    13e7:	88 5d e2             	mov    %bl,-0x1e(%ebp)
-    13ea:	6a 01                	push   $0x1
-    13ec:	50                   	push   %eax
-    13ed:	ff 75 08             	pushl  0x8(%ebp)
-    13f0:	e8 7d fe ff ff       	call   1272 <write>
-    13f5:	83 c4 10             	add    $0x10,%esp
-    13f8:	83 c6 01             	add    $0x1,%esi
+    1331:	8d 45 e2             	lea    -0x1e(%ebp),%eax
+    1334:	83 ec 04             	sub    $0x4,%esp
+    1337:	88 5d e2             	mov    %bl,-0x1e(%ebp)
+    133a:	6a 01                	push   $0x1
+    133c:	50                   	push   %eax
+    133d:	ff 75 08             	pushl  0x8(%ebp)
+    1340:	e8 7d fe ff ff       	call   11c2 <write>
+    1345:	83 c4 10             	add    $0x10,%esp
+    1348:	83 c6 01             	add    $0x1,%esi
   for(i = 0; fmt[i]; i++){
-    13fb:	0f b6 5e ff          	movzbl -0x1(%esi),%ebx
-    13ff:	84 db                	test   %bl,%bl
-    1401:	74 77                	je     147a <printf+0xca>
+    134b:	0f b6 5e ff          	movzbl -0x1(%esi),%ebx
+    134f:	84 db                	test   %bl,%bl
+    1351:	74 77                	je     13ca <printf+0xca>
     if(state == 0){
-    1403:	85 ff                	test   %edi,%edi
+    1353:	85 ff                	test   %edi,%edi
     c = fmt[i] & 0xff;
-    1405:	0f be cb             	movsbl %bl,%ecx
-    1408:	0f b6 c3             	movzbl %bl,%eax
+    1355:	0f be cb             	movsbl %bl,%ecx
+    1358:	0f b6 c3             	movzbl %bl,%eax
     if(state == 0){
-    140b:	74 cb                	je     13d8 <printf+0x28>
+    135b:	74 cb                	je     1328 <printf+0x28>
         state = '%';
       } else {
         putc(fd, c);
       }
     } else if(state == '%'){
-    140d:	83 ff 25             	cmp    $0x25,%edi
-    1410:	75 e6                	jne    13f8 <printf+0x48>
+    135d:	83 ff 25             	cmp    $0x25,%edi
+    1360:	75 e6                	jne    1348 <printf+0x48>
       if(c == 'd'){
-    1412:	83 f8 64             	cmp    $0x64,%eax
-    1415:	0f 84 05 01 00 00    	je     1520 <printf+0x170>
+    1362:	83 f8 64             	cmp    $0x64,%eax
+    1365:	0f 84 05 01 00 00    	je     1470 <printf+0x170>
         printint(fd, *ap, 10, 1);
         ap++;
       } else if(c == 'x' || c == 'p'){
-    141b:	81 e1 f7 00 00 00    	and    $0xf7,%ecx
-    1421:	83 f9 70             	cmp    $0x70,%ecx
-    1424:	74 72                	je     1498 <printf+0xe8>
+    136b:	81 e1 f7 00 00 00    	and    $0xf7,%ecx
+    1371:	83 f9 70             	cmp    $0x70,%ecx
+    1374:	74 72                	je     13e8 <printf+0xe8>
         printint(fd, *ap, 16, 0);
         ap++;
       } else if(c == 's'){
-    1426:	83 f8 73             	cmp    $0x73,%eax
-    1429:	0f 84 99 00 00 00    	je     14c8 <printf+0x118>
+    1376:	83 f8 73             	cmp    $0x73,%eax
+    1379:	0f 84 99 00 00 00    	je     1418 <printf+0x118>
           s = "(null)";
         while(*s != 0){
           putc(fd, *s);
           s++;
         }
       } else if(c == 'c'){
-    142f:	83 f8 63             	cmp    $0x63,%eax
-    1432:	0f 84 08 01 00 00    	je     1540 <printf+0x190>
+    137f:	83 f8 63             	cmp    $0x63,%eax
+    1382:	0f 84 08 01 00 00    	je     1490 <printf+0x190>
         putc(fd, *ap);
         ap++;
       } else if(c == '%'){
-    1438:	83 f8 25             	cmp    $0x25,%eax
-    143b:	0f 84 ef 00 00 00    	je     1530 <printf+0x180>
+    1388:	83 f8 25             	cmp    $0x25,%eax
+    138b:	0f 84 ef 00 00 00    	je     1480 <printf+0x180>
   write(fd, &c, 1);
-    1441:	8d 45 e7             	lea    -0x19(%ebp),%eax
-    1444:	83 ec 04             	sub    $0x4,%esp
-    1447:	c6 45 e7 25          	movb   $0x25,-0x19(%ebp)
-    144b:	6a 01                	push   $0x1
-    144d:	50                   	push   %eax
-    144e:	ff 75 08             	pushl  0x8(%ebp)
-    1451:	e8 1c fe ff ff       	call   1272 <write>
-    1456:	83 c4 0c             	add    $0xc,%esp
-    1459:	8d 45 e6             	lea    -0x1a(%ebp),%eax
-    145c:	88 5d e6             	mov    %bl,-0x1a(%ebp)
-    145f:	6a 01                	push   $0x1
-    1461:	50                   	push   %eax
-    1462:	ff 75 08             	pushl  0x8(%ebp)
-    1465:	83 c6 01             	add    $0x1,%esi
+    1391:	8d 45 e7             	lea    -0x19(%ebp),%eax
+    1394:	83 ec 04             	sub    $0x4,%esp
+    1397:	c6 45 e7 25          	movb   $0x25,-0x19(%ebp)
+    139b:	6a 01                	push   $0x1
+    139d:	50                   	push   %eax
+    139e:	ff 75 08             	pushl  0x8(%ebp)
+    13a1:	e8 1c fe ff ff       	call   11c2 <write>
+    13a6:	83 c4 0c             	add    $0xc,%esp
+    13a9:	8d 45 e6             	lea    -0x1a(%ebp),%eax
+    13ac:	88 5d e6             	mov    %bl,-0x1a(%ebp)
+    13af:	6a 01                	push   $0x1
+    13b1:	50                   	push   %eax
+    13b2:	ff 75 08             	pushl  0x8(%ebp)
+    13b5:	83 c6 01             	add    $0x1,%esi
       } else {
         // Unknown % sequence.  Print it to draw attention.
         putc(fd, '%');
         putc(fd, c);
       }
       state = 0;
-    1468:	31 ff                	xor    %edi,%edi
+    13b8:	31 ff                	xor    %edi,%edi
   write(fd, &c, 1);
-    146a:	e8 03 fe ff ff       	call   1272 <write>
+    13ba:	e8 03 fe ff ff       	call   11c2 <write>
   for(i = 0; fmt[i]; i++){
-    146f:	0f b6 5e ff          	movzbl -0x1(%esi),%ebx
+    13bf:	0f b6 5e ff          	movzbl -0x1(%esi),%ebx
   write(fd, &c, 1);
-    1473:	83 c4 10             	add    $0x10,%esp
+    13c3:	83 c4 10             	add    $0x10,%esp
   for(i = 0; fmt[i]; i++){
-    1476:	84 db                	test   %bl,%bl
-    1478:	75 89                	jne    1403 <printf+0x53>
+    13c6:	84 db                	test   %bl,%bl
+    13c8:	75 89                	jne    1353 <printf+0x53>
     }
   }
 }
-    147a:	8d 65 f4             	lea    -0xc(%ebp),%esp
-    147d:	5b                   	pop    %ebx
-    147e:	5e                   	pop    %esi
-    147f:	5f                   	pop    %edi
-    1480:	5d                   	pop    %ebp
-    1481:	c3                   	ret    
-    1482:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+    13ca:	8d 65 f4             	lea    -0xc(%ebp),%esp
+    13cd:	5b                   	pop    %ebx
+    13ce:	5e                   	pop    %esi
+    13cf:	5f                   	pop    %edi
+    13d0:	5d                   	pop    %ebp
+    13d1:	c3                   	ret    
+    13d2:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
         state = '%';
-    1488:	bf 25 00 00 00       	mov    $0x25,%edi
-    148d:	e9 66 ff ff ff       	jmp    13f8 <printf+0x48>
-    1492:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+    13d8:	bf 25 00 00 00       	mov    $0x25,%edi
+    13dd:	e9 66 ff ff ff       	jmp    1348 <printf+0x48>
+    13e2:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
         printint(fd, *ap, 16, 0);
-    1498:	83 ec 0c             	sub    $0xc,%esp
-    149b:	b9 10 00 00 00       	mov    $0x10,%ecx
-    14a0:	6a 00                	push   $0x0
-    14a2:	8b 7d d4             	mov    -0x2c(%ebp),%edi
-    14a5:	8b 45 08             	mov    0x8(%ebp),%eax
-    14a8:	8b 17                	mov    (%edi),%edx
-    14aa:	e8 61 fe ff ff       	call   1310 <printint>
+    13e8:	83 ec 0c             	sub    $0xc,%esp
+    13eb:	b9 10 00 00 00       	mov    $0x10,%ecx
+    13f0:	6a 00                	push   $0x0
+    13f2:	8b 7d d4             	mov    -0x2c(%ebp),%edi
+    13f5:	8b 45 08             	mov    0x8(%ebp),%eax
+    13f8:	8b 17                	mov    (%edi),%edx
+    13fa:	e8 61 fe ff ff       	call   1260 <printint>
         ap++;
-    14af:	89 f8                	mov    %edi,%eax
-    14b1:	83 c4 10             	add    $0x10,%esp
+    13ff:	89 f8                	mov    %edi,%eax
+    1401:	83 c4 10             	add    $0x10,%esp
       state = 0;
-    14b4:	31 ff                	xor    %edi,%edi
+    1404:	31 ff                	xor    %edi,%edi
         ap++;
-    14b6:	83 c0 04             	add    $0x4,%eax
-    14b9:	89 45 d4             	mov    %eax,-0x2c(%ebp)
-    14bc:	e9 37 ff ff ff       	jmp    13f8 <printf+0x48>
-    14c1:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1406:	83 c0 04             	add    $0x4,%eax
+    1409:	89 45 d4             	mov    %eax,-0x2c(%ebp)
+    140c:	e9 37 ff ff ff       	jmp    1348 <printf+0x48>
+    1411:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
         s = (char*)*ap;
-    14c8:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-    14cb:	8b 08                	mov    (%eax),%ecx
+    1418:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+    141b:	8b 08                	mov    (%eax),%ecx
         ap++;
-    14cd:	83 c0 04             	add    $0x4,%eax
-    14d0:	89 45 d4             	mov    %eax,-0x2c(%ebp)
+    141d:	83 c0 04             	add    $0x4,%eax
+    1420:	89 45 d4             	mov    %eax,-0x2c(%ebp)
         if(s == 0)
-    14d3:	85 c9                	test   %ecx,%ecx
-    14d5:	0f 84 8e 00 00 00    	je     1569 <printf+0x1b9>
+    1423:	85 c9                	test   %ecx,%ecx
+    1425:	0f 84 8e 00 00 00    	je     14b9 <printf+0x1b9>
         while(*s != 0){
-    14db:	0f b6 01             	movzbl (%ecx),%eax
+    142b:	0f b6 01             	movzbl (%ecx),%eax
       state = 0;
-    14de:	31 ff                	xor    %edi,%edi
+    142e:	31 ff                	xor    %edi,%edi
         s = (char*)*ap;
-    14e0:	89 cb                	mov    %ecx,%ebx
+    1430:	89 cb                	mov    %ecx,%ebx
         while(*s != 0){
-    14e2:	84 c0                	test   %al,%al
-    14e4:	0f 84 0e ff ff ff    	je     13f8 <printf+0x48>
-    14ea:	89 75 d0             	mov    %esi,-0x30(%ebp)
-    14ed:	89 de                	mov    %ebx,%esi
-    14ef:	8b 5d 08             	mov    0x8(%ebp),%ebx
-    14f2:	8d 7d e3             	lea    -0x1d(%ebp),%edi
-    14f5:	8d 76 00             	lea    0x0(%esi),%esi
+    1432:	84 c0                	test   %al,%al
+    1434:	0f 84 0e ff ff ff    	je     1348 <printf+0x48>
+    143a:	89 75 d0             	mov    %esi,-0x30(%ebp)
+    143d:	89 de                	mov    %ebx,%esi
+    143f:	8b 5d 08             	mov    0x8(%ebp),%ebx
+    1442:	8d 7d e3             	lea    -0x1d(%ebp),%edi
+    1445:	8d 76 00             	lea    0x0(%esi),%esi
   write(fd, &c, 1);
-    14f8:	83 ec 04             	sub    $0x4,%esp
+    1448:	83 ec 04             	sub    $0x4,%esp
           s++;
-    14fb:	83 c6 01             	add    $0x1,%esi
-    14fe:	88 45 e3             	mov    %al,-0x1d(%ebp)
+    144b:	83 c6 01             	add    $0x1,%esi
+    144e:	88 45 e3             	mov    %al,-0x1d(%ebp)
   write(fd, &c, 1);
-    1501:	6a 01                	push   $0x1
-    1503:	57                   	push   %edi
-    1504:	53                   	push   %ebx
-    1505:	e8 68 fd ff ff       	call   1272 <write>
+    1451:	6a 01                	push   $0x1
+    1453:	57                   	push   %edi
+    1454:	53                   	push   %ebx
+    1455:	e8 68 fd ff ff       	call   11c2 <write>
         while(*s != 0){
-    150a:	0f b6 06             	movzbl (%esi),%eax
-    150d:	83 c4 10             	add    $0x10,%esp
-    1510:	84 c0                	test   %al,%al
-    1512:	75 e4                	jne    14f8 <printf+0x148>
-    1514:	8b 75 d0             	mov    -0x30(%ebp),%esi
+    145a:	0f b6 06             	movzbl (%esi),%eax
+    145d:	83 c4 10             	add    $0x10,%esp
+    1460:	84 c0                	test   %al,%al
+    1462:	75 e4                	jne    1448 <printf+0x148>
+    1464:	8b 75 d0             	mov    -0x30(%ebp),%esi
       state = 0;
-    1517:	31 ff                	xor    %edi,%edi
-    1519:	e9 da fe ff ff       	jmp    13f8 <printf+0x48>
-    151e:	66 90                	xchg   %ax,%ax
+    1467:	31 ff                	xor    %edi,%edi
+    1469:	e9 da fe ff ff       	jmp    1348 <printf+0x48>
+    146e:	66 90                	xchg   %ax,%ax
         printint(fd, *ap, 10, 1);
-    1520:	83 ec 0c             	sub    $0xc,%esp
-    1523:	b9 0a 00 00 00       	mov    $0xa,%ecx
-    1528:	6a 01                	push   $0x1
-    152a:	e9 73 ff ff ff       	jmp    14a2 <printf+0xf2>
-    152f:	90                   	nop
+    1470:	83 ec 0c             	sub    $0xc,%esp
+    1473:	b9 0a 00 00 00       	mov    $0xa,%ecx
+    1478:	6a 01                	push   $0x1
+    147a:	e9 73 ff ff ff       	jmp    13f2 <printf+0xf2>
+    147f:	90                   	nop
   write(fd, &c, 1);
-    1530:	83 ec 04             	sub    $0x4,%esp
-    1533:	88 5d e5             	mov    %bl,-0x1b(%ebp)
-    1536:	8d 45 e5             	lea    -0x1b(%ebp),%eax
-    1539:	6a 01                	push   $0x1
-    153b:	e9 21 ff ff ff       	jmp    1461 <printf+0xb1>
+    1480:	83 ec 04             	sub    $0x4,%esp
+    1483:	88 5d e5             	mov    %bl,-0x1b(%ebp)
+    1486:	8d 45 e5             	lea    -0x1b(%ebp),%eax
+    1489:	6a 01                	push   $0x1
+    148b:	e9 21 ff ff ff       	jmp    13b1 <printf+0xb1>
         putc(fd, *ap);
-    1540:	8b 7d d4             	mov    -0x2c(%ebp),%edi
+    1490:	8b 7d d4             	mov    -0x2c(%ebp),%edi
   write(fd, &c, 1);
-    1543:	83 ec 04             	sub    $0x4,%esp
+    1493:	83 ec 04             	sub    $0x4,%esp
         putc(fd, *ap);
-    1546:	8b 07                	mov    (%edi),%eax
+    1496:	8b 07                	mov    (%edi),%eax
   write(fd, &c, 1);
-    1548:	6a 01                	push   $0x1
+    1498:	6a 01                	push   $0x1
         ap++;
-    154a:	83 c7 04             	add    $0x4,%edi
+    149a:	83 c7 04             	add    $0x4,%edi
         putc(fd, *ap);
-    154d:	88 45 e4             	mov    %al,-0x1c(%ebp)
+    149d:	88 45 e4             	mov    %al,-0x1c(%ebp)
   write(fd, &c, 1);
-    1550:	8d 45 e4             	lea    -0x1c(%ebp),%eax
-    1553:	50                   	push   %eax
-    1554:	ff 75 08             	pushl  0x8(%ebp)
-    1557:	e8 16 fd ff ff       	call   1272 <write>
+    14a0:	8d 45 e4             	lea    -0x1c(%ebp),%eax
+    14a3:	50                   	push   %eax
+    14a4:	ff 75 08             	pushl  0x8(%ebp)
+    14a7:	e8 16 fd ff ff       	call   11c2 <write>
         ap++;
-    155c:	89 7d d4             	mov    %edi,-0x2c(%ebp)
-    155f:	83 c4 10             	add    $0x10,%esp
+    14ac:	89 7d d4             	mov    %edi,-0x2c(%ebp)
+    14af:	83 c4 10             	add    $0x10,%esp
       state = 0;
-    1562:	31 ff                	xor    %edi,%edi
-    1564:	e9 8f fe ff ff       	jmp    13f8 <printf+0x48>
+    14b2:	31 ff                	xor    %edi,%edi
+    14b4:	e9 8f fe ff ff       	jmp    1348 <printf+0x48>
           s = "(null)";
-    1569:	bb 2f 20 00 00       	mov    $0x202f,%ebx
+    14b9:	bb 87 1e 00 00       	mov    $0x1e87,%ebx
         while(*s != 0){
-    156e:	b8 28 00 00 00       	mov    $0x28,%eax
-    1573:	e9 72 ff ff ff       	jmp    14ea <printf+0x13a>
-    1578:	66 90                	xchg   %ax,%ax
-    157a:	66 90                	xchg   %ax,%ax
-    157c:	66 90                	xchg   %ax,%ax
-    157e:	66 90                	xchg   %ax,%ax
+    14be:	b8 28 00 00 00       	mov    $0x28,%eax
+    14c3:	e9 72 ff ff ff       	jmp    143a <printf+0x13a>
+    14c8:	66 90                	xchg   %ax,%ax
+    14ca:	66 90                	xchg   %ax,%ax
+    14cc:	66 90                	xchg   %ax,%ax
+    14ce:	66 90                	xchg   %ax,%ax
 
-00001580 <free>:
+000014d0 <free>:
 static Header base;
 static Header *freep;
 
 void
 free(void *ap)
 {
-    1580:	55                   	push   %ebp
+    14d0:	55                   	push   %ebp
   Header *bp, *p;
 
   bp = (Header*)ap - 1;
   for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
-    1581:	a1 a8 24 00 00       	mov    0x24a8,%eax
+    14d1:	a1 00 23 00 00       	mov    0x2300,%eax
 {
-    1586:	89 e5                	mov    %esp,%ebp
-    1588:	57                   	push   %edi
-    1589:	56                   	push   %esi
-    158a:	53                   	push   %ebx
-    158b:	8b 5d 08             	mov    0x8(%ebp),%ebx
+    14d6:	89 e5                	mov    %esp,%ebp
+    14d8:	57                   	push   %edi
+    14d9:	56                   	push   %esi
+    14da:	53                   	push   %ebx
+    14db:	8b 5d 08             	mov    0x8(%ebp),%ebx
   bp = (Header*)ap - 1;
-    158e:	8d 4b f8             	lea    -0x8(%ebx),%ecx
-    1591:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    14de:	8d 4b f8             	lea    -0x8(%ebx),%ecx
+    14e1:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
   for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
-    1598:	39 c8                	cmp    %ecx,%eax
-    159a:	8b 10                	mov    (%eax),%edx
-    159c:	73 32                	jae    15d0 <free+0x50>
-    159e:	39 d1                	cmp    %edx,%ecx
-    15a0:	72 04                	jb     15a6 <free+0x26>
+    14e8:	39 c8                	cmp    %ecx,%eax
+    14ea:	8b 10                	mov    (%eax),%edx
+    14ec:	73 32                	jae    1520 <free+0x50>
+    14ee:	39 d1                	cmp    %edx,%ecx
+    14f0:	72 04                	jb     14f6 <free+0x26>
     if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
-    15a2:	39 d0                	cmp    %edx,%eax
-    15a4:	72 32                	jb     15d8 <free+0x58>
+    14f2:	39 d0                	cmp    %edx,%eax
+    14f4:	72 32                	jb     1528 <free+0x58>
       break;
   if(bp + bp->s.size == p->s.ptr){
-    15a6:	8b 73 fc             	mov    -0x4(%ebx),%esi
-    15a9:	8d 3c f1             	lea    (%ecx,%esi,8),%edi
-    15ac:	39 fa                	cmp    %edi,%edx
-    15ae:	74 30                	je     15e0 <free+0x60>
+    14f6:	8b 73 fc             	mov    -0x4(%ebx),%esi
+    14f9:	8d 3c f1             	lea    (%ecx,%esi,8),%edi
+    14fc:	39 fa                	cmp    %edi,%edx
+    14fe:	74 30                	je     1530 <free+0x60>
     bp->s.size += p->s.ptr->s.size;
     bp->s.ptr = p->s.ptr->s.ptr;
   } else
     bp->s.ptr = p->s.ptr;
-    15b0:	89 53 f8             	mov    %edx,-0x8(%ebx)
+    1500:	89 53 f8             	mov    %edx,-0x8(%ebx)
   if(p + p->s.size == bp){
-    15b3:	8b 50 04             	mov    0x4(%eax),%edx
-    15b6:	8d 34 d0             	lea    (%eax,%edx,8),%esi
-    15b9:	39 f1                	cmp    %esi,%ecx
-    15bb:	74 3a                	je     15f7 <free+0x77>
+    1503:	8b 50 04             	mov    0x4(%eax),%edx
+    1506:	8d 34 d0             	lea    (%eax,%edx,8),%esi
+    1509:	39 f1                	cmp    %esi,%ecx
+    150b:	74 3a                	je     1547 <free+0x77>
     p->s.size += bp->s.size;
     p->s.ptr = bp->s.ptr;
   } else
     p->s.ptr = bp;
-    15bd:	89 08                	mov    %ecx,(%eax)
+    150d:	89 08                	mov    %ecx,(%eax)
   freep = p;
-    15bf:	a3 a8 24 00 00       	mov    %eax,0x24a8
+    150f:	a3 00 23 00 00       	mov    %eax,0x2300
 }
-    15c4:	5b                   	pop    %ebx
-    15c5:	5e                   	pop    %esi
-    15c6:	5f                   	pop    %edi
-    15c7:	5d                   	pop    %ebp
-    15c8:	c3                   	ret    
-    15c9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1514:	5b                   	pop    %ebx
+    1515:	5e                   	pop    %esi
+    1516:	5f                   	pop    %edi
+    1517:	5d                   	pop    %ebp
+    1518:	c3                   	ret    
+    1519:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
     if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
-    15d0:	39 d0                	cmp    %edx,%eax
-    15d2:	72 04                	jb     15d8 <free+0x58>
-    15d4:	39 d1                	cmp    %edx,%ecx
-    15d6:	72 ce                	jb     15a6 <free+0x26>
+    1520:	39 d0                	cmp    %edx,%eax
+    1522:	72 04                	jb     1528 <free+0x58>
+    1524:	39 d1                	cmp    %edx,%ecx
+    1526:	72 ce                	jb     14f6 <free+0x26>
 {
-    15d8:	89 d0                	mov    %edx,%eax
-    15da:	eb bc                	jmp    1598 <free+0x18>
-    15dc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    1528:	89 d0                	mov    %edx,%eax
+    152a:	eb bc                	jmp    14e8 <free+0x18>
+    152c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
     bp->s.size += p->s.ptr->s.size;
-    15e0:	03 72 04             	add    0x4(%edx),%esi
-    15e3:	89 73 fc             	mov    %esi,-0x4(%ebx)
+    1530:	03 72 04             	add    0x4(%edx),%esi
+    1533:	89 73 fc             	mov    %esi,-0x4(%ebx)
     bp->s.ptr = p->s.ptr->s.ptr;
-    15e6:	8b 10                	mov    (%eax),%edx
-    15e8:	8b 12                	mov    (%edx),%edx
-    15ea:	89 53 f8             	mov    %edx,-0x8(%ebx)
+    1536:	8b 10                	mov    (%eax),%edx
+    1538:	8b 12                	mov    (%edx),%edx
+    153a:	89 53 f8             	mov    %edx,-0x8(%ebx)
   if(p + p->s.size == bp){
-    15ed:	8b 50 04             	mov    0x4(%eax),%edx
-    15f0:	8d 34 d0             	lea    (%eax,%edx,8),%esi
-    15f3:	39 f1                	cmp    %esi,%ecx
-    15f5:	75 c6                	jne    15bd <free+0x3d>
+    153d:	8b 50 04             	mov    0x4(%eax),%edx
+    1540:	8d 34 d0             	lea    (%eax,%edx,8),%esi
+    1543:	39 f1                	cmp    %esi,%ecx
+    1545:	75 c6                	jne    150d <free+0x3d>
     p->s.size += bp->s.size;
-    15f7:	03 53 fc             	add    -0x4(%ebx),%edx
+    1547:	03 53 fc             	add    -0x4(%ebx),%edx
   freep = p;
-    15fa:	a3 a8 24 00 00       	mov    %eax,0x24a8
+    154a:	a3 00 23 00 00       	mov    %eax,0x2300
     p->s.size += bp->s.size;
-    15ff:	89 50 04             	mov    %edx,0x4(%eax)
+    154f:	89 50 04             	mov    %edx,0x4(%eax)
     p->s.ptr = bp->s.ptr;
-    1602:	8b 53 f8             	mov    -0x8(%ebx),%edx
-    1605:	89 10                	mov    %edx,(%eax)
+    1552:	8b 53 f8             	mov    -0x8(%ebx),%edx
+    1555:	89 10                	mov    %edx,(%eax)
 }
-    1607:	5b                   	pop    %ebx
-    1608:	5e                   	pop    %esi
-    1609:	5f                   	pop    %edi
-    160a:	5d                   	pop    %ebp
-    160b:	c3                   	ret    
-    160c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    1557:	5b                   	pop    %ebx
+    1558:	5e                   	pop    %esi
+    1559:	5f                   	pop    %edi
+    155a:	5d                   	pop    %ebp
+    155b:	c3                   	ret    
+    155c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
 
-00001610 <malloc>:
+00001560 <malloc>:
   return freep;
 }
 
 void*
 malloc(uint nbytes)
 {
-    1610:	55                   	push   %ebp
-    1611:	89 e5                	mov    %esp,%ebp
-    1613:	57                   	push   %edi
-    1614:	56                   	push   %esi
-    1615:	53                   	push   %ebx
-    1616:	83 ec 0c             	sub    $0xc,%esp
+    1560:	55                   	push   %ebp
+    1561:	89 e5                	mov    %esp,%ebp
+    1563:	57                   	push   %edi
+    1564:	56                   	push   %esi
+    1565:	53                   	push   %ebx
+    1566:	83 ec 0c             	sub    $0xc,%esp
   Header *p, *prevp;
   uint nunits;
 
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
-    1619:	8b 45 08             	mov    0x8(%ebp),%eax
+    1569:	8b 45 08             	mov    0x8(%ebp),%eax
   if((prevp = freep) == 0){
-    161c:	8b 15 a8 24 00 00    	mov    0x24a8,%edx
+    156c:	8b 15 00 23 00 00    	mov    0x2300,%edx
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
-    1622:	8d 78 07             	lea    0x7(%eax),%edi
-    1625:	c1 ef 03             	shr    $0x3,%edi
-    1628:	83 c7 01             	add    $0x1,%edi
+    1572:	8d 78 07             	lea    0x7(%eax),%edi
+    1575:	c1 ef 03             	shr    $0x3,%edi
+    1578:	83 c7 01             	add    $0x1,%edi
   if((prevp = freep) == 0){
-    162b:	85 d2                	test   %edx,%edx
-    162d:	0f 84 9d 00 00 00    	je     16d0 <malloc+0xc0>
-    1633:	8b 02                	mov    (%edx),%eax
-    1635:	8b 48 04             	mov    0x4(%eax),%ecx
+    157b:	85 d2                	test   %edx,%edx
+    157d:	0f 84 9d 00 00 00    	je     1620 <malloc+0xc0>
+    1583:	8b 02                	mov    (%edx),%eax
+    1585:	8b 48 04             	mov    0x4(%eax),%ecx
     base.s.ptr = freep = prevp = &base;
     base.s.size = 0;
   }
   for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
     if(p->s.size >= nunits){
-    1638:	39 cf                	cmp    %ecx,%edi
-    163a:	76 6c                	jbe    16a8 <malloc+0x98>
-    163c:	81 ff 00 10 00 00    	cmp    $0x1000,%edi
-    1642:	bb 00 10 00 00       	mov    $0x1000,%ebx
-    1647:	0f 43 df             	cmovae %edi,%ebx
+    1588:	39 cf                	cmp    %ecx,%edi
+    158a:	76 6c                	jbe    15f8 <malloc+0x98>
+    158c:	81 ff 00 10 00 00    	cmp    $0x1000,%edi
+    1592:	bb 00 10 00 00       	mov    $0x1000,%ebx
+    1597:	0f 43 df             	cmovae %edi,%ebx
   p = sbrk(nu * sizeof(Header));
-    164a:	8d 34 dd 00 00 00 00 	lea    0x0(,%ebx,8),%esi
-    1651:	eb 0e                	jmp    1661 <malloc+0x51>
-    1653:	90                   	nop
-    1654:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+    159a:	8d 34 dd 00 00 00 00 	lea    0x0(,%ebx,8),%esi
+    15a1:	eb 0e                	jmp    15b1 <malloc+0x51>
+    15a3:	90                   	nop
+    15a4:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
   for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
-    1658:	8b 02                	mov    (%edx),%eax
+    15a8:	8b 02                	mov    (%edx),%eax
     if(p->s.size >= nunits){
-    165a:	8b 48 04             	mov    0x4(%eax),%ecx
-    165d:	39 f9                	cmp    %edi,%ecx
-    165f:	73 47                	jae    16a8 <malloc+0x98>
+    15aa:	8b 48 04             	mov    0x4(%eax),%ecx
+    15ad:	39 f9                	cmp    %edi,%ecx
+    15af:	73 47                	jae    15f8 <malloc+0x98>
         p->s.size = nunits;
       }
       freep = prevp;
       return (void*)(p + 1);
     }
     if(p == freep)
-    1661:	39 05 a8 24 00 00    	cmp    %eax,0x24a8
-    1667:	89 c2                	mov    %eax,%edx
-    1669:	75 ed                	jne    1658 <malloc+0x48>
+    15b1:	39 05 00 23 00 00    	cmp    %eax,0x2300
+    15b7:	89 c2                	mov    %eax,%edx
+    15b9:	75 ed                	jne    15a8 <malloc+0x48>
   p = sbrk(nu * sizeof(Header));
-    166b:	83 ec 0c             	sub    $0xc,%esp
-    166e:	56                   	push   %esi
-    166f:	e8 66 fc ff ff       	call   12da <sbrk>
+    15bb:	83 ec 0c             	sub    $0xc,%esp
+    15be:	56                   	push   %esi
+    15bf:	e8 66 fc ff ff       	call   122a <sbrk>
   if(p == (char*)-1)
-    1674:	83 c4 10             	add    $0x10,%esp
-    1677:	83 f8 ff             	cmp    $0xffffffff,%eax
-    167a:	74 1c                	je     1698 <malloc+0x88>
+    15c4:	83 c4 10             	add    $0x10,%esp
+    15c7:	83 f8 ff             	cmp    $0xffffffff,%eax
+    15ca:	74 1c                	je     15e8 <malloc+0x88>
   hp->s.size = nu;
-    167c:	89 58 04             	mov    %ebx,0x4(%eax)
+    15cc:	89 58 04             	mov    %ebx,0x4(%eax)
   free((void*)(hp + 1));
-    167f:	83 ec 0c             	sub    $0xc,%esp
-    1682:	83 c0 08             	add    $0x8,%eax
-    1685:	50                   	push   %eax
-    1686:	e8 f5 fe ff ff       	call   1580 <free>
+    15cf:	83 ec 0c             	sub    $0xc,%esp
+    15d2:	83 c0 08             	add    $0x8,%eax
+    15d5:	50                   	push   %eax
+    15d6:	e8 f5 fe ff ff       	call   14d0 <free>
   return freep;
-    168b:	8b 15 a8 24 00 00    	mov    0x24a8,%edx
+    15db:	8b 15 00 23 00 00    	mov    0x2300,%edx
       if((p = morecore(nunits)) == 0)
-    1691:	83 c4 10             	add    $0x10,%esp
-    1694:	85 d2                	test   %edx,%edx
-    1696:	75 c0                	jne    1658 <malloc+0x48>
+    15e1:	83 c4 10             	add    $0x10,%esp
+    15e4:	85 d2                	test   %edx,%edx
+    15e6:	75 c0                	jne    15a8 <malloc+0x48>
         return 0;
   }
 }
-    1698:	8d 65 f4             	lea    -0xc(%ebp),%esp
+    15e8:	8d 65 f4             	lea    -0xc(%ebp),%esp
         return 0;
-    169b:	31 c0                	xor    %eax,%eax
+    15eb:	31 c0                	xor    %eax,%eax
 }
-    169d:	5b                   	pop    %ebx
-    169e:	5e                   	pop    %esi
-    169f:	5f                   	pop    %edi
-    16a0:	5d                   	pop    %ebp
-    16a1:	c3                   	ret    
-    16a2:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+    15ed:	5b                   	pop    %ebx
+    15ee:	5e                   	pop    %esi
+    15ef:	5f                   	pop    %edi
+    15f0:	5d                   	pop    %ebp
+    15f1:	c3                   	ret    
+    15f2:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
       if(p->s.size == nunits)
-    16a8:	39 cf                	cmp    %ecx,%edi
-    16aa:	74 54                	je     1700 <malloc+0xf0>
+    15f8:	39 cf                	cmp    %ecx,%edi
+    15fa:	74 54                	je     1650 <malloc+0xf0>
         p->s.size -= nunits;
-    16ac:	29 f9                	sub    %edi,%ecx
-    16ae:	89 48 04             	mov    %ecx,0x4(%eax)
+    15fc:	29 f9                	sub    %edi,%ecx
+    15fe:	89 48 04             	mov    %ecx,0x4(%eax)
         p += p->s.size;
-    16b1:	8d 04 c8             	lea    (%eax,%ecx,8),%eax
+    1601:	8d 04 c8             	lea    (%eax,%ecx,8),%eax
         p->s.size = nunits;
-    16b4:	89 78 04             	mov    %edi,0x4(%eax)
+    1604:	89 78 04             	mov    %edi,0x4(%eax)
       freep = prevp;
-    16b7:	89 15 a8 24 00 00    	mov    %edx,0x24a8
+    1607:	89 15 00 23 00 00    	mov    %edx,0x2300
 }
-    16bd:	8d 65 f4             	lea    -0xc(%ebp),%esp
+    160d:	8d 65 f4             	lea    -0xc(%ebp),%esp
       return (void*)(p + 1);
-    16c0:	83 c0 08             	add    $0x8,%eax
+    1610:	83 c0 08             	add    $0x8,%eax
 }
-    16c3:	5b                   	pop    %ebx
-    16c4:	5e                   	pop    %esi
-    16c5:	5f                   	pop    %edi
-    16c6:	5d                   	pop    %ebp
-    16c7:	c3                   	ret    
-    16c8:	90                   	nop
-    16c9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1613:	5b                   	pop    %ebx
+    1614:	5e                   	pop    %esi
+    1615:	5f                   	pop    %edi
+    1616:	5d                   	pop    %ebp
+    1617:	c3                   	ret    
+    1618:	90                   	nop
+    1619:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
     base.s.ptr = freep = prevp = &base;
-    16d0:	c7 05 a8 24 00 00 ac 	movl   $0x24ac,0x24a8
-    16d7:	24 00 00 
-    16da:	c7 05 ac 24 00 00 ac 	movl   $0x24ac,0x24ac
-    16e1:	24 00 00 
+    1620:	c7 05 00 23 00 00 04 	movl   $0x2304,0x2300
+    1627:	23 00 00 
+    162a:	c7 05 04 23 00 00 04 	movl   $0x2304,0x2304
+    1631:	23 00 00 
     base.s.size = 0;
-    16e4:	b8 ac 24 00 00       	mov    $0x24ac,%eax
-    16e9:	c7 05 b0 24 00 00 00 	movl   $0x0,0x24b0
-    16f0:	00 00 00 
-    16f3:	e9 44 ff ff ff       	jmp    163c <malloc+0x2c>
-    16f8:	90                   	nop
-    16f9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+    1634:	b8 04 23 00 00       	mov    $0x2304,%eax
+    1639:	c7 05 08 23 00 00 00 	movl   $0x0,0x2308
+    1640:	00 00 00 
+    1643:	e9 44 ff ff ff       	jmp    158c <malloc+0x2c>
+    1648:	90                   	nop
+    1649:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
         prevp->s.ptr = p->s.ptr;
-    1700:	8b 08                	mov    (%eax),%ecx
-    1702:	89 0a                	mov    %ecx,(%edx)
-    1704:	eb b1                	jmp    16b7 <malloc+0xa7>
+    1650:	8b 08                	mov    (%eax),%ecx
+    1652:	89 0a                	mov    %ecx,(%edx)
+    1654:	eb b1                	jmp    1607 <malloc+0xa7>

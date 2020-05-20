@@ -186,18 +186,18 @@ struct trapframe {
 static inline int 
 cas(volatile void *addr, int expected, int newval)
 {
-  int res;
+  int ret_val;
   asm volatile(
                 "lock;\n\t"
-                "cmpxchgl %3,%1;\n\t" // comparing [addr] to expected
+                "cmpxchgl %3,%0;\n\t" // comparing [addr](%0) to eax, and if eqaul put %3(new_val) at %0 = [addr]   
                  "pushfl;\n\t" //pushing all flags
                  "popl %%eax;\n\t" //poping flags res to eax
                  "shrl $6,%%eax;\n\t" //shift right 6 times so that eax will contain the lsb, which is the value of zero flag
-                 "andl $1,%%eax;\n\t" // and with '1' so that eax will contain the results
-                 "movl %%eax, %0;\n\t" // moving the reuslt from eax to parameteter 0, it's res in our secnario         
-                  : "=r"(res), "+m"(*(int*)addr), "+a"(expected) // param 0 - res , param 1 - addr , param2 - newval, param3- expected
+                 "andl $1,%%eax;\n\t" // and with '1' so that eax will contain the results, because there might be '1 left to lsb
+                 "movl %%eax, %1;\n\t" // moving the reuslt from eax to parameteter 1, it's ret_val in our secnario         
+                  :"+m"(*(int*)addr),"=r"(ret_val), "+a"(expected) // param 0 - [addr] , param 1 - ret_val , param2 - excpected_val, param3- new_val
                   : "r"(newval)
                   :"memory");
-  return res;
+  return ret_val;
 
 }
